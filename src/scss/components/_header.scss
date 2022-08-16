@@ -1,0 +1,31 @@
+.header
+{
+    background-color: $color-footer;
+    height: 90px;
+    border-bottom: 5px solid $color-border-orange-darker;
+    padding: 0 2rem;
+    z-index: 10;
+    
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.logo__container
+{
+    transform: scale(.95);
+}
+.header__logo
+{
+    cursor: pointer;
+    height: 100%;
+}
+.header__button
+{
+    background-color: transparent;
+    border: none;
+    color: white;
+    font-size: 22px;
+    font-weight: 400;
+    cursor: pointer;
+}

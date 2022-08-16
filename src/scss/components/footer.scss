@@ -1,0 +1,17 @@
+.footer
+{
+    width: 100%;
+    background-color: $color-footer;
+    border-top: 5px solid $color-border-orange-darker;
+    border-bottom: 5px solid $color-border-orange-darker;
+    font-size: 14px;
+    line-height: 24;
+    font-weight: 300;
+    color: white;
+    // padding: 20px 0;
+    height: 52px;
+
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}

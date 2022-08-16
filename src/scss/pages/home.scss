@@ -1,0 +1,55 @@
+.app
+{
+    min-height: 100vh;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+}
+
+.home
+{
+    // height: 81vh;
+    flex: 1;
+    display: flex;
+}
+
+.home__background--container
+{
+    flex-basis: 50%;
+    position: relative;
+    // background-image: linear-gradient(to right, rgba($color-footer, .5), rgba($color-footer, .5)), url("../../Assets/background3.png");
+}
+.home__background--text-container
+{
+    position: absolute;
+    top: 0;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    color: white;
+    background-image: linear-gradient(to right, rgba($color-footer, .6), rgba($color-footer, .6));
+    padding-left: 20%;
+    padding-top: 10%;
+}
+.home__background
+{
+    width: 100%;
+    height: 100%;
+}
+.home__actions
+{
+    flex-basis: 50%;
+    position: relative;
+    color: white;
+}
+.home__actions--container
+{
+    position: absolute;
+    top: 15%;
+    left: 20%;
+    right: 20%;
+    
+    display: flex;
+    align-items: center;
+    flex-direction: column;
+}
