@@ -96,7 +96,7 @@ const FormInputCreator = ({jsonObject, values, handleChange, errors, getFieldPro
         if(element.name === "uploadedFile")
         {
             return(
-                <Grid item container xs={12}>
+                <Grid item container xs={12} key={element.name} >
                     <Grid item xs={6}>
                         <Button sx={{marginTop: "20px", display: "block"}} variant="contained" component="label" color="primary">
                             {" "}
@@ -110,7 +110,7 @@ const FormInputCreator = ({jsonObject, values, handleChange, errors, getFieldPro
         if(element.name === "conditions")
         {
             return(
-                <FormGroup sx={element.sx}>
+                <FormGroup sx={element.sx} key={element.name} >
                     <FormControlLabel 
                         control={<Checkbox {...getFieldProps(element.name)} />} 
                         label={t(element.label)}

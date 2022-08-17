@@ -1,0 +1,40 @@
+.dialog
+{
+    &__paragraph
+    {
+        font-size: 15px;
+        margin-bottom: 12px;
+    }
+    &__question
+    {
+        font-weight: 500;
+    }
+    &__actions
+    {
+        padding-right: 20px !important;
+        padding-bottom: 20px !important;
+
+        &.direction__left{direction: rtl;}
+    }
+    &__button
+    {
+        padding: 5px 25px !important;
+
+        &--no
+        {
+            border: 1px solid #333 !important;
+            color: black !important;
+            background-color: white !important;
+        }
+        &--yes
+        {
+            background-color: #F1914F !important;
+
+            &.margin__right
+            {
+                margin-right: 20px;
+            }
+
+        }
+    }
+}

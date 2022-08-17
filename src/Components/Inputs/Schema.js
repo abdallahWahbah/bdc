@@ -449,7 +449,7 @@ export const Generaleligibilityinformation =
         [
             {
                 value: "below25",
-                title: "Less than 25 years old"
+                title: "less than 25 years old"
             },
             {
                 value: "25-30",
@@ -477,7 +477,7 @@ export const Generaleligibilityinformation =
         [
             {
                 value: "below1Year",
-                title: "Less than a year"
+                title: "less than a year"
             },
             {
                 value: "1-3",

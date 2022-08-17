@@ -1,12 +1,14 @@
-import React from 'react'
+import React, {useState} from 'react'
 import { CustomerInformation, FinancialEligibilityInformation, Generaleligibilityinformation, UpcomingStep1, UpcomingStep2 } from './Inputs/Schema';
 import InitialValuesValidators from './Inputs/InitialValuesValidators';
 import * as yup from 'yup';
 import { FormikWizard } from "formik-wizard-form";
-import { Box, Stepper, Button, Step, StepLabel } from '@mui/material';
+import { Box, Stepper, Button, Step, StepLabel, Dialog, DialogContent, DialogContentText } from '@mui/material';
 import { useSelector } from 'react-redux';
 import { useNavigate } from 'react-router-dom';
 import { useTranslation } from 'react-i18next';
+import { v4 as uuidv4 } from 'uuid';
+import ConfirmationDialog from './Dialogs/ConfirmationDialog';
 
 import {CustomerInformationPage, 
         FinancialEligibilityInformationPage, 
@@ -16,6 +18,7 @@ import {CustomerInformationPage,
 
 const WizardForm = () => 
 {
+    const [openDialog, setOpenDialog] = useState(false);
     const language = useSelector(state => state.language.language);
     const navigate = useNavigate();
     const { t } = useTranslation();
@@ -41,13 +44,28 @@ const WizardForm = () =>
     const [finalValues, setFinalValues] = React.useState({});
     const [finished, setFinished] = React.useState(false);
 
+    const handleOpenDialog = () => {setOpenDialog(true)};
+
+    const saveDraft = (values) =>
+    {
+        console.log(values);
+        let randomValue = uuidv4();
+        localStorage.setItem(uuidv4(), JSON.stringify({...values, id: randomValue, status: "pending"}));
+        navigate("/")
+    }
+
     return (
         <div className='wizard'>
             <FormikWizard
                 initialValues={initialValues}
                 onSubmit={(values) => {
-                    setFinalValues(values);
+                    // setFinalValues(values);
                     setFinished(true);
+                    console.log(values);
+                    let randomValue = uuidv4();
+                    localStorage.setItem(uuidv4(), JSON.stringify({...values, id: randomValue, status: "continue"}));
+                    navigate("/")
+
                 }}
                 validateOnNext
                 activeStepIndex={0}
@@ -119,10 +137,16 @@ const WizardForm = () =>
                                 variant="contained"
                                 disabled={isNextDisabled}
                                 type="primary"
-                                onClick={handleNext}
+                                onClick={currentStepIndex === 4 ? handleOpenDialog : handleNext}
                             >
                                 {currentStepIndex === 4 ? t("Submit") : t("Continue")}
                             </Button>
+                            {openDialog && (
+                                <ConfirmationDialog 
+                                    setOpenDialog={(value) => setOpenDialog(false)}
+                                    handleNext={handleNext}
+                                />
+                            )}
                             
                             <div className={currentStepIndex !== 0 ? "wizard__buttons--autoLeft" : ""}>
                                 <Button 
@@ -132,7 +156,10 @@ const WizardForm = () =>
                                     {t("Cancel")}
                                 </Button>
                                 {currentStepIndex !== 0 && (
-                                    <Button sx={{backgroundColor: "#333", color: "#fff", marginLeft: "30px"}}>
+                                    <Button 
+                                        sx={{backgroundColor: "#333", color: "#fff", marginLeft: "30px"}}
+                                        onClick={()=>{saveDraft(values)}}
+                                    >
                                         {t("Save as Draft")}
                                     </Button>
                                 )}
@@ -155,7 +182,7 @@ const WizardForm = () =>
                     </Box> */}
                     </>
                 );
-                }}
+            }}
             </FormikWizard>
         </div>
     )

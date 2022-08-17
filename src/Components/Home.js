@@ -1,13 +1,15 @@
-import React from 'react';
+import React, {useState} from 'react';
 import { useNavigate } from 'react-router-dom';
 import Background from '../Assets/background.png';
 import Card from './Card';
 import applyImage from '../Assets/apply.png'
 import viewImage from '../Assets/view.png'
+import ViewEnjaz from './ViewEnjaz';
 
 const Home = () => 
 {
     const navigate = useNavigate();
+    const [showEnjaz, setShowEnjaz] = useState(false);
 
     const goToDetails = () => navigate("/details");
     const goToApply = () => navigate("/form");
@@ -28,9 +30,12 @@ const Home = () =>
                 <div className='home__actions--container'>
                     <h3 className='header__secondary'>Lorem ipsum dolor sit amet</h3>
                     <Card onClick={goToApply} applyImage={applyImage} title="Apply for Enjaz"/>
-                    <Card onClick={goToDetails} applyImage={viewImage} title="View for Enjaz"/>
+                    <Card onClick={()=>setShowEnjaz(true)} applyImage={viewImage} title="View for Enjaz"/>
                 </div>
             </div>
+            {showEnjaz && (
+                <ViewEnjaz closeEnjaz={() => setShowEnjaz(false)} />
+            )}
         </div>
     )
 }

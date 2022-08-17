@@ -26,8 +26,9 @@
     "Single Proprietorship":"ملكية فردية",
     "Limited Liability Company":"شركه ذات مسئوليه محدوده",
     "Joint Stock Company":"شركة مساهمة",
+    "Limited Partnership (LP)":"شراكة محدودة (LP)",
     "Key Person's/Owner's Age?":"عمر الشخص / المالك الرئيسي؟",
-    "Less than 25 years old":"أقل من 25 عام",
+    "less than 25 years old":"أقل من 25 عام",
     "from 25 to 30 years old":"25-30 عام",
     "from 30 to 60 years old":"30-60 عام",
     "more than 60 years old":"أكثر من 60 عام",
@@ -51,7 +52,7 @@
     "Tourism":"السياحة",
     "Steel factory":"مصنع الصلب",
     "Sugar factory":"مصنع السكر",
-    "Weapons trade":"Weapons trade",
+    "Weapons trade":"تجارة السلاح",
     "Gold trade":"تجارة الذهب",
     "Pharmacies":"صيدليات",
     "Software":"برمجة",
@@ -71,7 +72,7 @@
     "Unstable - Changed during the last 3 months":"غير مستقر - تم التغيير خلال الأشهر الثلاثة الماضية",
     "Availability of Financial Statements or list of assets":"توافر القوائم المالية أو قائمة الأصول",
     "Have list of assets list only":"لديك قائمة الأصول فقط",
-    "Have a Financial statement for less than a year":"Have a Financial statement for less than a year",
+    "Have a Financial statement for less than a year":"لديك بيان مالي لمدة أقل من عام",
     "Have a Financial statement for a year or more":"لديك بيان مالي لمدة عام أو أكثر",
     "Don't have any":"ليس لدي أي منها",
     "Company's industrial sector":"قطاع الشركة الصناعي",
@@ -109,6 +110,8 @@
     "{Maximum loan amount that can be taken from our bank}":"{الحد الأقصى لمبلغ القرض الذي يمكن الحصول عليه من مصرفنا}",
     "Where “Maximum loan amount that can be taken from our bank” is 35% of Annual Sales":"حيث 'الحد الأقصى لمبلغ القرض الذي يمكن الحصول عليه من مصرفنا' هو 35٪ من المبيعات السنوية",
     "Requested loan amount":"مبلغ القرض المطلوب",
+    "I approve and authorize BDC to perform I-Score investigation and all required investigations to proceed the loan request":"أوافق وأعتمد BDC لإجراء تحقيق I-Score وجميع التحقيقات المطلوبة لمتابعة طلب القرض",
     "Upload file": "رفع ملف",
-    "I approve and authorize BDC to perform I-Score investigation and all required investigations to proceed the loan request":"أوافق وأعتمد BDC لإجراء تحقيق I-Score وجميع التحقيقات المطلوبة لمتابعة طلب القرض"
+    "Thanks for filling out the request, the requested amount is greater than the maximum amount for this loan product, however we will review your request for another loan products and contact you.":"نشكرك على ملء الطلب ، فالمبلغ المطلوب أكبر من الحد الأقصى لمبلغ منتج القرض هذا ، ومع ذلك سنراجع طلبك للحصول على منتجات قرض أخرى ونتصل بك.",
+    "Are you sure you want to continue ?":"هل أنت متأكد من أنك تريد الاستمرار؟"
 }

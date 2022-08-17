@@ -26,13 +26,14 @@
     "Single Proprietorship":"Single Proprietorship",
     "Limited Liability Company":"Limited Liability Company",
     "Joint Stock Company":"Joint Stock Company",
+    "Limited Partnership (LP)":"Limited Partnership (LP)",
     "Key Person's/Owner's Age?":"Key Person's/Owner's Age?",
-    "Less than 25 years old":"Less than 25 years old",
+    "less than 25 years old":"less than 25 years old",
     "from 25 to 30 years old":"from 25 to 30 years old",
     "from 30 to 60 years old":"from 30 to 60 years old",
     "more than 60 years old":"more than 60 years old",
     "Company's Years in business":"Company's Years in business",
-    "Less than a year":"Less than a year",
+    "less than a year":"less than a year",
     "1 to 3 years":"1 to 3 years",
     "3 to 5 years":"3 to 5 years",
     "more than 5 years":"more than 5 years",
@@ -109,6 +110,8 @@
     "{Maximum loan amount that can be taken from our bank}":"{Maximum loan amount that can be taken from our bank}",
     "Where “Maximum loan amount that can be taken from our bank” is 35% of Annual Sales":"Where “Maximum loan amount that can be taken from our bank” is 35% of Annual Sales",
     "Requested loan amount":"Requested loan amount",
+    "I approve and authorize BDC to perform I-Score investigation and all required investigations to proceed the loan request":"I approve and authorize BDC to perform I-Score investigation and all required investigations to proceed the loan request",
     "Upload file":"Upload file",
-    "I approve and authorize BDC to perform I-Score investigation and all required investigations to proceed the loan request":"I approve and authorize BDC to perform I-Score investigation and all required investigations to proceed the loan request"
+    "Thanks for filling out the request, the requested amount is greater than the maximum amount for this loan product, however we will review your request for another loan products and contact you.":"Thanks for filling out the request, the requested amount is greater than the maximum amount for this loan product, however we will review your request for another loan products and contact you.",
+    "Are you sure you want to continue ?":"Are you sure you want to continue ?"    
 }
