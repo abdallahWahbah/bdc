@@ -8,56 +8,44 @@ export const CustomerInformation =
         id: "companyName",
         type: "text",
         label: "Company Name",
-        // sx: {marginBottom: "10px"},
         initialValue: "",
-        validator: yup.string().min(2).required("First Name can't be empty"),
-        // validator: ""
+        // validator: yup.string().required("Company Name can't be empty"),
+        
     },
     {
         name: "commercialRegistrationNumber",
         type: "text",
         label: "Commercial Registration Number",
-        // sx: {marginBottom: "10px"},
+        // showWhen: (values) => !!values.companyName,
         initialValue: "",
-        // validator: yup.string().min(2).required("First Name can't be empty"),
-        validator: ""
+        // validator: yup.number().required("Commercial Registration Number is required")
     },
     {
         name: "contactMobileNumber",
         type: "number",
         label: "Contact Mobile Number",
-        // sx: {marginBottom: "10px"},
         initialValue: "",
-        // validator: yup.string().min(2).required("First Name can't be empty"),
-        validator: ""
+        // validator: yup.number().required("Contact Mobile Number is required")
     },
     {
         name: "loanAmount",
         type: "text",
         label: "Requested Loan amount in EGP",
-        // sx: {marginBottom: "10px"},
         initialValue: "",
-        // validator: yup.string().min(2).required("First Name can't be empty"),
-        validator: ""
     },
     {
         name: "customerID",
         type: "text",
         label: "Customer ID (CIF)",
-        // sx: {marginBottom: "20px"},
         initialValue: "",
-        // validator: yup.string().min(2).required("First Name can't be empty"),
-        validator: ""
     },
     {
         name: "nearestBankBranch",
         id: "demo-simple-select-label",
-        // labelId: "demo-simple-select-label",
         label: "The nearest Bank Branch",
         selectId: "demo-simple-select",
-        // sx: {marginBottom: "20px"},
         initialValue: "",
-        // validator: yup.string().required("Choose your education"),
+        // validator: yup.string().required("Please, select The nearest Bank Branch"),
         options: 
         [
             {
@@ -358,9 +346,8 @@ export const FinancialEligibilityInformation =
         labelId: "demo-simple-select-label",
         label: "Annual Sales Turnover for the previous financial year in EGP",
         selectId: "demo-simple-select",
-        // sx: {marginBottom: "20px"},
         initialValue: "",
-        // validator: yup.string().required("Choose your education"),
+        // validator: yup.string().required("This field can't be empty"),
         options: 
         [
             {
@@ -391,9 +378,8 @@ export const FinancialEligibilityInformation =
         labelId: "demo-simple-select-label",
         label: "Paid In capital Amount",
         selectId: "demo-simple-select",
-        // sx: {marginBottom: "20px"},
         initialValue: "",
-        // validator: yup.string().required("Choose your education"),
+        // validator: yup.string().required("Paid In capital Amoun is required"),
         options: 
         [
             {
@@ -407,10 +393,6 @@ export const FinancialEligibilityInformation =
             {
                 value: "150-300K",
                 title: "150,000 to 300,000"
-            },
-            {
-                value: "tenToTwentyM",
-                title: "10 to 20,000"
             },
             {
                 value: "above300K",
@@ -433,14 +415,13 @@ export const Generaleligibilityinformation =
         labelId: "demo-simple-select-label",
         label: "The legal form of the company",
         selectId: "demo-simple-select",
-        // sx: {marginBottom: "20px"},
         initialValue: "",
         // validator: yup.string().required("Choose your education"),
         options: 
         [
             {
                 value: "single",
-                title: "Single Proprietorship "
+                title: "Single Proprietorship"
             },
             {
                 value: "limited",
@@ -462,7 +443,6 @@ export const Generaleligibilityinformation =
         labelId: "demo-simple-select-label",
         label: "Key Person's/Owner's Age?",
         selectId: "demo-simple-select",
-        // sx: {marginBottom: "20px"},
         initialValue: "",
         // validator: yup.string().required("Choose your education"),
         options: 
@@ -491,7 +471,6 @@ export const Generaleligibilityinformation =
         labelId: "demo-simple-select-label",
         label: "Company's Years in business",
         selectId: "demo-simple-select",
-        // sx: {marginBottom: "20px"},
         initialValue: "",
         // validator: yup.string().required("Choose your education"),
         options: 
@@ -520,7 +499,6 @@ export const Generaleligibilityinformation =
         labelId: "demo-simple-select-label",
         label: "Company residence",
         selectId: "demo-simple-select",
-        // sx: {marginBottom: "20px"},
         initialValue: "",
         // validator: yup.string().required("Choose your education"),
         options: 
@@ -561,7 +539,6 @@ export const Generaleligibilityinformation =
         labelId: "demo-simple-select-label",
         label: "Company Activity",
         selectId: "demo-simple-select",
-        // sx: {marginBottom: "20px"},
         initialValue: "",
         // validator: yup.string().required("Choose your education"),
         options: 
@@ -632,7 +609,7 @@ export const Generaleligibilityinformation =
         name: "otherCompanyActivity",
         type: "text",
         label: "Other Company Activity",
-        // sx: {marginBottom: "20px"},
+        showWhen: (values) => values.companyActivity === "other",
         initialValue: "",
         // validator: yup.string().min(2).required("First Name can't be empty"),
         validator: ""
@@ -643,7 +620,6 @@ export const Generaleligibilityinformation =
         labelId: "demo-simple-select-label",
         label: "Have any personal belongings?",
         selectId: "demo-simple-select",
-        // sx: {marginBottom: "20px"},
         initialValue: "",
         // validator: yup.string().required("Choose your education"),
         options: 
@@ -673,7 +649,7 @@ export const Generaleligibilityinformation =
 
 
 
-export const UpcomingStep = 
+export const UpcomingStep1 = 
 [
     {
         name: "StabilityCapitalAmount",
@@ -681,7 +657,6 @@ export const UpcomingStep =
         labelId: "demo-simple-select-label",
         label: "Stability in capital amount in the last 3 months",
         selectId: "demo-simple-select",
-        // sx: {marginBottom: "20px"},
         initialValue: "",
         // validator: yup.string().required("Choose your education"),
         options: 
@@ -702,7 +677,6 @@ export const UpcomingStep =
         labelId: "demo-simple-select-label",
         label: "Availability of Financial Statements or list of assets",
         selectId: "demo-simple-select",
-        // sx: {marginBottom: "20px"},
         initialValue: "",
         // validator: yup.string().required("Choose your education"),
         options: 
@@ -731,7 +705,6 @@ export const UpcomingStep =
         labelId: "demo-simple-select-label",
         label: "Company's industrial sector",
         selectId: "demo-simple-select",
-        // sx: {marginBottom: "20px"},
         initialValue: "",
         // validator: yup.string().required("Choose your education"),
         options: 
@@ -760,7 +733,6 @@ export const UpcomingStep =
         labelId: "demo-simple-select-label",
         label: "Number of headcount",
         selectId: "demo-simple-select",
-        // sx: {marginBottom: "20px"},
         initialValue: "",
         // validator: yup.string().required("Choose your education"),
         options: 
@@ -783,9 +755,8 @@ export const UpcomingStep =
         name: "companyLicense",
         inputId: "demo-simple-select-label",
         labelId: "demo-simple-select-label",
-        label: "Company's License /certificate of practicing the profession are available? ",
+        label: "Company's License /certificate of practicing the profession are available?",
         selectId: "demo-simple-select",
-        // sx: {marginBottom: "20px"},
         initialValue: "",
         // validator: yup.string().required("Choose your education"),
         options: 
@@ -806,7 +777,6 @@ export const UpcomingStep =
         labelId: "demo-simple-select-label",
         label: "Years of experience of the key person/owner?",
         selectId: "demo-simple-select",
-        // sx: {marginBottom: "20px"},
         initialValue: "",
         // validator: yup.string().required("Choose your education"),
         options: 
@@ -831,7 +801,6 @@ export const UpcomingStep =
         labelId: "demo-simple-select-label",
         label: "Is there a second level of management?",
         selectId: "demo-simple-select",
-        // sx: {marginBottom: "20px"},
         initialValue: "",
         // validator: yup.string().required("Choose your education"),
         options: 
@@ -856,7 +825,6 @@ export const UpcomingStep =
         labelId: "demo-simple-select-label",
         label: "Number of banks granted a credit facility to the company",
         selectId: "demo-simple-select",
-        // sx: {marginBottom: "20px"},
         initialValue: "",
         // validator: yup.string().required("Choose your education"),
         options: 
@@ -881,7 +849,6 @@ export const UpcomingStep =
         labelId: "demo-simple-select-label",
         label: "Number of years of the relation with our bank",
         selectId: "demo-simple-select",
-        // sx: {marginBottom: "20px"},
         initialValue: "",
         // validator: yup.string().required("Choose your education"),
         options: 
@@ -904,7 +871,6 @@ export const UpcomingStep =
         name: "annualSales",
         type: "text",
         label: "Annual Sales",
-        // sx: {marginBottom: "20px"},
         initialValue: "",
         // validator: yup.string().min(2).required("First Name can't be empty"),
         validator: ""
@@ -913,7 +879,6 @@ export const UpcomingStep =
         name: "nationalID",
         type: "text",
         label: "National ID of the owner/partners/guarantor",
-        // sx: {marginBottom: "20px"},
         initialValue: "",
         // validator: yup.string().min(2).required("First Name can't be empty"),
         validator: ""
@@ -922,10 +887,50 @@ export const UpcomingStep =
         name: "suppliersList",
         type: "text",
         label: "Suppliers list",
-        // sx: {marginBottom: "20px"},
+        initialValue: "",
+        // validator: yup.string().min(2).required("First Name can't be empty"),
+        validator: ""
+    },    
+]
+
+
+
+
+
+
+export const UpcomingStep2 = 
+[
+    {
+        name: "text__box",
+        title: "You are initially eligible for this loan and the maximum loan amount up to In accordance with the terms and conditions.",
+        details:
+        [
+            "{Maximum loan amount that can be taken from our bank}",
+            "Where “Maximum loan amount that can be taken from our bank” is 35% of Annual Sales"
+        ]
+    },
+    {
+        name: "requestedLoanAmount",
+        type: "number",
+        label: "Requested loan amount",
         initialValue: "",
         // validator: yup.string().min(2).required("First Name can't be empty"),
         validator: ""
     },
-    
+    {
+        name: "uploadedFile",
+        type: "file",
+        label: "Please Upload Pre-Approval Documents documents",
+        initialValue: "",
+        // validator: yup.string().min(2).required("First Name can't be empty"),
+        validator: ""
+    },
+    {
+        name: "conditions",
+        type: "checkbox",
+        label: "I approve and authorize BDC to perform I-Score investigation and all required investigations to proceed the loan request",
+        sx: {marginTop:"20px"},
+        initialValue: "",
+        // validator: yup.boolean().required("You have to accept the terms and conditions first"),
+    },
 ]
