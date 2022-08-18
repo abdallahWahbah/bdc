@@ -38,3 +38,49 @@
         }
     }
 }
+
+.fullDialog
+{
+    margin: 2rem;
+
+    &__header
+    {
+        padding: 15px 30px;
+        border-bottom: 2px solid #CECECE;
+
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+
+        &--text
+        {
+            font-size: 16px;
+            font-weight: 500;
+        }
+
+        &--close
+        {
+            font-size: 20px;
+            color: #828282;
+            cursor: pointer;
+        }
+
+        &--form
+        {
+            padding: 4rem;
+        }
+
+        &--table
+        {
+            padding: 4rem;
+        }
+    }
+    .MuiButton-sizeMedium {margin-left: 0 !important;}
+}
+
+.table__button
+{
+    // display: none;
+    cursor: pointer;
+    color: $color-orange-main;
+}

@@ -9,7 +9,7 @@ import { useSelector } from 'react-redux';
 export default function ConfirmationDialog({setOpenDialog, handleNext}) {
   const { t } = useTranslation();
   const language = useSelector(state => state.language.language);
-  return (
+  return ( // css file: comp/dialog
     <React.Fragment>
       <Dialog
         open={true}
@@ -27,7 +27,7 @@ export default function ConfirmationDialog({setOpenDialog, handleNext}) {
             variant="outlined"
             onClick={() => setOpenDialog(false)}
           >
-            No
+            {t("No")}
           </Button>
           <Button
               className={`dialog__button dialog__button--yes ${language === "ar" ? "margin__right" :""}`}
@@ -35,7 +35,7 @@ export default function ConfirmationDialog({setOpenDialog, handleNext}) {
               type="primary"
               onClick={handleNext}
           >
-              Yes
+              {t("Yes")}
           </Button>
         </DialogActions>
       </Dialog>

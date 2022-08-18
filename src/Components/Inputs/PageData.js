@@ -1,6 +1,11 @@
 import React from 'react'
 import FormInputCreator from "../Inputs/FormInputCreator";
-import { CustomerInformation, FinancialEligibilityInformation, Generaleligibilityinformation, UpcomingStep1, UpcomingStep2 } from './Schema';
+import { CustomerInformation, 
+        FinancialEligibilityInformation, 
+        Generaleligibilityinformation, 
+        UpcomingStep1, 
+        UpcomingStep2,
+        viewEnjazJson } from './Schema';
 import { useSelector } from 'react-redux';
 import Grid from "@mui/material/Grid";
 

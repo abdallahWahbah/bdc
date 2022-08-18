@@ -9,6 +9,7 @@ import { useNavigate } from 'react-router-dom';
 import { useTranslation } from 'react-i18next';
 import { v4 as uuidv4 } from 'uuid';
 import ConfirmationDialog from './Dialogs/ConfirmationDialog';
+import {useLocation} from 'react-router-dom';
 
 import {CustomerInformationPage, 
         FinancialEligibilityInformationPage, 
@@ -21,6 +22,7 @@ const WizardForm = () =>
     const [openDialog, setOpenDialog] = useState(false);
     const language = useSelector(state => state.language.language);
     const navigate = useNavigate();
+    const location = useLocation();
     const { t } = useTranslation();
 
     const initialValues1 = InitialValuesValidators("initialValues", CustomerInformation).initialValues;
@@ -50,20 +52,20 @@ const WizardForm = () =>
     {
         console.log(values);
         let randomValue = uuidv4();
-        localStorage.setItem(uuidv4(), JSON.stringify({...values, id: randomValue, status: "pending"}));
+        localStorage.setItem(uuidv4(), JSON.stringify({...values, id: randomValue, status: "Draft"}));
         navigate("/")
     }
 
     return (
         <div className='wizard'>
             <FormikWizard
-                initialValues={initialValues}
+                initialValues={location.state || initialValues}
                 onSubmit={(values) => {
                     // setFinalValues(values);
                     setFinished(true);
                     console.log(values);
                     let randomValue = uuidv4();
-                    localStorage.setItem(uuidv4(), JSON.stringify({...values, id: randomValue, status: "continue"}));
+                    localStorage.setItem(uuidv4(), JSON.stringify({...values, id: randomValue, status: "Pending"}));
                     navigate("/")
 
                 }}

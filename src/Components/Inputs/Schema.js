@@ -9,7 +9,7 @@ export const CustomerInformation =
         type: "text",
         label: "Company Name",
         initialValue: "",
-        // validator: yup.string().required("Company Name can't be empty"),
+        // validator: yup.string().required("Company Name is required"),
         
     },
     {
@@ -934,3 +934,55 @@ export const UpcomingStep2 =
         // validator: yup.boolean().required("You have to accept the terms and conditions first"),
     },
 ]
+
+
+
+
+
+
+export const viewEnjazJson = 
+[
+    {
+        name: "companyName",
+        labelId: "companyName",
+        id: "companyName",
+        type: "text",
+        label: "Company Name",
+        initialValue: "",
+        validator: yup.string().required("Company Name can't be empty"),
+        
+    },
+    {
+        name: "commercialRegistrationNumber",
+        type: "text",
+        label: "Commercial Registration Number",
+        // showWhen: (values) => !!values.companyName,
+        initialValue: "",
+        // validator: yup.number().required("Commercial Registration Number is required")
+    },
+    {
+        name: "customerID",
+        type: "text",
+        label: "Customer ID (CIF)",
+        initialValue: "",
+    },
+    {
+        name: "contactMobileNumber",
+        type: "number",
+        label: "Contact Mobile Number",
+        initialValue: "",
+        validator: yup.number().required("Contact Mobile Number is required")
+    },
+    {
+        name: "requestTrackerNumber",
+        type: "number",
+        label: "Requested Tracker Number",
+        initialValue: "",
+        validator: yup.number().required("Requested Tracker Number is required")
+    },
+    {
+        name: "buttonWide",
+        title: "Search",
+        sx: {background: "#F1914F", padding: "15px 0"}
+    }
+]   

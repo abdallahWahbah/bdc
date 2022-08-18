@@ -113,5 +113,13 @@
     "I approve and authorize BDC to perform I-Score investigation and all required investigations to proceed the loan request":"أوافق وأعتمد BDC لإجراء تحقيق I-Score وجميع التحقيقات المطلوبة لمتابعة طلب القرض",
     "Upload file": "رفع ملف",
     "Thanks for filling out the request, the requested amount is greater than the maximum amount for this loan product, however we will review your request for another loan products and contact you.":"نشكرك على ملء الطلب ، فالمبلغ المطلوب أكبر من الحد الأقصى لمبلغ منتج القرض هذا ، ومع ذلك سنراجع طلبك للحصول على منتجات قرض أخرى ونتصل بك.",
-    "Are you sure you want to continue ?":"هل أنت متأكد من أنك تريد الاستمرار؟"
+    "Are you sure you want to continue ?":"هل أنت متأكد من أنك تريد الاستمرار؟",
+    "View My Very Small Business Loan Request":"عرض طلب قرض الأعمال الصغيرة الخاصة بي",
+    "Requested Tracker Number":"رقم التتبع المطلوب",
+    "Search":"بحث",
+    "Status": "الحالة",
+    "Pending":"معلق",
+    "Draft":"مسودة",
+    "View":"عرض",
+    "Continue filling":"أكمل الفورم"
 }

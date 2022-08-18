@@ -20,7 +20,8 @@ const FormInputCreator = ({jsonObject, values, handleChange, errors, getFieldPro
             element?.name === "annualSales"||
             element?.name === "nationalID"||
             element?.name === "suppliersList"||
-            element?.name === "requestedLoanAmount")
+            element?.name === "requestedLoanAmount"||
+            element?.name === "requestTrackerNumber")
             && (element?.showWhen?.(values) !== false))
         {
             return (
@@ -117,6 +118,23 @@ const FormInputCreator = ({jsonObject, values, handleChange, errors, getFieldPro
                         />
                         {errors[element.name] ? <div className='wizard__error'>{errors[element.name]}</div> : null}
                     </FormGroup>
+            )
+        }
+        if(element.name === "buttonWide")
+        {
+            return(
+                <Grid item xs={6} key={element.name}>
+                    <Button 
+                        key={element.name}
+                        className="wizard__button--next"
+                        type="submit" 
+                        variant="contained" 
+                        fullWidth
+                        sx={element.sx}
+                    >
+                        {t(element.title)}
+                    </Button>
+                </Grid>
             )
         }
         return null;
