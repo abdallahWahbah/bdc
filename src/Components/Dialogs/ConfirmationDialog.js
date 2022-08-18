@@ -6,14 +6,14 @@ import DialogContent from '@mui/material/DialogContent';
 import { useTranslation } from 'react-i18next';
 import { useSelector } from 'react-redux';
 
-export default function ConfirmationDialog({setOpenDialog, handleNext}) {
+export default function ConfirmationDialog({closeDialog, handleConfirmation}) {
   const { t } = useTranslation();
   const language = useSelector(state => state.language.language);
   return ( // css file: comp/dialog
     <React.Fragment>
       <Dialog
         open={true}
-        onClose={() =>setOpenDialog(false)}
+        onClose={closeDialog}
       >
         <DialogContent sx={{direction: language === "ar" ? "rtl":"ltr"}}>
           <p className='dialog__paragraph'>
@@ -25,7 +25,7 @@ export default function ConfirmationDialog({setOpenDialog, handleNext}) {
           <Button 
             className={`dialog__button dialog__button--no`}
             variant="outlined"
-            onClick={() => setOpenDialog(false)}
+            onClick={closeDialog}
           >
             {t("No")}
           </Button>
@@ -33,7 +33,7 @@ export default function ConfirmationDialog({setOpenDialog, handleNext}) {
               className={`dialog__button dialog__button--yes ${language === "ar" ? "margin__right" :""}`}
               variant="contained"
               type="primary"
-              onClick={handleNext}
+              onClick={handleConfirmation}
           >
               {t("Yes")}
           </Button>

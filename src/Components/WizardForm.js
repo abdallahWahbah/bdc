@@ -1,9 +1,13 @@
 import React, {useState} from 'react'
-import { CustomerInformation, FinancialEligibilityInformation, Generaleligibilityinformation, UpcomingStep1, UpcomingStep2 } from './Inputs/Schema';
+import { CustomerInformation, 
+        FinancialEligibilityInformation, 
+        Generaleligibilityinformation, 
+        UpcomingStep1, 
+        UpcomingStep2 } from './Inputs/Schema';
 import InitialValuesValidators from './Inputs/InitialValuesValidators';
 import * as yup from 'yup';
 import { FormikWizard } from "formik-wizard-form";
-import { Box, Stepper, Button, Step, StepLabel, Dialog, DialogContent, DialogContentText } from '@mui/material';
+import { Box, Stepper, Button, Step, StepLabel } from '@mui/material';
 import { useSelector } from 'react-redux';
 import { useNavigate } from 'react-router-dom';
 import { useTranslation } from 'react-i18next';
@@ -46,8 +50,6 @@ const WizardForm = () =>
     const [finalValues, setFinalValues] = React.useState({});
     const [finished, setFinished] = React.useState(false);
 
-    const handleOpenDialog = () => {setOpenDialog(true)};
-
     const saveDraft = (values) =>
     {
         console.log(values);
@@ -56,17 +58,24 @@ const WizardForm = () =>
         navigate("/")
     }
 
+    const handleConfirmation = (values) =>
+    {
+        let randomValue = uuidv4();
+        localStorage.setItem(uuidv4(), JSON.stringify({...values, id: randomValue, status: "Pending"}));
+        navigate("/")
+    }
+
     return (
         <div className='wizard'>
             <FormikWizard
                 initialValues={location.state || initialValues}
                 onSubmit={(values) => {
-                    // setFinalValues(values);
+                    setFinalValues(values);
                     setFinished(true);
                     console.log(values);
-                    let randomValue = uuidv4();
-                    localStorage.setItem(uuidv4(), JSON.stringify({...values, id: randomValue, status: "Pending"}));
-                    navigate("/")
+                    
+                    console.log("first")
+                    setOpenDialog(true)
 
                 }}
                 validateOnNext
@@ -78,19 +87,19 @@ const WizardForm = () =>
                 },
                 {
                     component: FinancialEligibilityInformationPage,
-                    validationSchema: validator2
+                    // validationSchema: validator2
                 },
                 {
                     component: GeneraleligibilityinformationPage,
-                    validationSchema: validator3
+                    // validationSchema: validator3
                 },
                 {
                     component: UpcomingStepPage1,
-                    validationSchema: validator4
+                    // validationSchema: validator4
                 },
                 {
                     component: UpcomingStepPage2,
-                    validationSchema: validator5
+                    // validationSchema: validator5
                 },
                 ]}
             >
@@ -139,14 +148,14 @@ const WizardForm = () =>
                                 variant="contained"
                                 disabled={isNextDisabled}
                                 type="primary"
-                                onClick={currentStepIndex === 4 ? handleOpenDialog : handleNext}
+                                onClick={handleNext}
                             >
                                 {currentStepIndex === 4 ? t("Submit") : t("Continue")}
                             </Button>
                             {openDialog && (
                                 <ConfirmationDialog 
-                                    setOpenDialog={(value) => setOpenDialog(false)}
-                                    handleNext={handleNext}
+                                    closeDialog={() => setOpenDialog(false)}
+                                    handleConfirmation={() => handleConfirmation(values)}
                                 />
                             )}
                             

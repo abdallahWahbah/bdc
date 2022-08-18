@@ -9,7 +9,7 @@ export const CustomerInformation =
         type: "text",
         label: "Company Name",
         initialValue: "",
-        // validator: yup.string().required("Company Name is required"),
+        validator: yup.string().required("Company Name is required"),
         
     },
     {
@@ -18,14 +18,14 @@ export const CustomerInformation =
         label: "Commercial Registration Number",
         // showWhen: (values) => !!values.companyName,
         initialValue: "",
-        // validator: yup.number().required("Commercial Registration Number is required")
+        validator: yup.number().required("Commercial Registration Number is required")
     },
     {
         name: "contactMobileNumber",
         type: "number",
         label: "Contact Mobile Number",
         initialValue: "",
-        // validator: yup.number().required("Contact Mobile Number is required")
+        validator: yup.number().required("Contact Mobile Number is required")
     },
     {
         name: "loanAmount",
@@ -45,7 +45,7 @@ export const CustomerInformation =
         label: "The nearest Bank Branch",
         selectId: "demo-simple-select",
         initialValue: "",
-        // validator: yup.string().required("Please, select The nearest Bank Branch"),
+        validator: yup.string().required("Please, select The nearest Bank Branch"),
         options: 
         [
             {
@@ -347,7 +347,7 @@ export const FinancialEligibilityInformation =
         label: "Annual Sales Turnover for the previous financial year in EGP",
         selectId: "demo-simple-select",
         initialValue: "",
-        // validator: yup.string().required("This field can't be empty"),
+        validator: yup.string().required("This field can't be empty"),
         options: 
         [
             {
@@ -379,7 +379,7 @@ export const FinancialEligibilityInformation =
         label: "Paid In capital Amount",
         selectId: "demo-simple-select",
         initialValue: "",
-        // validator: yup.string().required("Paid In capital Amoun is required"),
+        validator: yup.string().required("Paid In capital Amoun is required"),
         options: 
         [
             {
@@ -416,7 +416,7 @@ export const Generaleligibilityinformation =
         label: "The legal form of the company",
         selectId: "demo-simple-select",
         initialValue: "",
-        // validator: yup.string().required("Choose your education"),
+        validator: yup.string().required("The legal form of the company is required"),
         options: 
         [
             {
@@ -444,7 +444,6 @@ export const Generaleligibilityinformation =
         label: "Key Person's/Owner's Age?",
         selectId: "demo-simple-select",
         initialValue: "",
-        // validator: yup.string().required("Choose your education"),
         options: 
         [
             {
@@ -472,7 +471,7 @@ export const Generaleligibilityinformation =
         label: "Company's Years in business",
         selectId: "demo-simple-select",
         initialValue: "",
-        // validator: yup.string().required("Choose your education"),
+        validator: yup.string().required("Company's Years in business is required"),
         options: 
         [
             {
@@ -500,7 +499,7 @@ export const Generaleligibilityinformation =
         label: "Company residence",
         selectId: "demo-simple-select",
         initialValue: "",
-        // validator: yup.string().required("Choose your education"),
+        validator: yup.string().required("Company residence is required"),
         options: 
         [
             {
@@ -540,7 +539,7 @@ export const Generaleligibilityinformation =
         label: "Company Activity",
         selectId: "demo-simple-select",
         initialValue: "",
-        // validator: yup.string().required("Choose your education"),
+        validator: yup.string().required("Company Activity is required"),
         options: 
         [
             {
@@ -611,8 +610,7 @@ export const Generaleligibilityinformation =
         label: "Other Company Activity",
         showWhen: (values) => values.companyActivity === "other",
         initialValue: "",
-        // validator: yup.string().min(2).required("First Name can't be empty"),
-        validator: ""
+        // validator: yup.string().required("Company Activity is required"),
     },
     {
         name: "personalBelongings",
@@ -621,7 +619,7 @@ export const Generaleligibilityinformation =
         label: "Have any personal belongings?",
         selectId: "demo-simple-select",
         initialValue: "",
-        // validator: yup.string().required("Choose your education"),
+        validator: yup.string().required("personal belongings is required"),
         options: 
         [
             {
@@ -658,7 +656,7 @@ export const UpcomingStep1 =
         label: "Stability in capital amount in the last 3 months",
         selectId: "demo-simple-select",
         initialValue: "",
-        // validator: yup.string().required("Choose your education"),
+        validator: yup.string().required("Stability capital amount is required"),
         options: 
         [
             {
@@ -678,7 +676,7 @@ export const UpcomingStep1 =
         label: "Availability of Financial Statements or list of assets",
         selectId: "demo-simple-select",
         initialValue: "",
-        // validator: yup.string().required("Choose your education"),
+        validator: yup.string().required("Availability of Financial Statements is required"),
         options: 
         [
             {
@@ -706,7 +704,7 @@ export const UpcomingStep1 =
         label: "Company's industrial sector",
         selectId: "demo-simple-select",
         initialValue: "",
-        // validator: yup.string().required("Choose your education"),
+        validator: yup.string().required("Company's industrial sector is required"),
         options: 
         [
             {
@@ -734,7 +732,7 @@ export const UpcomingStep1 =
         label: "Number of headcount",
         selectId: "demo-simple-select",
         initialValue: "",
-        // validator: yup.string().required("Choose your education"),
+        validator: yup.string().required("Number of headcount is required"),
         options: 
         [
             {
@@ -758,7 +756,7 @@ export const UpcomingStep1 =
         label: "Company's License /certificate of practicing the profession are available?",
         selectId: "demo-simple-select",
         initialValue: "",
-        // validator: yup.string().required("Choose your education"),
+        validator: yup.string().required("Company's License is required"),
         options: 
         [
             {
@@ -778,7 +776,7 @@ export const UpcomingStep1 =
         label: "Years of experience of the key person/owner?",
         selectId: "demo-simple-select",
         initialValue: "",
-        // validator: yup.string().required("Choose your education"),
+        validator: yup.string().required("Years of experience is required"),
         options: 
         [
             {
@@ -802,7 +800,7 @@ export const UpcomingStep1 =
         label: "Is there a second level of management?",
         selectId: "demo-simple-select",
         initialValue: "",
-        // validator: yup.string().required("Choose your education"),
+        validator: yup.string().required("Please, answer the question"),
         options: 
         [
             {
@@ -826,7 +824,7 @@ export const UpcomingStep1 =
         label: "Number of banks granted a credit facility to the company",
         selectId: "demo-simple-select",
         initialValue: "",
-        // validator: yup.string().required("Choose your education"),
+        validator: yup.string().required("Number of banks is required"),
         options: 
         [
             {
@@ -850,7 +848,7 @@ export const UpcomingStep1 =
         label: "Number of years of the relation with our bank",
         selectId: "demo-simple-select",
         initialValue: "",
-        // validator: yup.string().required("Choose your education"),
+        validator: yup.string().required("Number of years of the relation with our bank is required"),
         options: 
         [
             {
@@ -872,24 +870,21 @@ export const UpcomingStep1 =
         type: "text",
         label: "Annual Sales",
         initialValue: "",
-        // validator: yup.string().min(2).required("First Name can't be empty"),
-        validator: ""
+        validator: yup.string().required("Annual Sales is required"),
     },
     {
         name: "nationalID",
         type: "text",
         label: "National ID of the owner/partners/guarantor",
         initialValue: "",
-        // validator: yup.string().min(2).required("First Name can't be empty"),
-        validator: ""
+        validator: yup.string().required("National ID is required"),
     },
     {
         name: "suppliersList",
         type: "text",
         label: "Suppliers list",
         initialValue: "",
-        // validator: yup.string().min(2).required("First Name can't be empty"),
-        validator: ""
+        validator: yup.string().required("Suppliers list is required"),
     },    
 ]
 
@@ -914,16 +909,12 @@ export const UpcomingStep2 =
         type: "number",
         label: "Requested loan amount",
         initialValue: "",
-        // validator: yup.string().min(2).required("First Name can't be empty"),
-        validator: ""
     },
     {
         name: "uploadedFile",
         type: "file",
         label: "Please Upload Pre-Approval Documents documents",
         initialValue: "",
-        // validator: yup.string().min(2).required("First Name can't be empty"),
-        validator: ""
     },
     {
         name: "conditions",
@@ -931,7 +922,6 @@ export const UpcomingStep2 =
         label: "I approve and authorize BDC to perform I-Score investigation and all required investigations to proceed the loan request",
         sx: {marginTop:"20px"},
         initialValue: "",
-        // validator: yup.boolean().required("You have to accept the terms and conditions first"),
     },
 ]
 
@@ -956,9 +946,7 @@ export const viewEnjazJson =
         name: "commercialRegistrationNumber",
         type: "text",
         label: "Commercial Registration Number",
-        // showWhen: (values) => !!values.companyName,
         initialValue: "",
-        // validator: yup.number().required("Commercial Registration Number is required")
     },
     {
         name: "customerID",

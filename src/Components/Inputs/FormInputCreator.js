@@ -1,6 +1,6 @@
 import React from 'react'
 
-import { FormControl, MenuItem, Select, InputLabel, TextField, Grid, Box, Button, Input, FormGroup, FormControlLabel, Checkbox} from '@mui/material';
+import { FormControl, MenuItem, Select, InputLabel, TextField, Grid, Box, Button, FormGroup, FormControlLabel, Checkbox} from '@mui/material';
 import { useTranslation } from 'react-i18next';
 import { useSelector } from 'react-redux';
 
@@ -24,6 +24,7 @@ const FormInputCreator = ({jsonObject, values, handleChange, errors, getFieldPro
             element?.name === "requestTrackerNumber")
             && (element?.showWhen?.(values) !== false))
         {
+            console.log(errors)
             return (
                 <Grid item xs={6} key={element.name}>
                     <TextField

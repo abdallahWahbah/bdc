@@ -4,8 +4,7 @@ import { CustomerInformation,
         FinancialEligibilityInformation, 
         Generaleligibilityinformation, 
         UpcomingStep1, 
-        UpcomingStep2,
-        viewEnjazJson } from './Schema';
+        UpcomingStep2, } from './Schema';
 import { useSelector } from 'react-redux';
 import Grid from "@mui/material/Grid";
 

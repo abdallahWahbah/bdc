@@ -27,24 +27,25 @@ const ViewEnjaz = ({closeEnjaz}) =>
 
     const onSubmit = (values)=>
     {
+        console.log(values)
         let results = [], temp = [];
         let allKeys = Object.keys(localStorage);
-        allKeys.forEach(item => results.push(localStorage.getItem(item) !== "ar" && JSON.parse(localStorage.getItem(item))));
+        allKeys.forEach(key => key !== "i18nextLng" && results.push(JSON.parse(localStorage.getItem(key))));
 
-        // for(const [key, value] of Object.entries(values))
+
         loop:
         for(let j = 0; j < Object.entries(values).length; j++)
         {
             let [key, value] = Object.entries(values)[j];
-            console.log(key, value)
-            console.log("--------------------------------------------------------------")
+            // console.log(key, value)
+            // console.log("--------------------------------------------------------------")
             for(let i = 0; i < results.length; i++)
             {
                 let result = results[i];
                 if(result[key] === value && value !== "")
                 {
                     temp.push(result);
-                    console.log("xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx")
+                    // console.log("xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx")
                     break loop; // 
                 }
             }
