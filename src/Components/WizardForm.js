@@ -87,19 +87,19 @@ const WizardForm = () =>
                 },
                 {
                     component: FinancialEligibilityInformationPage,
-                    // validationSchema: validator2
+                    validationSchema: validator2
                 },
                 {
                     component: GeneraleligibilityinformationPage,
-                    // validationSchema: validator3
+                    validationSchema: validator3
                 },
                 {
                     component: UpcomingStepPage1,
-                    // validationSchema: validator4
+                    validationSchema: validator4
                 },
                 {
                     component: UpcomingStepPage2,
-                    // validationSchema: validator5
+                    validationSchema: validator5
                 },
                 ]}
             >

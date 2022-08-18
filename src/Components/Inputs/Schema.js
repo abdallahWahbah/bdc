@@ -14,7 +14,7 @@ export const CustomerInformation =
     },
     {
         name: "commercialRegistrationNumber",
-        type: "text",
+        type: "number",
         label: "Commercial Registration Number",
         // showWhen: (values) => !!values.companyName,
         initialValue: "",
@@ -347,7 +347,7 @@ export const FinancialEligibilityInformation =
         label: "Annual Sales Turnover for the previous financial year in EGP",
         selectId: "demo-simple-select",
         initialValue: "",
-        validator: yup.string().required("This field can't be empty"),
+        validator: yup.string().required("This field is required"),
         options: 
         [
             {
@@ -379,7 +379,7 @@ export const FinancialEligibilityInformation =
         label: "Paid In capital Amount",
         selectId: "demo-simple-select",
         initialValue: "",
-        validator: yup.string().required("Paid In capital Amoun is required"),
+        validator: yup.string().required("Paid In capital Amount is required"),
         options: 
         [
             {
@@ -661,11 +661,11 @@ export const UpcomingStep1 =
         [
             {
                 value: "stable",
-                title: "Stable – didn’t change during the last 3 months"
+                title: "Stable - didn't change during the last 3 months"
             },
             {
                 value: "unstable",
-                title: "Unstable – Changed during the last 3 months"
+                title: "Unstable - Changed during the last 3 months"
             },
         ]
     },
@@ -921,6 +921,7 @@ export const UpcomingStep2 =
         type: "checkbox",
         label: "I approve and authorize BDC to perform I-Score investigation and all required investigations to proceed the loan request",
         sx: {marginTop:"20px"},
+        // validator: yup.boolean().required("You have to accept the terms and conditions first"),
         initialValue: "",
     },
 ]
@@ -939,7 +940,7 @@ export const viewEnjazJson =
         type: "text",
         label: "Company Name",
         initialValue: "",
-        validator: yup.string().required("Company Name can't be empty"),
+        validator: yup.string().required("Company Name is required"),
         
     },
     {

@@ -37,7 +37,7 @@ const FormInputCreator = ({jsonObject, values, handleChange, errors, getFieldPro
                         value={values && values[element.name]}
                         onChange={handleChange}
                         />
-                        {errors[element.name] ? <div className='wizard__error'>{errors[element.name]}</div> : null}
+                        {errors[element.name] ? <div className='wizard__error'>{t(errors[element.name])}</div> : null}
                 </Grid>    
             )
         }
@@ -71,16 +71,15 @@ const FormInputCreator = ({jsonObject, values, handleChange, errors, getFieldPro
                             id={element.selectId}
                             name={element.name}
                             label={t(element.label)}
-                            // dir={language === "ar" ? "rtl" :"ltr"}
                             value={values[element.name]}
                             onChange={handleChange}
                             >
                                 {element.options.map(option =>
                                 (
-                                    <MenuItem key={option.value} value={option.value} sx={{fontSize: "15px"}}>{t(option.title)}</MenuItem> 
+                                    <MenuItem dir={language === "ar" ? "rtl" :"ltr"} key={option.value} value={option.value} sx={{fontSize: "15px"}}>{t(option.title)}</MenuItem> 
                                 ))}
                         </Select>
-                        {errors[element.name] ? <div className='wizard__error'>{errors[element.name]}</div> : null}
+                        {errors[element.name] ? <div className='wizard__error'>{t(errors[element.name])}</div> : null}
                     </FormControl>
                 </Grid>
             )
@@ -104,7 +103,7 @@ const FormInputCreator = ({jsonObject, values, handleChange, errors, getFieldPro
                             {" "}
                             <input type="file" className='wizard__input--file'/> {t("Upload file")}
                         </Button>
-                        {errors[element.name] ? <div className='wizard__error'>{errors[element.name]}</div> : null}
+                        {errors[element.name] ? <div className='wizard__error'>{t(errors[element.name])}</div> : null}
                     </Grid>
                 </Grid>
             )
@@ -117,7 +116,7 @@ const FormInputCreator = ({jsonObject, values, handleChange, errors, getFieldPro
                         control={<Checkbox {...getFieldProps(element.name)} />} 
                         label={t(element.label)}
                         />
-                        {errors[element.name] ? <div className='wizard__error'>{errors[element.name]}</div> : null}
+                        {errors[element.name] ? <div className='wizard__error'>{t(errors[element.name])}</div> : null}
                     </FormGroup>
             )
         }

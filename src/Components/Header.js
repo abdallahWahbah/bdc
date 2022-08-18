@@ -33,7 +33,7 @@ const Header = () =>
                 <img  className='header__logo' src={Logo} alt="logo" onClick={() => navigate("/")}/>
             </div>
             <button className='header__button' onClick={() => handleClick(language === "arabic" ? "EN" : "AR")}>
-                {language === "arabic" ? "EN" : "AR"}
+                {language === "arabic" ? "EN" : "اللغة العربية"}
             </button>
         </div>
     )

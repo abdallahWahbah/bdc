@@ -1,8 +1,8 @@
-let initialValues = {};
-let validators = {};
 
 const InitialValuesValidators = (type, jsonObject) =>
 {
+    let initialValues = {};
+    let validators = {};
     jsonObject.map(element =>
     {   
         if(type === "initialValues")
