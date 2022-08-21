@@ -14,6 +14,7 @@ const InitialValuesValidators = (type, jsonObject) =>
         }
         if(type === "validators")
         {
+            
             if(element.hasOwnProperty("validator")) 
             {
                 validators[element.name] = element["validator"];

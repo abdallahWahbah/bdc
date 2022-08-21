@@ -92,16 +92,26 @@
 
 
 
+.wizard input, .wizard label
+{
+  font-size: 20px !important;
+}
 
+legend
+{
+  font-size: 16px !important;
+}
 .custom-field label 
 {
   transform-origin: top right;
   right: 30px;
   left: unset;
+  font-size: 20px !important;
 }
 .custom-field input
 {
   direction: rtl;
+  font-size: 20px !important;
 }
 .custom-label-field label {
   transform-origin: top right;
@@ -144,4 +154,54 @@ span.css-htszrh-MuiButton-startIcon {
 }
 .custom-wizard  .MuiStepLabel-completed {
   color: #34ae73 !important
+}
+
+.css-1a49mms-MuiSvgIcon-root-MuiStepIcon-root.Mui-active{
+  color: rgb(250, 180, 20) !important
+}
+.service-not-active .service-content{
+  filter: blur(7px)
+}
+.MuiCardHeader-title{
+  font-size: 20px !important
+}
+.MuiChip-icon{
+  margin-right: 4px !important;
+  margin-left: 0 !important
+}
+.MuiTableCell-root{
+  text-align: right !important
+}
+.MuiButton-startIcon{
+  margin-left: 8px !important;
+  margin-right: -4px !important
+}
+.unordered-list{
+  padding-right: 24px;
+  line-height: 2.0
+}
+.ordered-list{
+  padding-right: 24px;
+  line-height: 2.0
+}
+.appendix{
+  margin-right: 30px;
+  line-height: 2.0
+}
+.section-headline{
+  margin-bottom: 16px;
+  line-height: 2.0;
+  font-weight: 700
+}
+#terms-dialog-title .MuiTypography-root{
+  font-size: 30px !important
+}
+.MuiFormControlLabel-root{
+  margin-left: 16px !important;
+  margin-right: -11px !important
+}
+.MuiFormGroup-row{
+  justify-content: space-between !important;
+  align-items: center !important;
+  height: 100% !important
 }

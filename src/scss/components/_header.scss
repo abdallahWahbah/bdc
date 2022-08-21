@@ -1,7 +1,8 @@
 .header
 {
     background-color: $color-footer;
-    height: 90px;
+    height: 9rem;
+    // height: 90px;
     border-bottom: 5px solid $color-border-orange-darker;
     padding: 0 2rem;
     z-index: 10;
@@ -25,7 +26,7 @@
     background-color: transparent;
     border: none;
     color: white;
-    font-size: 22px;
+    font-size: 2.2rem;
     font-weight: 400;
     cursor: pointer;
 }

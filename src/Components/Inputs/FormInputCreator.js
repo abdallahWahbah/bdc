@@ -9,6 +9,22 @@ const FormInputCreator = ({jsonObject, values, handleChange, errors, getFieldPro
     const { t } = useTranslation();
     const language = useSelector(state => state.language.language);
 
+    function validateEmail(value) {
+
+        let error;
+        
+        if (!value) {
+        
+         error = 'Required';
+        
+        } else if (!/^[A-Z0-9._%+-]+@[A-Z0-9.-]+\.[A-Z]{2,4}$/i.test(value)) {
+        
+         error = 'Invalid email address';
+        
+         }
+        
+        return error;
+    }
     const formContent = jsonObject.map(element =>
     {
         if((element?.name === "companyName" ||
@@ -25,17 +41,22 @@ const FormInputCreator = ({jsonObject, values, handleChange, errors, getFieldPro
             && (element?.showWhen?.(values) !== false))
         {
             console.log(errors)
+            
             return (
                 <Grid item xs={6} key={element.name}>
                     <TextField
                         className={`${language === "ar" ? "custom-field" : ""}`}
                         fullWidth
                         name={element.name}
+                        validate={validateEmail}
                         type={element.type ? element.type : "text"}
                         label={t(element.label)}                        
-                        sx={element.sx ? element.sx : null}
+                        // sx={element.sx ? element.sx : null}
+                        sx={{height: "60px !important"}}
                         value={values && values[element.name]}
                         onChange={handleChange}
+                        // error={!!errors[element.name]}
+                        // helperText={t(errors[element.name])}
                         />
                         {errors[element.name] ? <div className='wizard__error'>{t(errors[element.name])}</div> : null}
                 </Grid>    
@@ -69,6 +90,7 @@ const FormInputCreator = ({jsonObject, values, handleChange, errors, getFieldPro
                             className={`${language === "ar" ? "custom-field" : ""}`}
                             labelId={element.id}
                             id={element.selectId}
+                            sx={{height: "60px !important"}}
                             name={element.name}
                             label={t(element.label)}
                             value={values[element.name]}

@@ -83,23 +83,23 @@ const WizardForm = () =>
                 steps={[
                 {
                     component: CustomerInformationPage,
-                    validationSchema: validator1
+                    // validationSchema: validator1
                 },
                 {
                     component: FinancialEligibilityInformationPage,
-                    validationSchema: validator2
+                    // validationSchema: validator2
                 },
                 {
                     component: GeneraleligibilityinformationPage,
-                    validationSchema: validator3
+                    // validationSchema: validator3
                 },
                 {
                     component: UpcomingStepPage1,
-                    validationSchema: validator4
+                    // validationSchema: validator4
                 },
                 {
                     component: UpcomingStepPage2,
-                    validationSchema: validator5
+                    // validationSchema: validator5
                 },
                 ]}
             >
@@ -123,7 +123,7 @@ const WizardForm = () =>
                             dir={language === "ar" ? "rtl" :"ltr"} 
                             className={language === "ar" ? "wizard__custom-stepper" :""}
                         >
-                            <Stepper activeStep={currentStepIndex}>
+                            <Stepper activeStep={currentStepIndex} className="custom-wizard">
                                 <Step completed={currentStepIndex > 0}>
                                     <StepLabel>{t("Customer information")}</StepLabel>
                                 </Step>

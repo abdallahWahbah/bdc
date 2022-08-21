@@ -9,16 +9,19 @@
 
 .home
 {
-    // height: 81vh;
     flex: 1;
     display: flex;
+
+    // @include respond()
+    // {
+
+    // }
 }
 
 .home__background--container
 {
     flex-basis: 50%;
     position: relative;
-    // background-image: linear-gradient(to right, rgba($color-footer, .5), rgba($color-footer, .5)), url("../../Assets/background3.png");
 }
 .home__background--text-container
 {
