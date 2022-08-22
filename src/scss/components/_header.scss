@@ -1,8 +1,8 @@
 .header
 {
     background-color: $color-footer;
-    height: 9rem;
-    // height: 90px;
+    // height: 9rem;
+    height: 90px;
     border-bottom: 5px solid $color-border-orange-darker;
     padding: 0 2rem;
     z-index: 10;
@@ -10,11 +10,21 @@
     display: flex;
     justify-content: space-between;
     align-items: center;
+
+    @include respond(phone)
+    {
+        padding: 0 1rem;
+    }
 }
 
 .logo__container
 {
     transform: scale(.95);
+
+    @include respond(phone)
+    {
+        transform: scaleX(.7) translateX(-6rem);
+    }
 }
 .header__logo
 {

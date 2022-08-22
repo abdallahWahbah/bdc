@@ -37,7 +37,14 @@ const WizardForm = () =>
     
     const validator1 = yup.object(InitialValuesValidators("validators", CustomerInformation).validators);
     const validator2 = yup.object(InitialValuesValidators("validators", FinancialEligibilityInformation).validators);
-    const validator3 = yup.object(InitialValuesValidators("validators", Generaleligibilityinformation).validators);
+    // const validator3 = yup.object(InitialValuesValidators("validators", Generaleligibilityinformation).validators);
+    const validator3 = prop => 
+    {
+        return yup.lazy(values =>
+        {
+            return yup.object(InitialValuesValidators("validators", Generaleligibilityinformation, values).validators)
+        })
+    }
     const validator4 = yup.object(InitialValuesValidators("validators", UpcomingStep1).validators);
     const validator5 = yup.object(InitialValuesValidators("validators", UpcomingStep2).validators);
 
@@ -83,23 +90,23 @@ const WizardForm = () =>
                 steps={[
                 {
                     component: CustomerInformationPage,
-                    // validationSchema: validator1
+                    validationSchema: validator1
                 },
                 {
                     component: FinancialEligibilityInformationPage,
-                    // validationSchema: validator2
+                    validationSchema: validator2
                 },
                 {
                     component: GeneraleligibilityinformationPage,
-                    // validationSchema: validator3
+                    validationSchema: validator3
                 },
                 {
                     component: UpcomingStepPage1,
-                    // validationSchema: validator4
+                    validationSchema: validator4
                 },
                 {
                     component: UpcomingStepPage2,
-                    // validationSchema: validator5
+                    validationSchema: validator5
                 },
                 ]}
             >

@@ -610,8 +610,7 @@ export const Generaleligibilityinformation =
         label: "Other Company Activity",
         showWhen: (values) => values.companyActivity === "other",
         initialValue: "",
-        // validator: (values) => values.companyActivity === "other" ? yup.string().required("Company Activity is required") : "",
-        validator: yup.string().required("Company Activity is required"),
+        validatorFunc: (values) => values.companyActivity === "other" ? yup.string().required("Company Activity is required") : "",
     },
     {
         name: "personalBelongings",

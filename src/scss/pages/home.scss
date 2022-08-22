@@ -11,17 +11,26 @@
 {
     flex: 1;
     display: flex;
-
-    // @include respond()
-    // {
-
-    // }
+    
+    @include respond(tab-port)
+    {
+        flex-direction: column;
+        & > *
+        {
+            flex-basis: 100%;
+        }
+    }
 }
 
 .home__background--container
 {
     flex-basis: 50%;
     position: relative;
+
+    // @include respond(phone)
+    // {
+    //     height: 700px !important;
+    // }
 }
 .home__background--text-container
 {
@@ -35,17 +44,43 @@
     padding-left: 20%;
     padding-right: 20%;
     padding-top: 10%;
+
+    @include respond(tab-port)
+    {
+        padding-top: 5%;
+
+        padding-left: 15%;
+        padding-right: 15%;
+    }
+    @include respond(phone)
+    {
+        padding-top: 3%;
+        padding-left: 5%;
+        padding-right: 5%;
+    }
 }
 .home__background
 {
     width: 100%;
     height: 100%;
+
+    @include respond(phone)
+    {
+        height: 200px;
+    }
 }
 .home__actions
 {
     flex-basis: 50%;
     position: relative;
     color: white;
+    padding-top: 10%;
+
+    @include respond(tab-port)
+    {
+        margin-top: 7%;
+        margin-bottom: 7%;
+    }
 }
 .home__actions--container
 {

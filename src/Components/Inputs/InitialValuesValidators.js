@@ -1,5 +1,5 @@
 
-const InitialValuesValidators = (type, jsonObject) =>
+const InitialValuesValidators = (type, jsonObject, values) =>
 {
     let initialValues = {};
     let validators = {};
@@ -18,6 +18,10 @@ const InitialValuesValidators = (type, jsonObject) =>
             if(element.hasOwnProperty("validator")) 
             {
                 validators[element.name] = element["validator"];
+            }
+            if (element.hasOwnProperty("validatorFunc")) 
+            {
+                validators[element.name] = element.validatorFunc(values);
             }
         }
     });

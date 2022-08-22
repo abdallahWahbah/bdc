@@ -7,6 +7,7 @@ import viewImage from '../Assets/view.png'
 import ViewEnjaz from './ViewEnjaz';
 import { useTranslation } from 'react-i18next';
 import { useSelector } from 'react-redux';
+import { Grid } from '@mui/material';
 
 const Home = () => 
 {

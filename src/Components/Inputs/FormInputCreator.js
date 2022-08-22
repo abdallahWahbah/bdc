@@ -43,20 +43,17 @@ const FormInputCreator = ({jsonObject, values, handleChange, errors, getFieldPro
             console.log(errors)
             
             return (
-                <Grid item xs={6} key={element.name}>
+                <Grid item xs={12} md={6} key={element.name}>
                     <TextField
                         className={`${language === "ar" ? "custom-field" : ""}`}
                         fullWidth
                         name={element.name}
-                        validate={validateEmail}
+                        // validate={validateEmail}
                         type={element.type ? element.type : "text"}
                         label={t(element.label)}                        
-                        // sx={element.sx ? element.sx : null}
                         sx={{height: "60px !important"}}
                         value={values && values[element.name]}
                         onChange={handleChange}
-                        // error={!!errors[element.name]}
-                        // helperText={t(errors[element.name])}
                         />
                         {errors[element.name] ? <div className='wizard__error'>{t(errors[element.name])}</div> : null}
                 </Grid>    
@@ -83,7 +80,7 @@ const FormInputCreator = ({jsonObject, values, handleChange, errors, getFieldPro
             && (element?.showWhen?.(values) !== false))
         {
             return(
-                <Grid item xs={6} key={element.name} className={`${language === "ar" ? "custom-label-field" : ""}`}>
+                <Grid item xs={12} md={6} key={element.name} className={`${language === "ar" ? "custom-label-field" : ""}`}>
                     <FormControl fullWidth sx={element.sx ? element.sx : null}>
                         <InputLabel id={element.id}>{t(element.label)}</InputLabel>
                         <Select 
@@ -120,7 +117,7 @@ const FormInputCreator = ({jsonObject, values, handleChange, errors, getFieldPro
         {
             return(
                 <Grid item container xs={12} key={element.name} >
-                    <Grid item xs={6}>
+                    <Grid item xs={12} md={6}>
                         <Button sx={{marginTop: "20px", display: "block"}} variant="contained" component="label" color="primary">
                             {" "}
                             <input type="file" className='wizard__input--file'/> {t("Upload file")}
@@ -145,7 +142,7 @@ const FormInputCreator = ({jsonObject, values, handleChange, errors, getFieldPro
         if(element.name === "buttonWide")
         {
             return(
-                <Grid item xs={6} key={element.name}>
+                <Grid item xs={12} md={6} key={element.name}>
                     <Button 
                         key={element.name}
                         className="wizard__button--next"
