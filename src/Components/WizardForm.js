@@ -37,7 +37,6 @@ const WizardForm = () =>
     
     const validator1 = yup.object(InitialValuesValidators("validators", CustomerInformation).validators);
     const validator2 = yup.object(InitialValuesValidators("validators", FinancialEligibilityInformation).validators);
-    // const validator3 = yup.object(InitialValuesValidators("validators", Generaleligibilityinformation).validators);
     const validator3 = prop => 
     {
         return yup.lazy(values =>
@@ -71,7 +70,13 @@ const WizardForm = () =>
         localStorage.setItem(uuidv4(), JSON.stringify({...values, id: randomValue, status: "Pending"}));
         navigate("/")
     }
-
+    const steps = [
+        'Select master blaster campaign settings',
+        'Create an ad group',
+        'Create an ad ',
+        'Create an ad without a group',
+        'hello from the other side'
+      ];
     return (
         <div className='wizard'>
             <FormikWizard
@@ -90,23 +95,23 @@ const WizardForm = () =>
                 steps={[
                 {
                     component: CustomerInformationPage,
-                    validationSchema: validator1
+                    // validationSchema: validator1
                 },
                 {
                     component: FinancialEligibilityInformationPage,
-                    validationSchema: validator2
+                    // validationSchema: validator2
                 },
                 {
                     component: GeneraleligibilityinformationPage,
-                    validationSchema: validator3
+                    // validationSchema: validator3
                 },
                 {
                     component: UpcomingStepPage1,
-                    validationSchema: validator4
+                    // validationSchema: validator4
                 },
                 {
                     component: UpcomingStepPage2,
-                    validationSchema: validator5
+                    // validationSchema: validator5
                 },
                 ]}
             >
@@ -130,7 +135,7 @@ const WizardForm = () =>
                             dir={language === "ar" ? "rtl" :"ltr"} 
                             className={language === "ar" ? "wizard__custom-stepper" :""}
                         >
-                            <Stepper activeStep={currentStepIndex} className="custom-wizard">
+                            <Stepper alternativeLabel activeStep={currentStepIndex} className={language === "ar" ? "custom-wizard" : ""}>
                                 <Step completed={currentStepIndex > 0}>
                                     <StepLabel>{t("Customer information")}</StepLabel>
                                 </Step>
@@ -147,12 +152,14 @@ const WizardForm = () =>
                                     <StepLabel>{t("Upcoming Step2")}</StepLabel>
                                 </Step>
                             </Stepper>
+                            
                         </Box>
                         <Box className='wizard__content--inputs' my="2rem">{renderComponent()}</Box>
                         <Box className='wizard__buttons'>
                             <Button
-                                className="wizard__button--next"
+                                className="btn wizard__button--next"
                                 variant="contained"
+                                sx={{fontSize: language === "ar" ? "16px !important": ""}}
                                 disabled={isNextDisabled}
                                 type="primary"
                                 onClick={handleNext}
@@ -168,14 +175,25 @@ const WizardForm = () =>
                             
                             <div className={currentStepIndex !== 0 ? "wizard__buttons--autoLeft" : ""}>
                                 <Button 
-                                    sx={{backgroundColor: "#e8eaf6", color: "#908e8e", paddingLeft: "20px", paddingRight: "20px"}}
+                                    className="btn"
+                                    sx={{
+                                            backgroundColor: "#e8eaf6", 
+                                            color: "#908e8e", 
+                                            fontSize: language === "ar" ? "16px !important": ""
+                                        }}
                                     onClick={() => navigate("/")}
                                 >
                                     {t("Cancel")}
                                 </Button>
                                 {currentStepIndex !== 0 && (
                                     <Button 
-                                        sx={{backgroundColor: "#333", color: "#fff", marginLeft: "30px"}}
+                                        className="btn btn__draft"
+                                        sx={{
+                                            backgroundColor: "#333", 
+                                            color: "#fff", 
+                                            marginLeft: "30px",
+                                            fontSize: language === "ar" ? "16px !important": ""
+                                        }}
                                         onClick={()=>{saveDraft(values)}}
                                     >
                                         {t("Save as Draft")}
@@ -185,10 +203,15 @@ const WizardForm = () =>
                             
                             {currentStepIndex !== 0 && (
                                 <Button
+                                    className="btn"
                                     disabled={isPrevDisabled}
                                     type="primary"
                                     onClick={handlePrev}
-                                    sx={{backgroundColor: "#e8eaf6", color: "#908e8e"}}
+                                    sx={{
+                                        backgroundColor: "#e8eaf6", 
+                                        color: "#908e8e",
+                                        fontSize: language === "ar" ? "16px !important": ""
+                                    }}
                                 >
                                     {t("Previous")}
                                 </Button>

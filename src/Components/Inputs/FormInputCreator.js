@@ -43,7 +43,7 @@ const FormInputCreator = ({jsonObject, values, handleChange, errors, getFieldPro
             console.log(errors)
             
             return (
-                <Grid item xs={12} md={6} key={element.name}>
+                <Grid item xs={12} lg={6} key={element.name}>
                     <TextField
                         className={`${language === "ar" ? "custom-field" : ""}`}
                         fullWidth
@@ -80,7 +80,7 @@ const FormInputCreator = ({jsonObject, values, handleChange, errors, getFieldPro
             && (element?.showWhen?.(values) !== false))
         {
             return(
-                <Grid item xs={12} md={6} key={element.name} className={`${language === "ar" ? "custom-label-field" : ""}`}>
+                <Grid item xs={12} lg={6} key={element.name} className={`${language === "ar" ? "custom-label-field" : ""}`}>
                     <FormControl fullWidth sx={element.sx ? element.sx : null}>
                         <InputLabel id={element.id}>{t(element.label)}</InputLabel>
                         <Select 

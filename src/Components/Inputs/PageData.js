@@ -19,7 +19,12 @@ export const CustomerInformationPage = ({errors, values, handleChange}) => {
 
     return (
         <div>
-            <Grid container spacing={3} dir={language === "ar" ? "rtl" : "ltr"}>
+            <Grid 
+                container 
+                spacing={3} 
+                dir={language === "ar" ? "rtl" : "ltr"}  
+                className={language === "ar" ? "remove__left--padding":"remove__right--padding"}
+            >
                 {formContent1}
             </Grid>
         </div>
@@ -37,7 +42,12 @@ export const FinancialEligibilityInformationPage = ({errors, values, handleChang
 
     return (
         <div>
-            <Grid container spacing={3} dir={language === "ar" ? "rtl" : "ltr"}>
+            <Grid 
+                container 
+                spacing={3} 
+                dir={language === "ar" ? "rtl" : "ltr"}
+                className={language === "ar" ? "remove__left--padding":"remove__right--padding"}
+            >
                 {formContent2}
             </Grid>
         </div>
@@ -55,7 +65,12 @@ export const GeneraleligibilityinformationPage = ({errors, values, handleChange}
 
     return (
         <div>
-            <Grid container spacing={3} dir={language === "ar" ? "rtl" : "ltr"}>
+            <Grid 
+                container 
+                spacing={3} 
+                dir={language === "ar" ? "rtl" : "ltr"}
+                className={language === "ar" ? "remove__left--padding":"remove__right--padding"}
+            >
                 {formContent3}
             </Grid>
         </div>
@@ -73,7 +88,12 @@ export const UpcomingStepPage1 = ({errors, values, handleChange}) => {
 
     return (
         <div>
-            <Grid container spacing={3} dir={language === "ar" ? "rtl" : "ltr"}>
+            <Grid 
+                container 
+                spacing={3} 
+                dir={language === "ar" ? "rtl" : "ltr"}
+                className={language === "ar" ? "remove__left--padding":"remove__right--padding"}
+            >
                 {formContent4}
             </Grid>
         </div>
@@ -92,7 +112,12 @@ export const UpcomingStepPage2 = ({errors, values, handleChange, getFieldProps})
 
     return (
         <div>
-            <Grid container spacing={3} dir={language === "ar" ? "rtl" : "ltr"}>
+            <Grid 
+                container 
+                spacing={3} 
+                dir={language === "ar" ? "rtl" : "ltr"}
+                className={language === "ar" ? "remove__left--padding":"remove__right--padding"}
+            >
                 {formContent5}
             </Grid>
         </div>
