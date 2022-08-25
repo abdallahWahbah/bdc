@@ -9,7 +9,7 @@ import { useTranslation } from 'react-i18next';
 import { useSelector } from 'react-redux';
 import { Grid } from '@mui/material';
 
-const Home = () => 
+const Home = () =>
 {
     const navigate = useNavigate();
     const [showEnjaz, setShowEnjaz] = useState(false);
@@ -25,15 +25,14 @@ const Home = () =>
                 <div className='home__background--text-container'>
                     <h1 className='header__primary'>{t("Enjaz")}</h1>
                     <p className='paragraph' style={{textAlign: language === "ar" ? "rtl" :"ltr"}}>
-                        {t("Lorem ipsum dolor sit amet, consectetur adipiscing elit. Euismod odio eu risus in in felis. Sem eleifend eu tempus, sit vitae eget.")}
+                        {t("header_description")}
                     </p>
                 </div>
             </div>
             <div className='home__actions'>
                 <div className='home__actions--container'>
-                    <h3 className='header__secondary'>{t("Lorem ipsum dolor sit amet")}</h3>
-                    <Card onClick={goToApply} applyImage={applyImage} title={t("Apply for Enjaz")}/>
-                    <Card onClick={()=>setShowEnjaz(true)} applyImage={viewImage} title={t("View for Enjaz")}/>
+                    <Card onClick={goToApply} applyImage={applyImage} title={t("apply_btn")}/>
+                    <Card onClick={()=>setShowEnjaz(true)} applyImage={viewImage} title={t("view_btn")}/>
                 </div>
             </div>
             {showEnjaz && (

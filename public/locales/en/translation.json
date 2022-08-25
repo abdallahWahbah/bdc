@@ -153,6 +153,8 @@
     "Requested Tracker Number is required":"Requested Tracker Number is required",
     "Owner List":"Owner List",
     "Owner Type":"Owner Type",
-    "National ID":"National ID"
-    
+    "National ID":"National ID",
+    "copyright_footer":"Copyright © 2022 Banque du Caire. All rights reserved",
+    "required_documents":"Required Documents"
+
 }

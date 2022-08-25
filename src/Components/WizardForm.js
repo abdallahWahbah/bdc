@@ -1,8 +1,8 @@
 import React, {useState, useEffect} from 'react'
-import { CustomerInformation, 
-        FinancialEligibilityInformation, 
-        Generaleligibilityinformation, 
-        EvaluationEligibilityInformation, 
+import { CustomerInformation,
+        FinancialEligibilityInformation,
+        Generaleligibilityinformation,
+        EvaluationEligibilityInformation,
         UpcomingStep2 } from './Inputs/Schema';
 import InitialValuesValidators from './Inputs/InitialValuesValidators';
 import * as yup from 'yup';
@@ -17,14 +17,14 @@ import {useLocation} from 'react-router-dom';
 import SaveIcon from '@mui/icons-material/Save';
 import CloseIcon from '@mui/icons-material/Close';
 
-import {CustomerInformationPage, 
-        FinancialEligibilityInformationPage, 
-        GeneraleligibilityinformationPage, 
+import {CustomerInformationPage,
+        FinancialEligibilityInformationPage,
+        GeneraleligibilityinformationPage,
         EvaluationEligibilityInformationPage,
         UpcomingStepPage2} from './Inputs/PageData';
 import { KeyboardArrowLeft } from '@mui/icons-material';
 
-const WizardForm = () => 
+const WizardForm = () =>
 {
     const [openDialog, setOpenDialog] = useState(false);
     const [screenWidth, setScreenWidth] = useState(null);
@@ -47,7 +47,7 @@ const WizardForm = () =>
 
     const validator1 = yup.object(InitialValuesValidators("validators", CustomerInformation).validators);
     const validator2 = yup.object(InitialValuesValidators("validators", FinancialEligibilityInformation).validators);
-    const validator3 = prop => 
+    const validator3 = prop =>
     {
         return yup.lazy(values =>
         {
@@ -82,7 +82,7 @@ const WizardForm = () =>
 
     validator4 = yup.object(tempValidation)
 
-    // let val4 = 
+    // let val4 =
     // {
     //     ownerList: yup.array(yup.object({
     //         ownerType: yup.string().required("please, choose the owner type"),
@@ -90,9 +90,9 @@ const WizardForm = () =>
     //     }))
     // }
 
-    const initialValues = {...initialValues1, 
-            ...initialValues2, 
-            ...initialValues3, 
+    const initialValues = {...initialValues1,
+            ...initialValues2,
+            ...initialValues3,
             ...initialValues4,
             ...initialValues5};
 
@@ -125,12 +125,12 @@ const WizardForm = () =>
     window.addEventListener('scroll', function() {
         var element = document.querySelector('.footer');
         var position = element.getBoundingClientRect();
-    
+
         // checking whether fully visible
         if(position.top >= 0 && position.bottom <= window.innerHeight) {
             // console.log('Element is fully visible in screen');
         }
-    
+
         // checking for partial visibility
         if(position.top < window.innerHeight && position.bottom >= 0) {
             // console.log('visible in screen');
@@ -156,7 +156,7 @@ const WizardForm = () =>
                     // setFinalValues(values);
                     // setFinished(true);
                     console.log(values);
-                    
+
                     // console.log("first")
                     // setOpenDialog(true)
 
@@ -204,16 +204,16 @@ const WizardForm = () =>
                     <div className='wizard__content'>
                         {screenWidth <= 600 ? (
                             <Box  dir={language === "ar" ? "rtl" :"ltr"}>
-                                <Typography 
+                                <Typography
                                     dir={language === "ar" ? "rtl" :"ltr"}
                                     sx={{fontSize: "18px"}}
                                     className={screenWidth <= 600 ? `wizard__stepper--mobile` : ""}
                                 >
                                     {steps[currentStepIndex]}
                                 </Typography>
-                                
+
                                 <div className={`wizard__stepper--mobile-close-draft ${screenWidth <= 600 ? `wizard__stepper--mobile` : ""}`}>
-                                    <SaveIcon 
+                                    <SaveIcon
                                         onClick={()=>{saveDraft(values)}}
                                         sx={{margin: language === "ar" ? "0 0 0 10px" : "0 10px 0 0"}}
 
@@ -223,9 +223,9 @@ const WizardForm = () =>
 
                             </Box>
                         ) : (
-                            <Box 
-                                sx={{ width: "100%", my: "1rem" }} 
-                                dir={language === "ar" ? "rtl" :"ltr"} 
+                            <Box
+                                sx={{ width: "100%", my: "1rem" }}
+                                dir={language === "ar" ? "rtl" :"ltr"}
                                 className={language === "ar" ? "wizard__custom-stepper" :""}
                             >
                                 <Stepper alternativeLabel activeStep={currentStepIndex} className={language === "ar" ? "custom-wizard" : ""}>
@@ -241,21 +241,24 @@ const WizardForm = () =>
                                     <Step completed={currentStepIndex > 3}>
                                         <StepLabel>{t("Evaluation Eligibility Information")}</StepLabel>
                                     </Step>
+                                    <Step completed={currentStepIndex > 3}>
+                                        <StepLabel>{t("check_customer_eligibility")}</StepLabel>
+                                    </Step>
                                     <Step completed={finished}>
-                                        <StepLabel>{t("Upcoming Step2")}</StepLabel>
+                                        <StepLabel>{t("required_documents")}</StepLabel>
                                     </Step>
                                 </Stepper>
-                                
+
                             </Box>
                         )}
                         <Box className='wizard__content--inputs' my="2rem">{renderComponent()}</Box>
-                        <Box 
+                        <Box
                             className='wizard__buttons'
                             style={screenWidth <= 600 ?
                                 {
-                                    position: "fixed", 
-                                    bottom: "0", 
-                                    left: "0", 
+                                    position: "fixed",
+                                    bottom: "0",
+                                    left: "0",
                                     right: "0",
                                     padding: "2rem",
                                     background: "#424242",
@@ -273,22 +276,22 @@ const WizardForm = () =>
                                 {currentStepIndex === 4 ? t("Submit") : t("Continue")}
                             </Button>
                             {openDialog && (
-                                <ConfirmationDialog 
+                                <ConfirmationDialog
                                     closeDialog={() => setOpenDialog(false)}
                                     handleConfirmation={() => handleConfirmation(values)}
                                 />
                             )}
-                            
+
                             {screenWidth <= 600 && (
                                 <h3 style={{fontSize: "16px"}}>{currentStepIndex + 1} / {5}</h3>
                             )}
                             {screenWidth > 600 && (
                                 <div className={currentStepIndex !== 0 ? "wizard__buttons--autoLeft" : ""}>
-                                    <Button 
+                                    <Button
                                         className="btn"
                                         sx={{
-                                                backgroundColor: "#e8eaf6", 
-                                                color: "#908e8e", 
+                                                backgroundColor: "#e8eaf6",
+                                                color: "#908e8e",
                                                 fontSize: language === "ar" ? "16px !important": ""
                                             }}
                                         onClick={() => navigate("/")}
@@ -296,11 +299,11 @@ const WizardForm = () =>
                                         {t("Cancel")}
                                     </Button>
                                     {currentStepIndex !== 0 && (
-                                        <Button 
+                                        <Button
                                             className="btn btn__draft"
                                             sx={{
-                                                backgroundColor: "#333", 
-                                                color: "#fff", 
+                                                backgroundColor: "#333",
+                                                color: "#fff",
                                                 marginLeft: "30px",
                                                 fontSize: language === "ar" ? "16px !important": ""
                                             }}
@@ -311,7 +314,7 @@ const WizardForm = () =>
                                     )}
                                 </div>
                             )}
-                            
+
                             {currentStepIndex !== 0 && (
                                 <Button
                                     className="btn"
@@ -319,7 +322,7 @@ const WizardForm = () =>
                                     type="primary"
                                     onClick={handlePrev}
                                     sx={{
-                                        backgroundColor: "#e8eaf6", 
+                                        backgroundColor: "#e8eaf6",
                                         color: "#908e8e",
                                         fontSize: language === "ar" ? "16px !important": ""
                                     }}

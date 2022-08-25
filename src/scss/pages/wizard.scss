@@ -11,6 +11,13 @@
 
     @include respond(tab-port){width: 80%;}
     @include respond(phone){width: 90%;}
+
+    .Mui-active{
+      color: #F58232 !important;
+    }
+    .Mui-completed{
+      color: #F58232 !important;
+    }
 }
 .wizard__error
 {
@@ -143,8 +150,8 @@
 .css-ahj2mt-MuiTypography-root{font-size: 1.4rem !important;} // checkbox font size, the last page
 .MuiStep-alternativeLabel svg // stepper
 {
-  font-size: 2.5rem; 
-  width: 2.3rem; 
+  font-size: 2.5rem;
+  width: 2.3rem;
   height: 2.3rem;
 }
 .MuiStepLabel-alternativeLabel // stepper
@@ -161,7 +168,7 @@
 .css-vnkopk-MuiStepLabel-iconContainer{padding-left: 0 !important;}
 .wizard__input--file
 {
-  &::-webkit-file-upload-button 
+  &::-webkit-file-upload-button
   {
     visibility: hidden;
   }
@@ -175,7 +182,7 @@
   {
     padding-left: 0 !important;
   }
-  
+
   @include respond(tab-land)
   {
     & > *

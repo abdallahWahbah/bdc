@@ -4,7 +4,7 @@
     "General eligibility information":"معلومات الأهلية العامة",
     "Evaluation Eligibility Information":"معلومات الأهلية التقييمية",
     "Upcoming Step2":"2الخطوة القادمة",
-    "Apply For Very Small Business Loan Request":"تقدم بطلب للحصول على قرض تجاري صغير جدًا",
+    "Apply For Very Small Business Loan Request":"تقدم بطلب للحصول على قرض تجاري للشركات و المشاريع صغيرة",
     "Company Name": "اسم الشركة",
     "Commercial Registration Number":"رقم السجل التجاري",
     "Contact Mobile Number":"رقم الجوال للاتصال",
@@ -153,5 +153,11 @@
     "Requested Tracker Number is required":"برجاء ادخال رقم التتبع المطلوب",
     "Owner List":"قائمة الموردين",
     "Owner Type":"صفة المالك",
-    "National ID": "رقم الهوية الوطنية"
+    "National ID": "رقم الهوية الوطنية",
+    "copyright_footer":"حقوق النشر © 2022 بنك القاهرة. كل الحقوق محفوظة",
+    "required_documents":"المرفقات المطلوبة",
+    "check_customer_eligibility":"تحقق من اهلية العميل",
+    "header_description":"منح قروض ميسرة للشركات و المشاريع صغيرة. خدمات وبرامج تمويلية تلبي احتياجات مختلف شرائح العملاء من الشركات لتلبية احتياجاتك المصرفية المتنوعة.",
+    "apply_btn":"تقديم طلب قرض إنجاز",
+    "view_btn":"عرض الطلبات  السابقة"
 }
