@@ -8,6 +8,9 @@
 
     display: flex;
     flex-direction: column;
+
+    @include respond(tab-port){width: 80%;}
+    @include respond(phone){width: 90%;}
 }
 .wizard__error
 {
@@ -54,13 +57,42 @@
   padding-right: 0;
   padding-left: 8px;
 }
+.wizard__stepper--mobile
+{
+  position: fixed;
+  top: 10px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  background-color: #424242;
+  color: white;
+  padding: 1rem;
+  margin-bottom: 2rem;
 
+
+  &-close-draft
+  {
+    display: flex;
+    align-items: center;
+    & > *
+    {
+      font-size: 3rem !important;
+    }
+  }
+}
 
 .wizard__buttons
 {
   display: flex;
   flex-direction: row-reverse;
   justify-content: space-between;
+  align-items: center;
+  z-index: 22;
+  &.fixed__bottom--52
+  {
+    transition: bottom .5s ease;
+    bottom: 52px !important;
+  }
 }
 .btn
 {
@@ -91,6 +123,17 @@
   text-align: center;
   margin-bottom: 2.2rem;
 }
+.wizard__small--header
+{
+  margin: 2rem 0;
+  font-size: 1.8rem;
+  font-weight: 400;
+  border-bottom: 1px solid #CECECE;
+  padding-bottom: 1rem;
+  width: 100%;
+}
+
+
 .css-480o17-MuiGrid-root{
   width: 100% !important;
   // margin-left: 0 !important;

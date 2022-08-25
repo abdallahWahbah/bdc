@@ -2,7 +2,7 @@
     "Customer information":"معلومات العميل",
     "Financial eligibility information":"معلومات الأهلية المالية",
     "General eligibility information":"معلومات الأهلية العامة",
-    "Upcoming Step1":"1الخطوة القادمة",
+    "Evaluation Eligibility Information":"معلومات الأهلية التقييمية",
     "Upcoming Step2":"2الخطوة القادمة",
     "Apply For Very Small Business Loan Request":"تقدم بطلب للحصول على قرض تجاري صغير جدًا",
     "Company Name": "اسم الشركة",
@@ -150,5 +150,8 @@
     "Annual Sales is required":"برجاء ادخال المبيعات السنوية",
     "National ID is required":"برجاء ادخال الهوية الوطنية",
     "Suppliers list is required":"برجاء ادخال قائمة الموردين",
-    "Requested Tracker Number is required":"برجاء ادخال رقم التتبع المطلوب"
+    "Requested Tracker Number is required":"برجاء ادخال رقم التتبع المطلوب",
+    "Owner List":"قائمة الموردين",
+    "Owner Type":"صفة المالك",
+    "National ID": "رقم الهوية الوطنية"
 }

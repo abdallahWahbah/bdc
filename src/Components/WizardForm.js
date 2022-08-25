@@ -1,40 +1,50 @@
-import React, {useState} from 'react'
+import React, {useState, useEffect} from 'react'
 import { CustomerInformation, 
         FinancialEligibilityInformation, 
         Generaleligibilityinformation, 
-        UpcomingStep1, 
+        EvaluationEligibilityInformation, 
         UpcomingStep2 } from './Inputs/Schema';
 import InitialValuesValidators from './Inputs/InitialValuesValidators';
 import * as yup from 'yup';
 import { FormikWizard } from "formik-wizard-form";
-import { Box, Stepper, Button, Step, StepLabel } from '@mui/material';
+import { Box, Stepper, Button, Step, StepLabel, Typography } from '@mui/material';
 import { useSelector } from 'react-redux';
 import { useNavigate } from 'react-router-dom';
 import { useTranslation } from 'react-i18next';
 import { v4 as uuidv4 } from 'uuid';
 import ConfirmationDialog from './Dialogs/ConfirmationDialog';
 import {useLocation} from 'react-router-dom';
+import SaveIcon from '@mui/icons-material/Save';
+import CloseIcon from '@mui/icons-material/Close';
 
 import {CustomerInformationPage, 
         FinancialEligibilityInformationPage, 
         GeneraleligibilityinformationPage, 
-        UpcomingStepPage1,
+        EvaluationEligibilityInformationPage,
         UpcomingStepPage2} from './Inputs/PageData';
+import { KeyboardArrowLeft } from '@mui/icons-material';
 
 const WizardForm = () => 
 {
     const [openDialog, setOpenDialog] = useState(false);
+    const [screenWidth, setScreenWidth] = useState(null);
     const language = useSelector(state => state.language.language);
     const navigate = useNavigate();
     const location = useLocation();
     const { t } = useTranslation();
 
+    useEffect(() =>
+    {
+        console.log(window.innerWidth)
+        setScreenWidth(window.innerWidth);
+    }, [])
+
     const initialValues1 = InitialValuesValidators("initialValues", CustomerInformation).initialValues;
     const initialValues2 = InitialValuesValidators("initialValues", FinancialEligibilityInformation).initialValues;
     const initialValues3 = InitialValuesValidators("initialValues", Generaleligibilityinformation).initialValues;
-    const initialValues4 = InitialValuesValidators("initialValues", UpcomingStep1).initialValues;
+    const initialValues4 = InitialValuesValidators("initialValues", EvaluationEligibilityInformation).initialValues;
     const initialValues5 = InitialValuesValidators("initialValues", UpcomingStep2).initialValues;
-    
+
     const validator1 = yup.object(InitialValuesValidators("validators", CustomerInformation).validators);
     const validator2 = yup.object(InitialValuesValidators("validators", FinancialEligibilityInformation).validators);
     const validator3 = prop => 
@@ -44,8 +54,41 @@ const WizardForm = () =>
             return yup.object(InitialValuesValidators("validators", Generaleligibilityinformation, values).validators)
         })
     }
-    const validator4 = yup.object(InitialValuesValidators("validators", UpcomingStep1).validators);
+    let validator4 = InitialValuesValidators("validators", EvaluationEligibilityInformation).validators;
     const validator5 = yup.object(InitialValuesValidators("validators", UpcomingStep2).validators);
+
+    // validator4 = {...validator4, ownerList: (yup.array(yup.object({
+    //     ownerType: yup.string().required(),
+    //     // nationalID: yup.number().required()
+    // })))};
+    console.log(validator4)
+    // let tempValidation  = {...validator4, ownerList: yup.array(yup.object({
+    //     ownerType: yup.string().required().min(22),
+    //     nationalID: yup.number("national id must be ").required("can't be empty")
+    // }))};
+
+    // let tempValidation  = {...validator4, ownerList: yup.array().of(
+    //     yup.object().shape({
+    //         ownerType: yup.string().required(),
+    //         nationalID: yup.number().required("can't be empty")
+    //     })).min(3, "must have at least 3 owners")
+    // };
+
+    let tempValidation  = {...validator4, ownerList: yup.array(yup.object({
+        ownerType: yup.string().required("type is required"),
+        nationalID: yup.number().required("ID can't be empty")
+    })).required("required").min(1, 'You need to provide at least 1 owner')
+    };
+
+    validator4 = yup.object(tempValidation)
+
+    // let val4 = 
+    // {
+    //     ownerList: yup.array(yup.object({
+    //         ownerType: yup.string().required("please, choose the owner type"),
+    //         nationalID: yup.number().required("can't be empty")
+    //     }))
+    // }
 
     const initialValues = {...initialValues1, 
             ...initialValues2, 
@@ -71,31 +114,60 @@ const WizardForm = () =>
         navigate("/")
     }
     const steps = [
-        'Select master blaster campaign settings',
-        'Create an ad group',
-        'Create an ad ',
-        'Create an ad without a group',
-        'hello from the other side'
+        t("Customer information"),
+        t("Financial eligibility information"),
+        t("General eligibility information"),
+        t("Upcoming Step1"),
+        t("Upcoming Step2"),
       ];
+
+    // putting the buttons upon the footer when scrolling (reaching it)
+    window.addEventListener('scroll', function() {
+        var element = document.querySelector('.footer');
+        var position = element.getBoundingClientRect();
+    
+        // checking whether fully visible
+        if(position.top >= 0 && position.bottom <= window.innerHeight) {
+            // console.log('Element is fully visible in screen');
+        }
+    
+        // checking for partial visibility
+        if(position.top < window.innerHeight && position.bottom >= 0) {
+            // console.log('visible in screen');
+            if(screenWidth <= 600)
+            {
+                document.querySelector(".wizard__buttons").classList.add("fixed__bottom--52")
+            }
+        }
+        else
+        {
+            // console.log("not visible")
+            if(screenWidth <= 600)
+            {
+                document.querySelector(".wizard__buttons").classList.remove("fixed__bottom--52")
+            }
+        }
+    });
     return (
         <div className='wizard'>
             <FormikWizard
                 initialValues={location.state || initialValues}
                 onSubmit={(values) => {
-                    setFinalValues(values);
-                    setFinished(true);
+                    // setFinalValues(values);
+                    // setFinished(true);
                     console.log(values);
                     
-                    console.log("first")
-                    setOpenDialog(true)
+                    // console.log("first")
+                    // setOpenDialog(true)
 
                 }}
                 validateOnNext
                 activeStepIndex={0}
                 steps={[
                 {
-                    component: CustomerInformationPage,
-                    // validationSchema: validator1
+                    component: EvaluationEligibilityInformationPage,
+                    // validationSchema: yup.object(val4)
+                    validationSchema: validator4
                 },
                 {
                     component: FinancialEligibilityInformationPage,
@@ -106,7 +178,7 @@ const WizardForm = () =>
                     // validationSchema: validator3
                 },
                 {
-                    component: UpcomingStepPage1,
+                    component: EvaluationEligibilityInformationPage,
                     // validationSchema: validator4
                 },
                 {
@@ -130,32 +202,66 @@ const WizardForm = () =>
                         {t("Apply For Very Small Business Loan Request")}
                     </h1>
                     <div className='wizard__content'>
-                        <Box 
-                            sx={{ width: "100%", my: "1rem" }} 
-                            dir={language === "ar" ? "rtl" :"ltr"} 
-                            className={language === "ar" ? "wizard__custom-stepper" :""}
-                        >
-                            <Stepper alternativeLabel activeStep={currentStepIndex} className={language === "ar" ? "custom-wizard" : ""}>
-                                <Step completed={currentStepIndex > 0}>
-                                    <StepLabel>{t("Customer information")}</StepLabel>
-                                </Step>
-                                <Step completed={currentStepIndex > 1}>
-                                    <StepLabel>{t("Financial eligibility information")}</StepLabel>
-                                </Step>
-                                <Step completed={currentStepIndex > 2}>
-                                    <StepLabel>{t("General eligibility information")}</StepLabel>
-                                </Step>
-                                <Step completed={currentStepIndex > 3}>
-                                    <StepLabel>{t("Upcoming Step1")}</StepLabel>
-                                </Step>
-                                <Step completed={finished}>
-                                    <StepLabel>{t("Upcoming Step2")}</StepLabel>
-                                </Step>
-                            </Stepper>
-                            
-                        </Box>
+                        {screenWidth <= 600 ? (
+                            <Box  dir={language === "ar" ? "rtl" :"ltr"}>
+                                <Typography 
+                                    dir={language === "ar" ? "rtl" :"ltr"}
+                                    sx={{fontSize: "18px"}}
+                                    className={screenWidth <= 600 ? `wizard__stepper--mobile` : ""}
+                                >
+                                    {steps[currentStepIndex]}
+                                </Typography>
+                                
+                                <div className={`wizard__stepper--mobile-close-draft ${screenWidth <= 600 ? `wizard__stepper--mobile` : ""}`}>
+                                    <SaveIcon 
+                                        onClick={()=>{saveDraft(values)}}
+                                        sx={{margin: language === "ar" ? "0 0 0 10px" : "0 10px 0 0"}}
+
+                                    />
+                                    <CloseIcon onClick={() => navigate("/")}/>
+                                </div>
+
+                            </Box>
+                        ) : (
+                            <Box 
+                                sx={{ width: "100%", my: "1rem" }} 
+                                dir={language === "ar" ? "rtl" :"ltr"} 
+                                className={language === "ar" ? "wizard__custom-stepper" :""}
+                            >
+                                <Stepper alternativeLabel activeStep={currentStepIndex} className={language === "ar" ? "custom-wizard" : ""}>
+                                    <Step completed={currentStepIndex > 0}>
+                                        <StepLabel>{t("Customer information")}</StepLabel>
+                                    </Step>
+                                    <Step completed={currentStepIndex > 1}>
+                                        <StepLabel>{t("Financial eligibility information")}</StepLabel>
+                                    </Step>
+                                    <Step completed={currentStepIndex > 2}>
+                                        <StepLabel>{t("General eligibility information")}</StepLabel>
+                                    </Step>
+                                    <Step completed={currentStepIndex > 3}>
+                                        <StepLabel>{t("Evaluation Eligibility Information")}</StepLabel>
+                                    </Step>
+                                    <Step completed={finished}>
+                                        <StepLabel>{t("Upcoming Step2")}</StepLabel>
+                                    </Step>
+                                </Stepper>
+                                
+                            </Box>
+                        )}
                         <Box className='wizard__content--inputs' my="2rem">{renderComponent()}</Box>
-                        <Box className='wizard__buttons'>
+                        <Box 
+                            className='wizard__buttons'
+                            style={screenWidth <= 600 ?
+                                {
+                                    position: "fixed", 
+                                    bottom: "0", 
+                                    left: "0", 
+                                    right: "0",
+                                    padding: "2rem",
+                                    background: "#424242",
+                                    color: "white",
+                                } : {}}
+                        >
                             <Button
                                 className="btn wizard__button--next"
                                 variant="contained"
@@ -173,33 +279,38 @@ const WizardForm = () =>
                                 />
                             )}
                             
-                            <div className={currentStepIndex !== 0 ? "wizard__buttons--autoLeft" : ""}>
-                                <Button 
-                                    className="btn"
-                                    sx={{
-                                            backgroundColor: "#e8eaf6", 
-                                            color: "#908e8e", 
-                                            fontSize: language === "ar" ? "16px !important": ""
-                                        }}
-                                    onClick={() => navigate("/")}
-                                >
-                                    {t("Cancel")}
-                                </Button>
-                                {currentStepIndex !== 0 && (
+                            {screenWidth <= 600 && (
+                                <h3 style={{fontSize: "16px"}}>{currentStepIndex + 1} / {5}</h3>
+                            )}
+                            {screenWidth > 600 && (
+                                <div className={currentStepIndex !== 0 ? "wizard__buttons--autoLeft" : ""}>
                                     <Button 
-                                        className="btn btn__draft"
+                                        className="btn"
                                         sx={{
-                                            backgroundColor: "#333", 
-                                            color: "#fff", 
-                                            marginLeft: "30px",
-                                            fontSize: language === "ar" ? "16px !important": ""
-                                        }}
-                                        onClick={()=>{saveDraft(values)}}
+                                                backgroundColor: "#e8eaf6", 
+                                                color: "#908e8e", 
+                                                fontSize: language === "ar" ? "16px !important": ""
+                                            }}
+                                        onClick={() => navigate("/")}
                                     >
-                                        {t("Save as Draft")}
+                                        {t("Cancel")}
                                     </Button>
-                                )}
-                            </div>
+                                    {currentStepIndex !== 0 && (
+                                        <Button 
+                                            className="btn btn__draft"
+                                            sx={{
+                                                backgroundColor: "#333", 
+                                                color: "#fff", 
+                                                marginLeft: "30px",
+                                                fontSize: language === "ar" ? "16px !important": ""
+                                            }}
+                                            onClick={()=>{saveDraft(values)}}
+                                        >
+                                            {t("Save as Draft")}
+                                        </Button>
+                                    )}
+                                </div>
+                            )}
                             
                             {currentStepIndex !== 0 && (
                                 <Button

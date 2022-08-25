@@ -39,6 +39,7 @@ export const CustomerInformation =
         label: "Customer ID (CIF)",
         initialValue: "",
     },
+    
     {
         name: "nearestBankBranch",
         id: "demo-simple-select-label",
@@ -647,7 +648,7 @@ export const Generaleligibilityinformation =
 
 
 
-export const UpcomingStep1 = 
+export const EvaluationEligibilityInformation = 
 [
     {
         name: "StabilityCapitalAmount",
@@ -873,19 +874,13 @@ export const UpcomingStep1 =
         validator: yup.string().required("Annual Sales is required"),
     },
     {
-        name: "nationalID",
-        type: "text",
-        label: "National ID of the owner/partners/guarantor",
-        initialValue: "",
-        validator: yup.string().required("National ID is required"),
+        name: "smallHeader",
+        label: "Owner List"
     },
     {
-        name: "suppliersList",
-        type: "text",
-        label: "Suppliers list",
-        initialValue: "",
-        validator: yup.string().required("Suppliers list is required"),
-    },    
+        name: "ownerList",
+        initialValue: [{ownerType: "", nationalID: ""}]
+    },
 ]
 
 

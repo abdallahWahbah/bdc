@@ -3,7 +3,7 @@ import FormInputCreator from "../Inputs/FormInputCreator";
 import { CustomerInformation, 
         FinancialEligibilityInformation, 
         Generaleligibilityinformation, 
-        UpcomingStep1, 
+        EvaluationEligibilityInformation, 
         UpcomingStep2, } from './Schema';
 import { useSelector } from 'react-redux';
 import Grid from "@mui/material/Grid";
@@ -15,7 +15,8 @@ export const CustomerInformationPage = ({errors, values, handleChange}) => {
                             jsonObject={CustomerInformation} 
                             errors={errors} 
                             values={values}
-                            handleChange={handleChange}/>;
+                            handleChange={handleChange}
+                            />;
 
     return (
         <div>
@@ -31,7 +32,7 @@ export const CustomerInformationPage = ({errors, values, handleChange}) => {
         )
 }
 
-export const FinancialEligibilityInformationPage = ({errors, values, handleChange}) => {
+export const FinancialEligibilityInformationPage = ({errors, values, handleChange, }) => {
     const language = useSelector(state => state.language.language);
 
     const formContent2 = <FormInputCreator 
@@ -77,11 +78,12 @@ export const GeneraleligibilityinformationPage = ({errors, values, handleChange}
     )
 }
 
-export const UpcomingStepPage1 = ({errors, values, handleChange}) => {
+export const EvaluationEligibilityInformationPage = ({errors, values, handleChange}) => {
     const language = useSelector(state => state.language.language);
 
-    const formContent4 = <FormInputCreator 
-                            jsonObject={UpcomingStep1} 
+    const formContent4 =
+                        <FormInputCreator 
+                            jsonObject={EvaluationEligibilityInformation} 
                             errors={errors} 
                             values={values}
                             handleChange={handleChange}/>;

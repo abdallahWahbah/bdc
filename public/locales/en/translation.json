@@ -2,7 +2,7 @@
     "Customer information":"Customer information",
     "Financial eligibility information":"Financial eligibility information",
     "General eligibility information":"General eligibility information",
-    "Upcoming Step1":"Upcoming Step1",
+    "Evaluation Eligibility Information":"Evaluation Eligibility Information",
     "Upcoming Step2":"Upcoming Step2",
     "Apply For Very Small Business Loan Request":"Apply For Very Small Business Loan Request",
     "Company Name" : "Company Name",
@@ -150,6 +150,9 @@
     "Annual Sales is required":"Annual Sales is required",
     "National ID is required":"National ID is required",
     "Suppliers list is required":"Suppliers list is required",
-    "Requested Tracker Number is required":"Requested Tracker Number is required"
+    "Requested Tracker Number is required":"Requested Tracker Number is required",
+    "Owner List":"Owner List",
+    "Owner Type":"Owner Type",
+    "National ID":"National ID"
     
 }

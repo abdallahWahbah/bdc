@@ -4,7 +4,7 @@ const Footer = () =>
 {
     return ( // css file: comp/footer
         <div className='footer'>
-            Copyright &copy; 2022 Banque du Caire. All rights reserved
+            {/* Copyright &copy; 2022 Banque du Caire. All rights reserved */}
         </div>
     )
 }
