@@ -4,11 +4,12 @@
     "General eligibility information":"معلومات الأهلية العامة",
     "Evaluation Eligibility Information":"معلومات الأهلية التقييمية",
     "Upcoming Step2":"2الخطوة القادمة",
-    "Apply For Very Small Business Loan Request":"تقدم بطلب للحصول على قرض تجاري صغير جدًا",
+    "Apply For Very Small Business Loan Request":"تقدم بطلب للحصول على قرض تجاري للشركات و المشاريع صغيرة",
     "Company Name": "اسم الشركة",
     "Commercial Registration Number":"رقم السجل التجاري",
     "Contact Mobile Number":"رقم الجوال للاتصال",
     "Requested Loan amount in EGP":"مبلغ القرض المطلوب بالجنيه المصري",
+    "pelase enter loan amount":"الرجاء إدخال قيمة القرض المطلوبة ضمن الحد الأقصى",
     "Customer ID (CIF)":"رقم العميل (CIF)",
     "The nearest Bank Branch":"أقرب فرع للبنك",
     "Annual Sales Turnover for the previous financial year in EGP":"معدل دوران المبيعات السنوي للسنة المالية السابقة بالجنيه المصري",
@@ -161,5 +162,11 @@
     "Type is required":"برجاء اختيار صفة المالك",
     "ID can't be empty":"برجاء كتابة رقم الهوية الوطنية",
     "required":"هذا الحقل مطلوب",
-    "You need to provide at least 1 owner":"برجاء كتابة مالك واحد علي الأقل"
+    "You need to provide at least 1 owner":"برجاء كتابة مالك واحد علي الأقل",
+    "copyright_footer":"حقوق النشر © 2022 بنك القاهرة. كل الحقوق محفوظة",
+    "required_documents":"المرفقات المطلوبة",
+    "check_customer_eligibility":"تحقق من اهلية العميل",
+    "header_description":"منح قروض ميسرة للشركات و المشاريع صغيرة. خدمات وبرامج تمويلية تلبي احتياجات مختلف شرائح العملاء من الشركات لتلبية احتياجاتك المصرفية المتنوعة.",
+    "apply_btn":"تقديم طلب قرض إنجاز",
+    "view_btn":"عرض الطلبات  السابقة"
 }

@@ -161,6 +161,8 @@
     "Type is required":"Type is required",
     "ID can't be empty":"ID can't be empty",
     "required":"required",
-    "You need to provide at least 1 owner":"You need to provide at least 1 owner"
-    
+    "You need to provide at least 1 owner":"You need to provide at least 1 owner",
+    "copyright_footer":"Copyright © 2022 Banque du Caire. All rights reserved",
+    "required_documents":"Required Documents"
+
 }

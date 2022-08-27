@@ -5,7 +5,7 @@ import { useTranslation } from 'react-i18next';
 import { useDispatch } from 'react-redux';
 import {languageActions} from '../store/languageSlice';
 
-const Header = () => 
+const Header = () =>
 {
     const { i18n } = useTranslation();
     const [language, setLanguage] = useState("arabic");
@@ -28,7 +28,7 @@ const Header = () =>
     }
 
     return ( // css file: comp/header
-        <div className='header'>
+        <div className='header' dir={language === "arabic" ? "rtl" : "ltr"}>
             <div className='logo__container'>
                 <img  className='header__logo' src={Logo} alt="logo" onClick={() => navigate("/")}/>
             </div>

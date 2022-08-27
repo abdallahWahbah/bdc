@@ -11,6 +11,7 @@
     "@testing-library/jest-dom": "^5.16.5",
     "@testing-library/react": "^13.3.0",
     "@testing-library/user-event": "^13.5.0",
+    "file-saver": "^2.0.5",
     "formik": "^2.2.9",
     "formik-wizard-form": "^2.1.0",
     "i18next": "^21.9.1",
