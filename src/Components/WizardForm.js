@@ -58,21 +58,20 @@ const WizardForm = () => {
     let validator4 = InitialValuesValidators("validators", EvaluationEligibilityInformation).validators;
     const validator5 = yup.object(InitialValuesValidators("validators", UpcomingStep2).validators);
 
-    let tempValidation  = {...validator4, ownerList: yup.array(yup.object({
-        ownerType: yup.string().required("Type is required"),
-        nationalID: yup.number().required("ID can't be empty")
-    })).required("required").min(1, 'You need to provide at least 1 owner')
+    let tempValidation  = {...validator4, 
+        ownerList: yup.array(yup.object({
+            ownerType: yup.string().required("Type is required"),
+            nationalID: yup.number().required("ID can't be empty")
+        })).required("required").min(1, 'You need to provide at least 1 owner'),
+        supplierList: yup.array(yup.object({
+            name: yup.string().required("Name is required"),
+            crn: yup.number().required("Please write crn"),
+            amount: yup.number().required("Please write the amount"),
+            soldItems: yup.string().required("Please write the sold items")
+        })).required("required").min(3, 'You need to provide at least 3 suppliers')
     };
 
     validator4 = yup.object(tempValidation)
-
-    // let val4 = 
-    // {
-    //     ownerList: yup.array(yup.object({
-    //         ownerType: yup.string().required("please, choose the owner type"),
-    //         nationalID: yup.number().required("can't be empty")
-    //     }))
-    // }
 
     const initialValues = {...initialValues1, 
             ...initialValues2, 

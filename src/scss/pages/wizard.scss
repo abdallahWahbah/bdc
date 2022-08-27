@@ -1,3 +1,383 @@
+// .wizard {
+//   // height: 81vh;
+//   width: 70%;
+//   margin: 0 auto;
+//   flex: 1;
+//   margin-bottom: 3rem;
+
+//   display: flex;
+//   flex-direction: column;
+
+//   @include respond(tab-port) {
+//     width: 80%;
+//   }
+//   @include respond(phone) {
+//     width: 90%;
+//   }
+
+//   .Mui-active {
+//     color: #f58232 !important;
+//   }
+//   .Mui-completed {
+//     // color: #F58232 !important;
+//   }
+//   .bigTextField .MuiInput-input {
+//     color: #c4c4c4;
+//     font-size: 40px;
+//   }
+//   .bigTextField .MuiInput-root::before {
+//     border: none !important;
+//   }
+//   .bigTextField .MuiInput-root::after {
+//     border: none !important;
+//   }
+// }
+// .wizard__error {
+//   color: red;
+//   // margin-left: 2rem;
+//   // margin-right: 2rem;
+//   // margin-top: 1.5rem;
+//   font-size: 14px;
+// }
+// .wizard__main--header {
+//   font-size: 2rem;
+//   font-weight: 400;
+//   margin: 2rem 0;
+//   border-bottom: 2px solid #cecece;
+//   padding-bottom: 1rem;
+
+//   @include respond(tab-land) {
+//     font-size: 2.5rem;
+//   }
+//   @include respond(phone) {
+//     font-size: 3rem;
+//   }
+// }
+// .wizard__content {
+//   flex: 1;
+//   height: 100%;
+
+//   display: flex;
+//   flex-direction: column;
+//   justify-content: space-between;
+// }
+// .wizard__content--inputs {
+//   flex: 1;
+
+//   margin-bottom: 5rem !important;
+// }
+// .wizard__custom-stepper .MuiStepLabel-iconContainer {
+//   padding-right: 0;
+//   padding-left: 8px;
+// }
+// .wizard__stepper--mobile {
+//   position: fixed;
+//   top: 10px;
+//   display: flex;
+//   align-items: center;
+//   justify-content: space-between;
+//   background-color: #424242;
+//   color: white;
+//   padding: 1rem;
+//   margin-bottom: 2rem;
+
+//   &-close-draft {
+//     display: flex;
+//     align-items: center;
+//     & > * {
+//       font-size: 3rem !important;
+//     }
+//   }
+// }
+
+// .wizard__buttons {
+//   display: flex;
+//   flex-direction: row-reverse;
+//   justify-content: space-between;
+//   align-items: center;
+//   z-index: 22;
+//   &.fixed__bottom--52 {
+//     transition: bottom 0.5s ease;
+//     bottom: 52px !important;
+//   }
+// }
+// .btn {
+//   padding: 0.5rem 2rem;
+//   font-size: 1.3rem;
+//   font-weight: 400;
+//   &__draft {
+//     padding: 0.5rem 1.4rem;
+//   }
+// }
+// .wizard__button--next {
+// }
+// .wizard__buttons--autoLeft {
+//   margin-left: auto;
+// }
+// .wizard__text--box {
+//   box-shadow: 0 0.4rem 1rem rgba(black, 0.3);
+//   margin: 0 auto;
+//   margin-top: 2.3rem;
+//   width: 100%;
+//   padding: 4rem;
+//   text-align: center;
+//   margin-bottom: 2.2rem;
+// }
+// .wizard__small--header {
+//   margin: 2rem 0;
+//   font-size: 1.8rem;
+//   font-weight: 400;
+//   border-bottom: 1px solid #cecece;
+//   padding-bottom: 1rem;
+//   width: 100%;
+// }
+
+// .css-480o17-MuiGrid-root {
+//   width: 100% !important;
+//   // margin-left: 0 !important;
+// }
+// .css-zow5z4-MuiGrid-root {
+//   width: 100% !important;
+//   margin-left: 0 !important;
+// }
+// .css-10hbjx7-MuiFormGroup-root label {
+//   margin-right: 0 !important;
+// }
+// .css-ahj2mt-MuiTypography-root {
+//   font-size: 1.4rem !important;
+// } // checkbox font size, the last page
+// .MuiStep-alternativeLabel svg // stepper
+// {
+//   font-size: 2.5rem;
+//   width: 2.3rem;
+//   height: 2.3rem;
+// }
+// .MuiStepLabel-alternativeLabel // stepper
+// {
+//   font-size: 1.6rem !important;
+
+//   @include respond(tab-port) {
+//     font-size: 2rem !important;
+//   }
+// }
+// .MuiStepLabel-label {
+//   margin-top: 1rem !important;
+//   font-size: 14px;
+// }
+// .MuiStep-alternativeLabel svg text {
+//   font-size: 1.5rem !important;
+// }
+// .css-vnkopk-MuiStepLabel-iconContainer {
+//   padding-left: 0 !important;
+// }
+// .wizard__input--file {
+//   &::-webkit-file-upload-button {
+//     visibility: hidden;
+//   }
+// }
+// .MuiInputBase-fullWidth{height: 100% !important;} // to increase the height of the textField in the fieldArray component
+
+
+// .remove__left--padding // from even text fields and dropdown menus
+// {
+//   & > *:nth-child(even) {
+//     padding-left: 0 !important;
+//   }
+
+//   @include respond(tab-land) {
+//     & > * {
+//       padding-left: 0 !important;
+//     }
+//   }
+// }
+// .remove__right--padding // from odd text fields and dropdown menus
+// {
+//   & > *:nth-child(odd) {
+//     padding-left: 0 !important;
+//   }
+
+//   @include respond(tab-land)
+//   {
+//     & > *
+//     {
+//       padding-left: 0 !important;
+//     }
+//   & > span
+//   {
+//     font-size: 1.6rem;
+//   }
+
+//   & > svg
+//   {
+//     // height: 1.5rem !important;
+//     // width: 1.5rem !important;
+//     transform: scale(1.2);
+//     color: white;
+//     background-color: $color-orange-main;
+//     border-radius: 50%;
+//   }
+//   & > span
+//   {
+//     font-size: 1.6rem;
+//   }
+// }
+// .MuiOutlinedInput-notchedOutline {
+//   height: 100%;
+// }
+
+// .wizard input, .wizard label
+// {
+//   font-size: 1.8rem !important;
+// }
+// .css-11u53oe-MuiSelect-select-MuiInputBase-input-MuiOutlinedInput-input // the value when you select an item from drop down menu
+// {
+//   font-size: 14px !important;
+//   height: 20px !important;
+
+//   @include respond(tab-land) {
+//     font-size: 2rem !important;
+//     padding-right: 2rem !important;
+//   }
+// }
+// legend // label space when you focus on an input
+// {
+//   font-size: 14px;
+
+//   @include respond(tab-port) {
+//     font-size: 1rem !important;
+//   }
+// }
+
+// .custom-field label // text field
+// {
+//   transform-origin: top right;
+//   right: 2rem;
+//   left: unset;
+//   font-size: 14px;
+//   @include respond(tab-port) {
+//     font-size: 14px;
+//     right: 4.5rem;
+//     top: -1px !important;
+//   }
+// }
+// .custom-field input {
+//   direction: rtl;
+//   font-size: 14px;
+//   @include respond(tab-port) {
+//     font-size: 14px;
+//   }
+// }
+// .custom-label-field label {
+//   // drop down menu
+//   transform-origin: top right;
+//   right: 2.5rem;
+//   left: unset;
+//   background-color: #fff;
+//   padding: 0 0.8rem;
+//   z-index: 4;
+
+//   @include respond(tab-port) {
+//     font-size: 2.4rem !important;
+//   }
+// }
+// .custom-label-field .MuiInputLabel-shrink {
+//   top: 0px;
+
+//   @include respond(tab-port) {
+//     right: 2.7rem;
+//   }
+//   @include respond(phone) {
+//     right: 3rem;
+//   }
+//   // right: 20px
+// }
+// .custom-field fieldset {
+//   text-align: right;
+// }
+// span.css-htszrh-MuiButton-startIcon {
+//   margin-left: 0.8rem;
+//   margin-right: -0.4rem;
+// }
+// .customGrid .MuiGrid-item {
+//   // padding-left: 0px !important
+// }
+// .custom-field .MuiSelect-icon {
+//   // drop down icon position
+//   right: unset;
+//   left: 2px;
+//   color: #f58232;
+// }
+// .Mui-checked {
+//   color: #fcb712 !important;
+// }
+// .google-map {
+//   position: relative !important;
+// }
+// .custom-wizard {
+//   // font-size: 20px !important;
+//   margin-bottom: 1.5rem;
+// }
+// .custom-wizard .MuiStepConnector-horizontal {
+//   left: calc(50% + 2rem);
+//   right: calc(-50% + 2rem);
+// }
+// .custom-wizard .MuiStepIcon-completed {
+//   color: #34ae73 !important;
+// }
+// .custom-wizard .MuiStepLabel-completed {
+//   color: #34ae73 !important;
+// }
+
+// .css-1a49mms-MuiSvgIcon-root-MuiStepIcon-root.Mui-active {
+//   color: rgb(250, 180, 20) !important;
+// }
+// .service-not-active .service-content {
+//   filter: blur(7px);
+// }
+// .MuiCardHeader-title {
+//   font-size: 2rem !important;
+// }
+// .MuiChip-icon {
+//   margin-right: 0.4rem !important;
+//   margin-left: 0 !important;
+// }
+// .MuiTableCell-root {
+//   text-align: right !important;
+// }
+// .MuiButton-startIcon {
+//   margin-left: 0.8rem !important;
+//   margin-right: -0.4rem !important;
+// }
+// .unordered-list {
+//   padding-right: 2.4rem;
+//   line-height: 2;
+// }
+// .ordered-list {
+//   padding-right: 2.4rem;
+//   line-height: 2;
+// }
+// .appendix {
+//   margin-right: 3rem;
+//   line-height: 2;
+// }
+// .section-headline {
+//   margin-bottom: 1.6rem;
+//   line-height: 2;
+//   font-weight: 700;
+// }
+// #terms-dialog-title .MuiTypography-root {
+//   font-size: 3rem !important;
+// }
+// .MuiFormControlLabel-root {
+//   margin-left: 1.6rem !important;
+//   margin-right: -1.1rem !important;
+// }
+// .MuiFormGroup-row {
+//   justify-content: space-between !important;
+//   align-items: center !important;
+//   height: 100% !important;
+// }
+// }
 .wizard {
   // height: 81vh;
   width: 70%;
@@ -175,8 +555,6 @@
     visibility: hidden;
   }
 }
-.MuiInputBase-fullWidth{height: 100% !important;} // to increase the height of the textField in the fieldArray component
-
 
 .remove__left--padding // from even text fields and dropdown menus
 {
@@ -196,16 +574,17 @@
     padding-left: 0 !important;
   }
 
-  @include respond(tab-land)
-  {
-    & > *
-    {
+  @include respond(tab-land) {
+    & > * {
       padding-left: 0 !important;
     }
-  & > span
-  {
-    font-size: 1.6rem;
   }
+}
+.wizard__fieldArray--add-button
+{
+  display: flex;
+  align-items: center;
+  cursor: pointer;
 
   & > svg
   {
@@ -225,9 +604,9 @@
   height: 100%;
 }
 
-.wizard input, .wizard label
-{
-  font-size: 1.8rem !important;
+.wizard input,
+.wizard label {
+  font-size: 14px;
 }
 .css-11u53oe-MuiSelect-select-MuiInputBase-input-MuiOutlinedInput-input // the value when you select an item from drop down menu
 {
@@ -376,4 +755,46 @@ span.css-htszrh-MuiButton-startIcon {
   justify-content: space-between !important;
   align-items: center !important;
   height: 100% !important;
+}
+
+.owner__list
+{
+  display: flex;
+}
+.supplier__list
+{
+  display: flex;
+  align-items: center;
+  margin-bottom: 1.5rem;
+
+  & > div
+  {
+    height: 77px;
+    flex: 20%;
+    &:last-of-type
+    {
+      flex: 30%;
+    }
+  }
+  & > svg
+  {
+    // height: 77px;
+    margin-top: -30px;
+  }
+
+  &.ml
+  {
+    & > *:not(:last-child)
+    {
+      margin-left: 1rem;
+    }
+  }
+  &.mr
+  {
+    & > *:not(:last-child)
+    {
+      margin-right: 1rem;
+    }
+  }
+
 }

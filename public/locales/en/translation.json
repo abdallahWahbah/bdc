@@ -163,6 +163,16 @@
     "required":"required",
     "You need to provide at least 1 owner":"You need to provide at least 1 owner",
     "copyright_footer":"Copyright © 2022 Banque du Caire. All rights reserved",
-    "required_documents":"Required Documents"
-
+    "required_documents":"Required Documents",
+    "Supplier List":"Supplier List",
+    "Supplier Name":"Supplier Name",
+    "CRN":"CRN",
+    "Amount":"Amount",
+    "Sold Items":"Sold Items",
+    "Name is required":"Name is required",
+    "Please write crn":"Please write crn",
+    "Please write the amount":"Please write the amount",
+    "Please write the sold items":"Please write the sold items",
+    "You need to provide at least 3 suppliers":"You need to provide at least 3 suppliers",
+    "Add Supplier":"Add Supplier"
 }

@@ -881,6 +881,14 @@ export const EvaluationEligibilityInformation =
         name: "ownerList",
         initialValue: [{ownerType: "", nationalID: ""}]
     },
+    {
+        name: "smallHeader",
+        label: "Supplier List"
+    },
+    {
+        name: "supplierList",
+        initialValue: [{name: "", crn: "", amount: "", soldItems: ""}, {name: "", crn: "", amount: "", soldItems: ""}, {name: "", crn: "", amount: "", soldItems: ""}]
+    },
 ]
 
 

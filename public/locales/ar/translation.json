@@ -168,5 +168,16 @@
     "check_customer_eligibility":"تحقق من اهلية العميل",
     "header_description":"منح قروض ميسرة للشركات و المشاريع صغيرة. خدمات وبرامج تمويلية تلبي احتياجات مختلف شرائح العملاء من الشركات لتلبية احتياجاتك المصرفية المتنوعة.",
     "apply_btn":"تقديم طلب قرض إنجاز",
-    "view_btn":"عرض الطلبات  السابقة"
+    "view_btn":"عرض الطلبات  السابقة",
+    "Supplier List":"قائمة الموردين",
+    "Supplier Name":"اسم المورد",
+    "CRN":"CRN",
+    "Amount":"القيمة",
+    "Sold Items":"السلع المباعة",
+    "Name is required":"برجاء كتابة اسم المورد",
+    "Please write crn":"برجاء كتابة crn",
+    "Please write the amount":"برجاء كتابة القيمة",
+    "Please write the sold items":"برجاء كتابة السلع المباعة",
+    "You need to provide at least 3 suppliers":"برجاء كتابة 3 موردين علي الأقل",
+    "Add Supplier":"اضافة مورد"
 }
