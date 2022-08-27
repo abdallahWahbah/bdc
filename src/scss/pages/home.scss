@@ -1,12 +1,16 @@
 .app
 {
+    font-weight: 100 !important;
     min-height: 100vh;
     display: flex;
     flex-direction: column;
     justify-content: space-between;
     overflow: hidden;
 }
+ *{
+    font-family: 'Frutiger LT Arabic 55 Roman' !important;
 
+}
 .home
 {
     flex: 1;

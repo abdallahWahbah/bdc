@@ -36,7 +36,6 @@ const FormInputCreator = ({jsonObject, values, handleChange, errors, getFieldPro
                         name={element.name}
                         type={element.type ? element.type : "text"}
                         label={t(element.label)}                        
-                        sx={{height: "60px !important"}}
                         value={values && values[element.name]}
                         onChange={handleChange}
                     />
@@ -72,7 +71,6 @@ const FormInputCreator = ({jsonObject, values, handleChange, errors, getFieldPro
                             className={`${language === "ar" ? "custom-field" : ""}`}
                             labelId={element.id}
                             id={element.selectId}
-                            sx={{height: "60px !important"}}
                             name={element.name}
                             label={t(element.label)}
                             value={values[element.name]}
@@ -177,7 +175,6 @@ const FormInputCreator = ({jsonObject, values, handleChange, errors, getFieldPro
                                     value={values.ownerList[index].ownerType}
                                     onChange={handleChange}
                                     type={element.type ? element.type : "text"}
-                                    sx={{height: "60px !important"}}
                                 />
                                 {console.log(errors)}
                                 {/* {console.log(errors.ownerList[index].ownerType)}
@@ -196,7 +193,6 @@ const FormInputCreator = ({jsonObject, values, handleChange, errors, getFieldPro
                                     value={values.ownerList[index].nationalID}
                                     onChange={handleChange}
                                     type="number"
-                                    sx={{height: "60px !important"}}
                                 />
                             </Grid>
                             <Grid item xs={2} sm="auto">
