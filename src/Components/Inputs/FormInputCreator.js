@@ -3,8 +3,9 @@ import React from 'react'
 import { FormControl, MenuItem, Select, InputLabel, TextField, Grid, Box, Button, FormGroup, FormControlLabel, Checkbox, Typography} from '@mui/material';
 import { useTranslation } from 'react-i18next';
 import { useSelector } from 'react-redux';
-import { Field, FieldArray } from 'formik';
+import { FieldArray } from 'formik';
 import DeleteIcon from '@mui/icons-material/Delete';
+import AddIcon from '@mui/icons-material/Add';
 
 const FormInputCreator = ({jsonObject, values, handleChange, errors, getFieldProps}) => 
 {
@@ -156,7 +157,12 @@ const FormInputCreator = ({jsonObject, values, handleChange, errors, getFieldPro
         if(element.name === "ownerList")
         {
             return(
-                <Grid item container xs={12}>
+                <Grid 
+                    item 
+                    container 
+                    xs={12} 
+                    style={{paddingLeft: 0}}
+                >
                 <FieldArray name={element.name} key={element.name}>
                   {({ push, remove }) => (
                     <React.Fragment>
@@ -166,26 +172,45 @@ const FormInputCreator = ({jsonObject, values, handleChange, errors, getFieldPro
                             item
                             key={index}
                             spacing={2}
-                            sx={{alignItems: "center"}}
+                            sx={{alignItems: "center", marginBottom: "20px !important"}}
                         >
-                            <Grid item xs={5}>
-                                <TextField
-                                    className={`${language === "ar" ? "custom-field" : ""}`}
-                                    fullWidth
-                                    name={`ownerList[${index}].ownerType`}
-                                    label={t(`Owner Type`)}
-                                    value={values.ownerList[index].ownerType}
-                                    onChange={handleChange}
-                                    type={element.type ? element.type : "text"}
-                                    sx={{height: "60px !important"}}
-                                />
-                                {console.log(errors)}
-                                {/* {console.log(errors.ownerList[index].ownerType)}
-                                
-                                {errors[`ownerList[${index}].ownerType`] ? 
-                                    <div className='wizard__error'>{t(errors[element.name])}</div> : 
-                                    null
-                                } */}
+                            <Grid item xs={5} className={`${language === "ar" ? "custom-label-field" : ""}`}>
+                                <FormControl fullWidth sx={element.sx ? element.sx : null}>
+                                <InputLabel id="demo-simple-select-label">{t("Owner Type")}</InputLabel>
+                                    <Select 
+                                        className={`${language === "ar" ? "custom-field" : ""}`}
+                                        labelId="demo-simple-select-label"
+                                        id="demo-simple-select"
+                                        sx={{height: "60px !important"}}
+                                        name={`ownerList[${index}].ownerType`}
+                                        label={t("Owner Type")}
+                                        value={values.ownerList[index].ownerType}
+                                        onChange={handleChange}
+                                        >
+                                            <MenuItem 
+                                                dir={language === "ar" ? "rtl" :"ltr"} 
+                                                value="owner"
+                                                sx={{fontSize: "15px"}}
+                                            >
+                                                {t("Owner")}
+                                            </MenuItem> 
+                                            <MenuItem 
+                                                dir={language === "ar" ? "rtl" :"ltr"} 
+                                                value="partener"
+                                                sx={{fontSize: "15px"}}
+                                            >
+                                                {t("Partener")}
+                                            </MenuItem> 
+                                            <MenuItem 
+                                                dir={language === "ar" ? "rtl" :"ltr"} 
+                                                value="guarantor"
+                                                sx={{fontSize: "15px"}}
+                                            >
+                                                {t("Guarantor")}
+                                            </MenuItem> 
+                                    </Select>
+                                    {errors?.ownerList?.[index]?.ownerType ? <div className='wizard__error'>{t(errors?.ownerList?.[index]?.ownerType)}</div> : null}
+                                </FormControl>
                             </Grid>
                             <Grid item xs={5}>
                                 <TextField
@@ -198,8 +223,10 @@ const FormInputCreator = ({jsonObject, values, handleChange, errors, getFieldPro
                                     type="number"
                                     sx={{height: "60px !important"}}
                                 />
+                                {errors?.ownerList?.[index]?.nationalID ? <div className='wizard__error'>{t(errors?.ownerList?.[index]?.nationalID)}</div> : null}
+
                             </Grid>
-                            <Grid item xs={2} sm="auto">
+                            <Grid item xs={2} sm="auto" sx={{cursor: "pointer"}}>
                                 <DeleteIcon onClick={() => remove(index)} sx={{fontSize: "30px !important", color: "#F05030"}}/>
                             </Grid>
                      
@@ -207,21 +234,23 @@ const FormInputCreator = ({jsonObject, values, handleChange, errors, getFieldPro
                      
                       ))}
 
-                      <Grid item>
+                      <Grid item sx={{width: "100% !important", marginBottom: "15px !important"}}>
                         {typeof errors[element.name] === 'string' ? (
-                          <Typography color="error">
-                            {errors[element.name]}
+                          <Typography color="#F05030" sx={{fontSize:"15px !important"}}>
+                            {t(errors[element.name])}
                           </Typography>
                         ) : null}
                       </Grid>
 
-                      <Grid item>
-                        <Button
-                          variant="contained"
-                          onClick={() => push({ownerType: "", nationalID: ""})}
+                      <Grid 
+                        item 
+                        className='wizard__fieldArray--add-button' 
+                        onClick={() => push({ownerType: "", nationalID: ""})}
                         >
-                          Add Donation
-                        </Button>
+                            <AddIcon 
+                                sx={{margin: language === "ar" ? "0 0 0 10px" : "0 10px 0 0"}}
+                            />
+                            <span> {t("Add Owner")}</span>
                       </Grid>
                     </React.Fragment>
                   )}

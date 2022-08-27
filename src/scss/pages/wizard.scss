@@ -166,7 +166,7 @@
     visibility: hidden;
   }
 }
-
+.MuiInputBase-fullWidth{height: 100% !important;} // to increase the height of the textField in the fieldArray component
 
 
 .remove__left--padding // from even text fields and dropdown menus
@@ -199,7 +199,26 @@
     }
   }
 }
+.wizard__fieldArray--add-button
+{
+  display: flex;
+  align-items: center;
+  cursor: pointer;
 
+  & > svg
+  {
+    // height: 1.5rem !important;
+    // width: 1.5rem !important;
+    transform: scale(1.2);
+    color: white;
+    background-color: $color-orange-main;
+    border-radius: 50%;
+  }
+  & > span
+  {
+    font-size: 1.6rem;
+  }
+}
 
 
 .wizard input, .wizard label

@@ -153,5 +153,13 @@
     "Requested Tracker Number is required":"برجاء ادخال رقم التتبع المطلوب",
     "Owner List":"قائمة الموردين",
     "Owner Type":"صفة المالك",
-    "National ID": "رقم الهوية الوطنية"
+    "National ID": "رقم الهوية الوطنية",
+    "Owner":"مالك",
+    "Partener":"شريك",
+    "Guarantor":"كفيل",
+    "Add Owner":"اضافة مالك",
+    "Type is required":"برجاء اختيار صفة المالك",
+    "ID can't be empty":"برجاء كتابة رقم الهوية الوطنية",
+    "required":"هذا الحقل مطلوب",
+    "You need to provide at least 1 owner":"برجاء كتابة مالك واحد علي الأقل"
 }

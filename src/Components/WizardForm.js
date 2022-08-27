@@ -57,38 +57,13 @@ const WizardForm = () =>
     let validator4 = InitialValuesValidators("validators", EvaluationEligibilityInformation).validators;
     const validator5 = yup.object(InitialValuesValidators("validators", UpcomingStep2).validators);
 
-    // validator4 = {...validator4, ownerList: (yup.array(yup.object({
-    //     ownerType: yup.string().required(),
-    //     // nationalID: yup.number().required()
-    // })))};
-    console.log(validator4)
-    // let tempValidation  = {...validator4, ownerList: yup.array(yup.object({
-    //     ownerType: yup.string().required().min(22),
-    //     nationalID: yup.number("national id must be ").required("can't be empty")
-    // }))};
-
-    // let tempValidation  = {...validator4, ownerList: yup.array().of(
-    //     yup.object().shape({
-    //         ownerType: yup.string().required(),
-    //         nationalID: yup.number().required("can't be empty")
-    //     })).min(3, "must have at least 3 owners")
-    // };
-
     let tempValidation  = {...validator4, ownerList: yup.array(yup.object({
-        ownerType: yup.string().required("type is required"),
+        ownerType: yup.string().required("Type is required"),
         nationalID: yup.number().required("ID can't be empty")
     })).required("required").min(1, 'You need to provide at least 1 owner')
     };
 
     validator4 = yup.object(tempValidation)
-
-    // let val4 = 
-    // {
-    //     ownerList: yup.array(yup.object({
-    //         ownerType: yup.string().required("please, choose the owner type"),
-    //         nationalID: yup.number().required("can't be empty")
-    //     }))
-    // }
 
     const initialValues = {...initialValues1, 
             ...initialValues2, 

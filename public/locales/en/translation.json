@@ -153,6 +153,14 @@
     "Requested Tracker Number is required":"Requested Tracker Number is required",
     "Owner List":"Owner List",
     "Owner Type":"Owner Type",
-    "National ID":"National ID"
+    "National ID":"National ID",
+    "Owner":"Owner",
+    "Partener":"Partener",
+    "Guarantor":"Guarantor",
+    "Add Owner":"Add Owner",
+    "Type is required":"Type is required",
+    "ID can't be empty":"ID can't be empty",
+    "required":"required",
+    "You need to provide at least 1 owner":"You need to provide at least 1 owner"
     
 }
