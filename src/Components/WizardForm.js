@@ -26,10 +26,14 @@ import {
     EvaluationEligibilityInformationPage,
     UpcomingStepPage2
 } from './Inputs/PageData';
-import { KeyboardArrowLeft } from '@mui/icons-material';
 import RequiredFiles from './sections/RequiredFiles';
 
 const WizardForm = () => {
+    const [stepperPosition, setStepperPosition] = useState('')
+    window.addEventListener('scroll', (x) => {
+        console.log('window.pageYOffset::', window.pageYOffset);
+        window.pageYOffset < 180 ? setStepperPosition('') : setStepperPosition('fixed')
+    }, true);
     const [openDialog, setOpenDialog] = useState(false);
     const [screenWidth, setScreenWidth] = useState(null);
     const language = useSelector(state => state.language.language);
@@ -58,7 +62,8 @@ const WizardForm = () => {
     let validator4 = InitialValuesValidators("validators", EvaluationEligibilityInformation).validators;
     const validator5 = yup.object(InitialValuesValidators("validators", UpcomingStep2).validators);
 
-    let tempValidation  = {...validator4, 
+    let tempValidation = {
+        ...validator4,
         ownerList: yup.array(yup.object({
             ownerType: yup.string().required("Type is required"),
             nationalID: yup.number().required("ID can't be empty")
@@ -73,11 +78,13 @@ const WizardForm = () => {
 
     validator4 = yup.object(tempValidation)
 
-    const initialValues = {...initialValues1, 
-            ...initialValues2, 
-            ...initialValues3, 
-            ...initialValues4,
-            ...initialValues5};
+    const initialValues = {
+        ...initialValues1,
+        ...initialValues2,
+        ...initialValues3,
+        ...initialValues4,
+        ...initialValues5
+    };
 
     const [finalValues, setFinalValues] = React.useState({});
     const [finished, setFinished] = React.useState(false);
@@ -116,15 +123,16 @@ const WizardForm = () => {
         if (position.top < window.innerHeight && position.bottom >= 0) {
             // console.log('visible in screen');
             if (screenWidth <= 600) {
-                document.querySelector(".wizard__buttons").classList.add("fixed__bottom--52")
+                document.querySelector(".wizard__buttons").classList.add("fixed__bottom--70")
             }
         }
         else {
             // console.log("not visible")
             if (screenWidth <= 600) {
-                document.querySelector(".wizard__buttons").classList.remove("fixed__bottom--52")
+                document.querySelector(".wizard__buttons").classList.remove("fixed__bottom--70")
             }
         }
+
     });
     return (
         <div className='wizard'>
@@ -143,9 +151,8 @@ const WizardForm = () => {
                 activeStepIndex={0}
                 steps={[
                     {
-                        component: EvaluationEligibilityInformationPage,
-                        // validationSchema: yup.object(val4)
-                        validationSchema: validator4
+                        component: CustomerInformationPage,
+                        // validationSchema: validator1
                     },
                     {
                         component: FinancialEligibilityInformationPage,
@@ -185,16 +192,24 @@ const WizardForm = () => {
                             </h1>
                             <div className='wizard__content'>
                                 {screenWidth <= 600 ? (
-                                    <Box dir={language === "ar" ? "rtl" : "ltr"}>
+                                    <Box dir={language === "ar" ? "rtl" : "ltr"} className={screenWidth <= 600 ? `wizard__stepper--mobile` : ""}
+                                        sx={{
+                                            position: stepperPosition,
+                                            width: '100%',
+                                            top: 0,
+                                            left: 0,
+                                            right: 0
+                                        }}
+                                    >
                                         <Typography
                                             dir={language === "ar" ? "rtl" : "ltr"}
                                             sx={{ fontSize: "18px" }}
-                                            className={screenWidth <= 600 ? `wizard__stepper--mobile` : ""}
+
                                         >
                                             {steps[currentStepIndex]}
                                         </Typography>
 
-                                        <div className={`wizard__stepper--mobile-close-draft ${screenWidth <= 600 ? `wizard__stepper--mobile` : ""}`}>
+                                        <div className={`wizard__stepper--mobile-close-draft`}>
                                             <SaveIcon
                                                 onClick={() => { saveDraft(values) }}
                                                 sx={{ margin: language === "ar" ? "0 0 0 10px" : "0 10px 0 0" }}
@@ -262,7 +277,7 @@ const WizardForm = () => {
                                     >
                                         {currentStepIndex === 5 ? t("Submit") : t("Continue")}
                                     </Button>
-                                        {currentStepIndex !== 0 && (
+                                        {currentStepIndex !== 0 && screenWidth > 600 && (
                                             <Button
                                                 className="btn btn__draft"
                                                 sx={{
@@ -297,7 +312,7 @@ const WizardForm = () => {
                                             <Button
                                                 className="btn"
                                                 sx={{
-                                                    margin: '0 24px',
+                                                    // margin: '0 24px',
                                                     backgroundColor: "#e8eaf6",
                                                     color: "#908e8e",
                                                     width: '200px',
@@ -321,7 +336,6 @@ const WizardForm = () => {
                                                 backgroundColor: "#e8eaf6",
                                                 color: "#908e8e",
                                                 width: '200px',
-
                                                 fontSize: language === "ar" ? "16px !important" : ""
                                             }}
                                         >

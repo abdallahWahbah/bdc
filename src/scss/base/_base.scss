@@ -12,19 +12,19 @@ html
 
     @include respond(tab-land)
     {
-        font-size: 56.25% !important; // 9px
+        font-size: 56.25% ; // 9px
     }
     @include respond(tab-port)
     {
-        font-size: 50% !important; // 8px
+        font-size: 50% ; // 8px
     }
     @include respond(phone)
     {
-        font-size: 43.75% !important; // 7px
+        font-size: 43.75% ; // 7px
     }
     @include respond(big-desktop)
     {
-        font-size: 75% !important; // 12px
+        font-size: 75%; // 12px
     }
 }
 body

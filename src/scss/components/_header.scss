@@ -23,7 +23,14 @@
 
     @include respond(phone)
     {
-        transform: scaleX(.7) translateX(-6rem);
+        &.translatePositiveX
+        {
+            transform: scaleX(.7) translateX(-6rem);
+        }
+        &.translateNegativeX
+        {
+            transform: scaleX(.7) translateX(6rem);
+        }
     }
 }
 .header__logo

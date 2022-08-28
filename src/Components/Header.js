@@ -29,7 +29,7 @@ const Header = () =>
 
     return ( // css file: comp/header
         <div className='header' dir={language === "arabic" ? "rtl" : "ltr"}>
-            <div className='logo__container'>
+            <div className={`logo__container ${language === "arabic" ?  "translateNegativeX":"translatePositiveX" }`}>
                 <img  className='header__logo' src={Logo} alt="logo" onClick={() => navigate("/")}/>
             </div>
             <button className='header__button' onClick={() => handleClick(language === "arabic" ? "EN" : "AR")}>

@@ -177,7 +177,6 @@
 // }
 // .MuiInputBase-fullWidth{height: 100% !important;} // to increase the height of the textField in the fieldArray component
 
-
 // .remove__left--padding // from even text fields and dropdown menus
 // {
 //   & > *:nth-child(even) {
@@ -393,6 +392,7 @@
   }
   @include respond(phone) {
     width: 90%;
+    margin-bottom: 6rem;
   }
 
   .Mui-active {
@@ -451,7 +451,12 @@
   padding-left: 8px;
 }
 .wizard__stepper--mobile {
-  position: fixed;
+  background: white;
+  position: -webkit-sticky;
+  position: -moz-sticky;
+  position: -ms-sticky;
+  position: -o-sticky;
+  position: sticky;
   top: 10px;
   display: flex;
   align-items: center;
@@ -476,9 +481,9 @@
   justify-content: space-between;
   align-items: center;
   z-index: 22;
-  &.fixed__bottom--52 {
+  &.fixed__bottom--70 {
     transition: bottom 0.5s ease;
-    bottom: 52px !important;
+    bottom: 70px !important;
   }
 }
 .btn {
@@ -510,6 +515,10 @@
   border-bottom: 1px solid #cecece;
   padding-bottom: 1rem;
   width: 100%;
+
+  @include respond(phone) {
+    font-size: 2.5rem;
+  }
 }
 
 .css-480o17-MuiGrid-root {
@@ -580,14 +589,12 @@
     }
   }
 }
-.wizard__fieldArray--add-button
-{
+.wizard__fieldArray--add-button {
   display: flex;
   align-items: center;
   cursor: pointer;
 
-  & > svg
-  {
+  & > svg {
     // height: 1.5rem !important;
     // width: 1.5rem !important;
     transform: scale(1.2);
@@ -595,9 +602,12 @@
     background-color: $color-orange-main;
     border-radius: 50%;
   }
-  & > span
-  {
+  & > span {
     font-size: 1.6rem;
+
+    @include respond(phone) {
+      font-size: 2rem;
+    }
   }
 }
 .MuiOutlinedInput-notchedOutline {
@@ -682,12 +692,22 @@ span.css-htszrh-MuiButton-startIcon {
 }
 .custom-field .MuiSelect-icon {
   // drop down icon position
+  width: 18px !important;
+  height: 18px !important;
   right: unset;
   left: 2px;
-  color: #f58232;
+  color: #f58232 !important;
+}
+.Mui-error {
+  font-size: 12px !important;
+}
+.MuiSelect-iconOutlined {
+  color: #f58232 !important;
+  width: 18px !important;
+  height: 18px !important;
 }
 .Mui-checked {
-  color: #fcb712 !important;
+  color: #f58232 !important;
 }
 .google-map {
   position: relative !important;
@@ -757,44 +777,56 @@ span.css-htszrh-MuiButton-startIcon {
   height: 100% !important;
 }
 
-.owner__list
-{
-  display: flex;
-}
-.supplier__list
-{
+.supplier__list {
   display: flex;
   align-items: center;
   margin-bottom: 1.5rem;
 
-  & > div
-  {
+  @include respond(tab-port) {
+    margin-bottom: 2.5rem;
+  }
+  @include respond(phone) {
+    flex-wrap: wrap;
+  }
+  & > div {
     height: 77px;
     flex: 20%;
-    &:last-of-type
-    {
+    &:last-of-type {
       flex: 30%;
     }
+
+    @include respond(phone) {
+      flex: 100%;
+      &:last-of-type {
+        flex: 100%;
+      }
+    }
   }
-  & > svg
-  {
+  & > svg {
     // height: 77px;
     margin-top: -30px;
+    @include respond(phone) {
+      justify-self: flex-start;
+      // align-self: flex-start;
+      margin-top: 0;
+    }
   }
 
-  &.ml
-  {
-    & > *:not(:last-child)
-    {
+  &.ml {
+    & > *:not(:last-child) {
       margin-left: 1rem;
-    }
-  }
-  &.mr
-  {
-    & > *:not(:last-child)
-    {
-      margin-right: 1rem;
-    }
-  }
 
+      @include respond(phone) {
+        margin-left: 0;
+      }
+    }
+  }
+  &.mr {
+    & > *:not(:last-child) {
+      margin-right: 1rem;
+      @include respond(phone) {
+        margin-right: 0;
+      }
+    }
+  }
 }
