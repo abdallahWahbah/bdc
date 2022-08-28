@@ -452,11 +452,6 @@
 }
 .wizard__stepper--mobile {
   background: white;
-  position: -webkit-sticky;
-  position: -moz-sticky;
-  position: -ms-sticky;
-  position: -o-sticky;
-  position: sticky;
   top: 10px;
   display: flex;
   align-items: center;

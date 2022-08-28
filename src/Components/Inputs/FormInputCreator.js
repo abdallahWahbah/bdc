@@ -146,41 +146,6 @@ const FormInputCreator = ({ jsonObject, values, handleChange, errors, getFieldPr
         }
         if(element.name === "ownerList")
         {
-            // return(
-            //     <Grid 
-            //         item 
-            //         container 
-            //         xs={12} 
-            //         style={{paddingLeft: 0}}
-            //     >
-            //     <FieldArray name={element.name} key={element.name}>
-            //       {({ push, remove }) => (
-            //         <React.Fragment>
-            //           {values.ownerList.map((item, index) => (
-            //             <Grid
-            //                 container
-            //                 item
-            //                 key={index}
-            //                 spacing={2}
-            //                 sx={{alignItems: "center", marginBottom: "20px !important", paddingLeft: "0 !important", paddingRight: "0 !important"}}
-            //             >
-            //                 <Grid item container xs={10}>
-
-            //                     <Grid item xs={6} className={`${language === "ar" ? "custom-label-field" : ""}`}>
-                                    
-            //                     </Grid>
-            //                     <Grid item xs={6}>
-                                    
-            //                     </Grid>
-            //                 </Grid>
-            //             </Grid>
-                     
-            //           ))}
-            //         </React.Fragment>
-            //       )}
-            //     </FieldArray>
-            //     </Grid>
-            // )
             return(
                 <Grid item xs={12} sx={{paddingLeft: "0 !important"}}>
                     <FieldArray name={element.name} key={element.name} sx={{width: "100%"}}>
