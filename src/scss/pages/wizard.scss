@@ -510,10 +510,6 @@
   border-bottom: 1px solid #cecece;
   padding-bottom: 1rem;
   width: 100%;
-
-  @include respond(phone) {
-    font-size: 2.5rem;
-  }
 }
 
 .css-480o17-MuiGrid-root {
@@ -599,10 +595,6 @@
   }
   & > span {
     font-size: 1.6rem;
-
-    @include respond(phone) {
-      font-size: 2rem;
-    }
   }
 }
 .MuiOutlinedInput-notchedOutline {
@@ -772,56 +764,40 @@ span.css-htszrh-MuiButton-startIcon {
   height: 100% !important;
 }
 
-.supplier__list {
+.owner__list
+{
+  display: flex;
+}
+.supplier__list
+{
   display: flex;
   align-items: center;
   margin-bottom: 1.5rem;
 
-  @include respond(tab-port) {
-    margin-bottom: 2.5rem;
-  }
-  @include respond(phone) {
-    flex-wrap: wrap;
-  }
-  & > div {
+  & > div
+  {
     height: 77px;
     flex: 20%;
     &:last-of-type {
       flex: 30%;
     }
-
-    @include respond(phone) {
-      flex: 100%;
-      &:last-of-type {
-        flex: 100%;
-      }
-    }
   }
-  & > svg {
+  & > svg
+  {
     // height: 77px;
     margin-top: -30px;
-    @include respond(phone) {
-      justify-self: flex-start;
-      // align-self: flex-start;
-      margin-top: 0;
-    }
   }
 
   &.ml {
     & > *:not(:last-child) {
       margin-left: 1rem;
-
-      @include respond(phone) {
-        margin-left: 0;
-      }
     }
   }
-  &.mr {
-    & > *:not(:last-child) {
+  &.mr
+  {
+    & > *:not(:last-child)
+    {
       margin-right: 1rem;
-      @include respond(phone) {
-        margin-right: 0;
-      }
     }
   }
 }
