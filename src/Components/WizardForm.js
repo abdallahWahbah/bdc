@@ -192,11 +192,19 @@ const WizardForm = () => {
                             </h1>
                             <div className='wizard__content'>
                                 {screenWidth <= 600 ? (
-                                    <Box dir={language === "ar" ? "rtl" : "ltr"}>
+                                    <Box dir={language === "ar" ? "rtl" : "ltr"} className={screenWidth <= 600 ? `wizard__stepper--mobile` : ""}
+                                        sx={{
+                                            position: stepperPosition,
+                                            width: '100%',
+                                            top: 0,
+                                            left: 0,
+                                            right: 0
+                                        }}
+                                    >
                                         <Typography
                                             dir={language === "ar" ? "rtl" : "ltr"}
                                             sx={{ fontSize: "18px" }}
-                                            className={screenWidth <= 600 ? `wizard__stepper--mobile` : ""}
+
                                         >
                                             {steps[currentStepIndex]}
                                         </Typography>
