@@ -435,7 +435,6 @@
       font-size: 16px;
     }
   }
-
 }
 .wizard__content {
   flex: 1;
@@ -453,6 +452,15 @@
 .wizard__custom-stepper .MuiStepLabel-iconContainer {
   padding-right: 0;
   padding-left: 8px;
+}
+.MuiOutlinedInput-input {
+  font-size: 14px !important;
+}
+.MuiInputLabel-outlined {
+  font-size: 10px !important;
+}
+.MuiInputLabel-outlined {
+  font-size: 14px !important;
 }
 .wizard__stepper--mobile {
   background: white;
