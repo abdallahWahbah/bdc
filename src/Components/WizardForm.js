@@ -9,7 +9,7 @@ import {
 import InitialValuesValidators from './Inputs/InitialValuesValidators';
 import * as yup from 'yup';
 import { FormikWizard } from "formik-wizard-form";
-import { Box, Stepper, Button, Step, StepLabel, Typography } from '@mui/material';
+import { Box, Stepper, Button, Step, StepLabel, Typography, Hidden, Grid, ButtonBase } from '@mui/material';
 import { useSelector } from 'react-redux';
 import { useNavigate } from 'react-router-dom';
 import { useTranslation } from 'react-i18next';
@@ -27,24 +27,35 @@ import {
     UpcomingStepPage2
 } from './Inputs/PageData';
 import RequiredFiles from './sections/RequiredFiles';
+import { padding } from '@mui/system';
+import Close from '@mui/icons-material/Close';
 
 const WizardForm = () => {
     const [stepperPosition, setStepperPosition] = useState('')
-    window.addEventListener('scroll', (x) => {
-        console.log('window.pageYOffset::', window.pageYOffset);
-        window.pageYOffset < 180 ? setStepperPosition('') : setStepperPosition('fixed')
-    }, true);
+    const [stepperBgColor, setStepperBgColor] = useState('transparent')
+    const [fontColor, setFontColor] = useState('black')
     const [openDialog, setOpenDialog] = useState(false);
-    const [screenWidth, setScreenWidth] = useState(null);
+    const [screenWidth, setScreenWidth] = useState(window.innerWidth);
     const language = useSelector(state => state.language.language);
     const navigate = useNavigate();
     const location = useLocation();
     const { t } = useTranslation();
+    window.addEventListener("resize", () => setScreenWidth(window.innerWidth));
+    window.addEventListener('scroll', (x) => {
+        console.log('window.pageYOffset::', window.innerWidth);
+        if (window.pageYOffset < 180) {
+            setStepperPosition('')
+            setStepperBgColor('transparent')
+            setFontColor('#424242')
 
-    useEffect(() => {
-        console.log(window.innerWidth)
-        setScreenWidth(window.innerWidth);
-    }, [])
+        } else {
+            setStepperPosition('fixed')
+            setStepperBgColor('#424242')
+            setFontColor('white')
+
+            //on scroll on mobile
+        }
+    }, true);
 
     const initialValues1 = InitialValuesValidators("initialValues", CustomerInformation).initialValues;
     const initialValues2 = InitialValuesValidators("initialValues", FinancialEligibilityInformation).initialValues;
@@ -187,16 +198,35 @@ const WizardForm = () => {
                 }) => {
                     return (
                         <>
-                            <h1 className='wizard__main--header' dir={language === "ar" ? "rtl" : "ltr"}>
-                                {t("Apply For Very Small Business Loan Request")}
-                            </h1>
+                            <Box className='wizard__main--header' dir={language === "ar" ? "rtl" : "ltr"}>
+                                <h1>
+                                    {t("Apply For Very Small Business Loan Request")}
+                                </h1>
+                                <Hidden mdDown>
+                                    <div>
+                                        <ButtonBase
+                                            onClick={() => { saveDraft(values) }}
+                                        >
+                                            <SaveIcon style={{ fontSize: '30px', margin: '0 16px' }} />
+                                        </ButtonBase>
+                                        <ButtonBase
+                                            onClick={() => navigate("/")}                                    >
+                                            <Close color='error' style={{ fontSize: '30px', margin: '0 16px' }}
+                                            />
+                                        </ButtonBase>
+                                    </div>
+                                </Hidden>
+                            </Box>
                             <div className='wizard__content'>
-                                {screenWidth <= 600 ? (
-                                    <Box dir={language === "ar" ? "rtl" : "ltr"} className={screenWidth <= 600 ? `wizard__stepper--mobile` : ""}
+
+                                <Hidden smUp>
+                                    <Box dir={language === "ar" ? "rtl" : "ltr"} className={`wizard__stepper--mobile`}
                                         sx={{
                                             position: stepperPosition,
                                             width: '100%',
-                                            top: 0,
+                                            backgroundColor: stepperBgColor,
+                                            color: fontColor,
+                                            top: '0',
                                             left: 0,
                                             right: 0
                                         }}
@@ -219,7 +249,8 @@ const WizardForm = () => {
                                         </div>
 
                                     </Box>
-                                ) : (
+                                </Hidden>
+                                <Hidden smDown>
                                     <Box
                                         sx={{ width: "100%", my: "1rem" }}
                                         dir={language === "ar" ? "rtl" : "ltr"}
@@ -247,7 +278,8 @@ const WizardForm = () => {
                                         </Stepper>
 
                                     </Box>
-                                )}
+                                </Hidden>
+
                                 <Box className='wizard__content--inputs' my="2rem">{renderComponent()}</Box>
                                 <Box
                                     className='wizard__buttons'
@@ -257,92 +289,61 @@ const WizardForm = () => {
                                             bottom: "0",
                                             left: "0",
                                             right: "0",
-                                            padding: "2rem",
+                                            padding: "16px",
                                             background: "#424242",
                                             color: "white",
                                         } : {}}
                                     dir={language === "ar" ? "rtl" : "ltr"}
                                 >
-                                    <>  <Button
-                                        className="btn wizard__button--next"
-                                        variant="contained"
-                                        sx={{
-                                            fontSize: language === "ar" ? "16px !important" : "",
-                                            width: '200px'
-                                        }}
-                                        disabled={isNextDisabled}
-                                        type="primary"
-                                        onClick={handleNext}
 
-                                    >
-                                        {currentStepIndex === 5 ? t("Submit") : t("Continue")}
-                                    </Button>
-                                        {currentStepIndex !== 0 && screenWidth > 600 && (
-                                            <Button
-                                                className="btn btn__draft"
-                                                sx={{
-                                                    backgroundColor: "#666666",
-                                                    color: "#fff",
-                                                    width: '200px',
-                                                    marginLeft: "30px",
-                                                    fontSize: language === "ar" ? "16px !important" : "",
-                                                    '&:hover': {
-                                                        backgroundColor: "#817e7e",
-
-                                                    }
-                                                }}
-                                                onClick={() => { saveDraft(values) }}
-                                            >
-                                                {t("Save as Draft")}
-                                            </Button>
+                                    <div style={{ display: 'flex', alignContent: 'center', alignItems: 'center' }}>
+                                        {screenWidth <= 600 && (
+                                            <h3 style={{ fontSize: "16px", padding: '0 16px' }}>{currentStepIndex + 1} / {5}</h3>
                                         )}
-                                    </>
-                                    {openDialog && (
-                                        <ConfirmationDialog
-                                            closeDialog={() => setOpenDialog(false)}
-                                            handleConfirmation={() => handleConfirmation(values)}
-                                        />
-                                    )}
+                                        <Button
+                                            className="btn wizard__button--next"
+                                            variant="contained"
+                                            sx={{
+                                                fontSize: language === "ar" ? "16px !important" : "",
+                                                width: '200px',
+                                                margin: "0 0 0px 16px",
 
-                                    {screenWidth <= 600 && (
-                                        <h3 style={{ fontSize: "16px" }}>{currentStepIndex + 1} / {5}</h3>
-                                    )}
-                                    {screenWidth > 600 && (
-                                        <div className={currentStepIndex !== 0 ? "wizard__buttons--autoLeft" : ""}>
+                                            }}
+                                            disabled={isNextDisabled}
+                                            type="primary"
+                                            onClick={handleNext}
+
+                                        >
+                                            {currentStepIndex === 5 ? t("Submit") : t("Continue")}
+                                        </Button>
+                                    </div>
+
+                                    <Grid style={{ display: 'flex', justifyContent: 'space-between', padding: '24px' }}>
+                                        {currentStepIndex !== 0 && (
                                             <Button
                                                 className="btn"
+                                                disabled={isPrevDisabled}
+                                                type="primary"
+                                                onClick={handlePrev}
                                                 sx={{
-                                                    // margin: '0 24px',
                                                     backgroundColor: "#e8eaf6",
                                                     color: "#908e8e",
                                                     width: '200px',
                                                     fontSize: language === "ar" ? "16px !important" : ""
                                                 }}
-                                                onClick={() => navigate("/")}
                                             >
-                                                {t("Cancel")}
+                                                {t("Previous")}
                                             </Button>
-
-                                        </div>
-                                    )}
-
-                                    {currentStepIndex !== 0 && (
-                                        <Button
-                                            className="btn"
-                                            disabled={isPrevDisabled}
-                                            type="primary"
-                                            onClick={handlePrev}
-                                            sx={{
-                                                backgroundColor: "#e8eaf6",
-                                                color: "#908e8e",
-                                                width: '200px',
-                                                fontSize: language === "ar" ? "16px !important" : ""
-                                            }}
-                                        >
-                                            {t("Previous")}
-                                        </Button>
-                                    )}
+                                        )}
+                                    </Grid>
                                 </Box>
+                                {openDialog && (
+                                    <ConfirmationDialog
+                                        closeDialog={() => setOpenDialog(false)}
+                                        handleConfirmation={() => handleConfirmation(values)}
+                                    />
+                                )}
+
                             </div>
                             {/* <Box>
                         <pre>{JSON.stringify(values, null, 2)}</pre>

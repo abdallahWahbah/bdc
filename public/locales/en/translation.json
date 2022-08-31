@@ -177,5 +177,13 @@
     "Please write the amount": "Please write the amount",
     "Please write the sold items": "Please write the sold items",
     "You need to provide at least 3 suppliers": "You need to provide at least 3 suppliers",
-    "Add Supplier": "Add Supplier"
+    "currency": "currency",
+    "maximum": "maximum",
+    "max_value": "max value",
+    "download": "Download File",
+    "upload": "Upload File",
+    "file_name": "File Name",
+    "T&C": "I approve and authorize BDC to perform I-Score investigation and all required investigations to proceed the loan request",
+    "attachments": "attachments",
+    "attachments_notes": "Please download the template related to each file, via clicking on the download template button, then upload it after filling it via the upload template button"
 }

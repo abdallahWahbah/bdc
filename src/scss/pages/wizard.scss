@@ -420,18 +420,22 @@
   font-size: 14px;
 }
 .wizard__main--header {
-  font-size: 2rem;
-  font-weight: 400;
-  margin: 2rem 0;
-  border-bottom: 2px solid #cecece;
-  padding-bottom: 1rem;
+  height: 90px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  & > * {
+    font-size: 22px;
+    font-weight: 600;
+    @include respond(tab-land) {
+      font-size: 16px;
+    }
+    @include respond(phone) {
+      font-size: 16px;
+    }
+  }
 
-  @include respond(tab-land) {
-    font-size: 2.5rem;
-  }
-  @include respond(phone) {
-    font-size: 3rem;
-  }
+  border-bottom: 2px solid #cecece;
 }
 .wizard__content {
   flex: 1;
@@ -453,6 +457,7 @@
 .wizard__stepper--mobile {
   background: white;
   top: 10px;
+  z-index: 10000;
   display: flex;
   align-items: center;
   justify-content: space-between;
@@ -465,7 +470,7 @@
     display: flex;
     align-items: center;
     & > * {
-      font-size: 3rem !important;
+      font-size: 22px;
     }
   }
 }
@@ -488,6 +493,9 @@
   &__draft {
     padding: 0.5rem 1.4rem;
   }
+  @include respond(phone) {
+    width: 140px !important;
+  }
 }
 .wizard__button--next {
 }
@@ -505,7 +513,7 @@
 }
 .wizard__small--header {
   margin: 2rem 0;
-  font-size: 1.8rem;
+  font-size: 18px;
   font-weight: 400;
   border-bottom: 1px solid #cecece;
   padding-bottom: 1rem;
@@ -528,24 +536,23 @@
 } // checkbox font size, the last page
 .MuiStep-alternativeLabel svg // stepper
 {
-  font-size: 2.5rem;
+  font-size: 28px;
   width: 2.3rem;
   height: 2.3rem;
 }
 .MuiStepLabel-alternativeLabel // stepper
 {
-  font-size: 1.6rem !important;
-
+  font-size: 14px !important ;
+  font-weight: 600;
   @include respond(tab-port) {
-    font-size: 2rem !important;
+    font-size: 14px;
   }
 }
 .MuiStepLabel-label {
-  margin-top: 1rem !important;
   font-size: 14px;
 }
 .MuiStep-alternativeLabel svg text {
-  font-size: 1.5rem !important;
+  font-size: 14px;
 }
 .css-vnkopk-MuiStepLabel-iconContainer {
   padding-left: 0 !important;
@@ -594,7 +601,7 @@
     border-radius: 50%;
   }
   & > span {
-    font-size: 1.6rem;
+    font-size: 14px;
   }
 }
 .MuiOutlinedInput-notchedOutline {
@@ -602,17 +609,22 @@
 }
 
 .wizard input,
-.wizard label {
+.wizard label,
+.MuiFormLabel-root {
   font-size: 14px;
+}
+.wizard label,
+.MuiFormLabel-root {
+  padding: 0 4px;
+  background: white;
 }
 .css-11u53oe-MuiSelect-select-MuiInputBase-input-MuiOutlinedInput-input // the value when you select an item from drop down menu
 {
-  font-size: 14px !important;
-  height: 20px !important;
-
+  font-size: 14px;
+  height: 20px;
+  padding-right: 4px;
   @include respond(tab-land) {
-    font-size: 2rem !important;
-    padding-right: 2rem !important;
+    padding-right: 14px;
   }
 }
 legend // label space when you focus on an input
@@ -620,25 +632,34 @@ legend // label space when you focus on an input
   font-size: 14px;
 
   @include respond(tab-port) {
-    font-size: 1rem !important;
+    font-size: 14px;
   }
 }
 
 .custom-field label // text field
 {
+  padding: 0 4px;
+  background: white;
   transform-origin: top right;
-  right: 2rem;
+  right: 16px;
   left: unset;
   font-size: 14px;
   @include respond(tab-port) {
     font-size: 14px;
-    right: 4.5rem;
-    top: -1px !important;
   }
 }
 .custom-field input {
   direction: rtl;
   font-size: 14px;
+  padding-right: auto;
+  @include respond(tab-port) {
+    font-size: 14px;
+  }
+}
+.custom-field .MuiSelect-select {
+  direction: rtl;
+  font-size: 14px;
+  padding-right: 14px !important;
   @include respond(tab-port) {
     font-size: 14px;
   }
@@ -646,14 +667,16 @@ legend // label space when you focus on an input
 .custom-label-field label {
   // drop down menu
   transform-origin: top right;
-  right: 2.5rem;
   left: unset;
   background-color: #fff;
-  padding: 0 0.8rem;
-  z-index: 4;
-
+  right: 16px !important;
+}
+.custom-label-field input {
+  // drop down menu
+  direction: rtl;
+  font-size: 14px;
   @include respond(tab-port) {
-    font-size: 2.4rem !important;
+    font-size: 14px;
   }
 }
 .custom-label-field .MuiInputLabel-shrink {
@@ -679,19 +702,19 @@ span.css-htszrh-MuiButton-startIcon {
 }
 .custom-field .MuiSelect-icon {
   // drop down icon position
-  width: 18px !important;
-  height: 18px !important;
+  width: 18px;
+  height: 18px;
   right: unset;
   left: 2px;
-  color: #f58232 !important;
+  color: #f58232;
 }
 .Mui-error {
-  font-size: 12px !important;
+  font-size: 12px;
 }
 .MuiSelect-iconOutlined {
-  color: #f58232 !important;
-  width: 18px !important;
-  height: 18px !important;
+  color: #f58232;
+  width: 18px;
+  height: 18px;
 }
 .Mui-checked {
   color: #f58232 !important;
@@ -715,24 +738,24 @@ span.css-htszrh-MuiButton-startIcon {
 }
 
 .css-1a49mms-MuiSvgIcon-root-MuiStepIcon-root.Mui-active {
-  color: rgb(250, 180, 20) !important;
+  color: rgb(250, 180, 20);
 }
 .service-not-active .service-content {
   filter: blur(7px);
 }
 .MuiCardHeader-title {
-  font-size: 2rem !important;
+  font-size: 24px;
 }
 .MuiChip-icon {
-  margin-right: 0.4rem !important;
-  margin-left: 0 !important;
+  margin-right: 0.4rem;
+  margin-left: 0;
 }
 .MuiTableCell-root {
-  text-align: right !important;
+  text-align: right;
 }
 .MuiButton-startIcon {
-  margin-left: 0.8rem !important;
-  margin-right: -0.4rem !important;
+  margin-left: 0.8rem;
+  margin-right: -0.4rem;
 }
 .unordered-list {
   padding-right: 2.4rem;
@@ -752,7 +775,7 @@ span.css-htszrh-MuiButton-startIcon {
   font-weight: 700;
 }
 #terms-dialog-title .MuiTypography-root {
-  font-size: 3rem !important;
+  font-size: 22px;
 }
 .MuiFormControlLabel-root {
   margin-left: 1.6rem !important;
@@ -764,26 +787,22 @@ span.css-htszrh-MuiButton-startIcon {
   height: 100% !important;
 }
 
-.owner__list
-{
+.owner__list {
   display: flex;
 }
-.supplier__list
-{
+.supplier__list {
   display: flex;
   align-items: center;
   margin-bottom: 1.5rem;
 
-  & > div
-  {
+  & > div {
     height: 77px;
     flex: 20%;
     &:last-of-type {
       flex: 30%;
     }
   }
-  & > svg
-  {
+  & > svg {
     // height: 77px;
     margin-top: -30px;
   }
@@ -793,10 +812,8 @@ span.css-htszrh-MuiButton-startIcon {
       margin-left: 1rem;
     }
   }
-  &.mr
-  {
-    & > *:not(:last-child)
-    {
+  &.mr {
+    & > *:not(:last-child) {
       margin-right: 1rem;
     }
   }

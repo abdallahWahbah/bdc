@@ -1,86 +1,78 @@
-.dialog
-{
-    &__paragraph
-    {
-        font-size: 15px;
-        margin-bottom: 12px;
-    }
-    &__question
-    {
-        font-weight: 500;
-    }
-    &__actions
-    {
-        padding-right: 20px !important;
-        padding-bottom: 20px !important;
+.dialog {
+  &__paragraph {
+    font-size: 15px;
+    margin-bottom: 12px;
+  }
+  &__question {
+    font-weight: 500;
+  }
+  &__actions {
+    padding-right: 20px !important;
+    padding-bottom: 20px !important;
 
-        &.direction__left{direction: rtl;}
+    &.direction__left {
+      direction: rtl;
     }
-    &__button
-    {
-        padding: 5px 25px !important;
+  }
+  &__button {
+    padding: 5px 25px !important;
 
-        &--no
-        {
-            border: 1px solid #333 !important;
-            color: black !important;
-            background-color: white !important;
-        }
-        &--yes
-        {
-            background-color: #F1914F !important;
-
-            &.margin__right
-            {
-                margin-right: 20px;
-            }
-
-        }
+    &--no {
+      border: 1px solid #333 !important;
+      color: black !important;
+      background-color: white !important;
     }
+    &--yes {
+      background-color: #f1914f !important;
+
+      &.margin__right {
+        margin-right: 20px;
+      }
+    }
+  }
 }
 
-.fullDialog
-{
-    margin: 2rem;
+.fullDialog {
+  margin: 2rem;
 
-    &__header
-    {
-        padding: 15px 30px;
-        border-bottom: 2px solid #CECECE;
+  &__header {
+    padding: 15px 30px;
+    border-bottom: 2px solid #cecece;
 
-        display: flex;
-        justify-content: space-between;
-        align-items: center;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
 
-        &--text
-        {
-            font-size: 16px;
-            font-weight: 500;
-        }
-
-        &--close
-        {
-            font-size: 20px;
-            color: #828282;
-            cursor: pointer;
-        }
-
-        &--form
-        {
-            padding: 4rem;
-        }
-
-        &--table
-        {
-            padding: 0 4rem 4rem 4rem;
-        }
+    &--text {
+      padding-left: 24px;
+      font-size: 32px;
+      font-weight: 700;
+      @include respond(phone) {
+        font-size: 18px;
+      }
     }
-    .MuiButton-sizeMedium {margin-left: 0 !important;}
+
+    &--close {
+      font-size: 20px;
+      color: #828282;
+      cursor: pointer;
+    }
+
+    &--form {
+      padding: 24px;
+    }
+
+    &--table {
+      padding: 0 24px 24px 24px;
+    }
+  }
+  .MuiButton-sizeMedium {
+    margin-left: 0 !important;
+  }
 }
 
-.table__button
-{
-    // display: none;
-    cursor: pointer;
-    color: $color-orange-main;
+.table__button {
+  // display: none;
+  cursor: pointer;
+  color: $color-orange-main;
 }

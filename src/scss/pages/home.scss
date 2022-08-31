@@ -1,96 +1,99 @@
-.app
-{
-    font-weight: 100 !important;
-    min-height: 100vh;
+.app {
+  font-weight: 100 !important;
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  overflow: hidden;
+}
+* {
+  font-family: "Frutiger LT Arabic 55 Roman" !important;
+}
+.home {
+  flex: 1;
+  display: flex;
+
+  @include respond(tab-port) {
+    flex-direction: column;
+    & > * {
+      flex-basis: 100%;
+    }
+  }
+}
+
+.home__background--container {
+  flex-basis: 50%;
+  position: relative;
+
+  @include respond(phone) {
+    // height: max-content !important;
+  }
+}
+.home__background--text-container {
+  position: absolute;
+  top: 0;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  color: white;
+  background-image: linear-gradient(
+    to right,
+    rgba($color-footer, 0.6),
+    rgba($color-footer, 0.6)
+  );
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-content: center;
+  padding: 64px;
+  @include respond(tab-port) {
+    font-size: 18px;
     display: flex;
     flex-direction: column;
-    justify-content: space-between;
-    overflow: hidden;
-}
- *{
-    font-family: 'Frutiger LT Arabic 55 Roman' !important;
-
-}
-.home
-{
-    flex: 1;
-    display: flex;
-
-    @include respond(tab-port)
-    {
-        flex-direction: column;
-        & > *
-        {
-            flex-basis: 100%;
-        }
-    }
-}
-
-.home__background--container
-{
-    flex-basis: 50%;
-    position: relative;
-
-    // @include respond(phone)
-    // {
-    //     height: 700px !important;
-    // }
-}
-.home__background--text-container
-{
-    position: absolute;
-    top: 0;
-    bottom: 0;
-    left: 0;
-    right: 0;
-    color: white;
-    background-image: linear-gradient(to right, rgba($color-footer, .6), rgba($color-footer, .6));
-    padding-left: 20%;
-    padding-right: 20%;
-    padding-top: 10%;
-
-    @include respond(tab-port)
-    {
-        padding-top: 5%;
-
-        padding-left: 15%;
-        padding-right: 15%;
-    }
-    @include respond(phone)
-    {
-        padding-top: 3%;
-        padding-left: 5%;
-        padding-right: 5%;
-    }
-}
-.home__background
-{
-    width: 100%;
-    height: 100%;
-    object-fit: fill;
-    @include respond(phone)
-    {
-        height: 200px;
-    }
-}
-.home__actions
-{
-    display: flex;
+    align-items: center;
     justify-content: center;
-    position: relative;
-    color: white;
-    align-items: center;
-    width: 50%;
-
-    @include respond(tab-port)
-    {
-        margin-top: 7%;
-        margin-bottom: 7%;
-    }
-}
-.home__actions--container
-{
+    align-content: center;
+  }
+  @include respond(phone) {
     display: flex;
-    align-items: center;
     flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    align-content: center;
+  }
+}
+.home__background {
+  width: 100%;
+  height: 100%;
+  object-fit: fill;
+  @include respond(phone) {
+    // height: 200px;
+  }
+}
+.home__actions {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  position: relative;
+  color: white;
+  align-items: center;
+  width: 50%;
+
+  @include respond(tab-port) {
+    margin-top: 7%;
+    margin-bottom: 7%;
+  }
+}
+.home__actions--container {
+  padding: 24px;
+  justify-content: center;
+  align-items: center;
+  align-content: center;
+}
+.home__actions--container > * {
+  display: flex;
+  height: max-content;
+  align-items: center;
+  align-content: center;
+  justify-content: center;
 }

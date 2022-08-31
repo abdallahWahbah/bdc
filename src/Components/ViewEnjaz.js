@@ -84,7 +84,7 @@ const ViewEnjaz = ({closeEnjaz}) =>
                     <span className='fullDialog__header--close' onClick={closeEnjaz}>&#10006;</span>
                 </div>
                 <form onSubmit={formik.handleSubmit} className="fullDialog__header--form" style={{direction: language === "ar" ? "rtl":"ltr"}}>
-                    <Grid container spacing={3}>
+                    <Grid container spacing={3} sx={{p:'24px'}}>
                         {formContent}
                     </Grid>
                 </form>

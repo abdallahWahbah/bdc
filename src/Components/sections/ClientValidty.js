@@ -1,4 +1,4 @@
-import { Button, Divider, Grid, Switch, TextField, ToggleButton, Typography } from '@mui/material'
+import { Box, Button, Divider, Grid, Switch, TextField, ToggleButton, Typography } from '@mui/material'
 import { textAlign, width } from '@mui/system'
 import React from 'react'
 import { useTranslation } from 'react-i18next'
@@ -13,6 +13,8 @@ export default function ClientValidty() {
             style={{
                 width: '100%',
             }}
+            spacing={3}
+            pt={'48px'}
             container
         >
             <Grid xs={12} sx={{
@@ -36,7 +38,10 @@ export default function ClientValidty() {
                     variant='body2'
                     fontSize='18px'
                     sx={{
-                        color: '#656666'
+                        color: '#656666',
+                        '@media (max-width: 600px)': {
+                            fontSize: '15px',
+                        },
                     }}
                 >
                     {t('You are initially eligible for this loan and the maximum loan amount up to In accordance with the terms and conditions.')}
@@ -52,6 +57,9 @@ export default function ClientValidty() {
                     fontWeight={'900'}
                     fontSize='18px'
                     sx={{
+                        '@media (max-width: 600px)': {
+                            fontSize: '15px',
+                        },
                         color: '#666666'
                     }}
                 >
@@ -60,12 +68,12 @@ export default function ClientValidty() {
 
             </Grid>
 
-            <Grid container xs={12} sx={{
+            <Grid container xs={12} spacing={3} sx={{
 
             }}>
                 <Grid item xs={12}
                     sx={{
-                        width: '100%',
+                        width: '450px',
                         display: 'flex',
                         justifyContent: 'space-around'
                     }}
@@ -78,32 +86,30 @@ export default function ClientValidty() {
                         <div
                             style={{
                                 display: 'flex',
-                                flexDirection: 'column'
+                                flexDirection: 'column',
+                                alignContent: 'center',
+                                justifyContent: 'center'
                             }}
 
-                        > <TextField
-                            className='bigTextField'
-                            variant='standard'
-                            placeholder='00.00'
-                        // sx={{
-                        //     fontSize: '18px !important',
-                        //     color: '#545454',
-                        //     width: '60px',
-                        //     textAlign: 'center',
-                        //     height: '30px',
-                        // }}
-
-                        ></TextField>
+                        >
+                            <TextField
+                                className='bigTextField'
+                                variant='standard'
+                                placeholder='00.00'
+                            ></TextField>
 
                             <Typography
                                 fontWeight={'900'}
                                 sx={{
                                     mt: 1,
-                                    fontSize: '16px',
-                                    color: '#959595'
+                                    fontSize: '15px',
+                                    color: '#959595',
+                                    '@media (max-width: 600px)': {
+                                        textAlign: 'start',
+                                    },
                                 }}
                             >
-                                الحد الأقصى :000.0
+                                {t('max_value')} :000.0
 
                             </Typography>
                         </div>
@@ -121,12 +127,12 @@ export default function ClientValidty() {
 
                                 sx={{
                                     mt: 1,
-                                    fontSize: '16px',
+                                    fontSize: '15px',
                                     color: '#c4c4c4',
                                     textAlign: 'center'
                                 }}
                             >
-                                العملة
+                                {t('currency')}
                             </Typography>
                         </Typography>
 
@@ -150,30 +156,23 @@ export default function ClientValidty() {
                             width: '450px'
                         }}
                     />
-                    <div style={{ margin: '24px 0px', display: 'flex', justifyContent: 'space-between', width: '450px' }}>
-                        <div
-                            style={{
-                                display: 'flex',
-                                flexDirection: 'column'
+                    <Box container spacing={3} style={{ margin: '24px 0px', display: 'flex', justifyContent: 'space-between', width: '450px', padding: '24px' }}>
+
+                        <Typography
+                            mt={1}
+                            fontWeight={'900'}
+                            sx={{
+                                fontSize: '15px',
+                                color: '#959595'
                             }}
-
                         >
-                            <Typography
-                                mt={1}
-                                fontWeight={'900'}
-                                sx={{
-                                    fontSize: '16px',
-                                    color: '#959595'
-                                }}
-                            >أقصى قيمة
-                            </Typography>
+                            {t('maximum')}
+                        </Typography>
 
-                        </div>
                         <Switch
-                            defaultChecked
                         />
 
-                    </div>
+                    </Box>
                     <Divider
 
                         sx={{
@@ -184,6 +183,6 @@ export default function ClientValidty() {
                 </Grid>
 
             </Grid>
-        </Grid>
+        </Grid >
     )
 }
