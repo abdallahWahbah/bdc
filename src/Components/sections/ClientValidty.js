@@ -69,17 +69,28 @@ export default function ClientValidty() {
             </Grid>
 
             <Grid container xs={12} spacing={3} sx={{
-
+                padding: '24px'
             }}>
                 <Grid item xs={12}
                     sx={{
                         width: '450px',
                         display: 'flex',
-                        justifyContent: 'space-around'
+                        justifyContent: 'space-around',
+                        '@media (max-width: 600px)': {
+                            width: '100%',
+                        },
                     }}
                 >
                     <div style={{
-                        margin: '24px 0px', display: 'flex', justifyContent: 'space-between', maxWidth: '450px',
+                        margin: '24px 0px',
+                        display: 'flex',
+                        justifyContent: 'space-between',
+                        maxWidth: '450px',
+                        '@media (max-width: 600px)': {
+                            maxWidth: '100%',
+                            margin: '24px',
+
+                        },
 
 
                     }}>
@@ -156,7 +167,19 @@ export default function ClientValidty() {
                             width: '450px'
                         }}
                     />
-                    <Box container spacing={3} style={{ margin: '24px 0px', display: 'flex', justifyContent: 'space-between', width: '450px', padding: '24px' }}>
+                    <Box container spacing={3}
+                        sx={{
+                            margin: '24px 0px',
+                            display: 'flex',
+                            justifyContent: 'space-between',
+                            width: '450px',
+                            padding: '24px',
+                            '@media (max-width: 600px)': {
+                                width: '100%',
+                                padding: '0px',
+
+                            },
+                        }}>
 
                         <Typography
                             mt={1}

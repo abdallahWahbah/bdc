@@ -379,6 +379,7 @@
 // }
 .wizard {
   // height: 81vh;
+  position: relative;
   width: 70%;
   margin: 0 auto;
   flex: 1;
@@ -435,7 +436,6 @@
     }
   }
 
-  border-bottom: 2px solid #cecece;
 }
 .wizard__content {
   flex: 1;
@@ -457,7 +457,7 @@
 .wizard__stepper--mobile {
   background: white;
   top: 10px;
-  z-index: 10000;
+  z-index: 100;
   display: flex;
   align-items: center;
   justify-content: space-between;
@@ -620,7 +620,7 @@
 }
 .css-11u53oe-MuiSelect-select-MuiInputBase-input-MuiOutlinedInput-input // the value when you select an item from drop down menu
 {
-  font-size: 14px;
+  font-size: 14px !important;
   height: 20px;
   padding-right: 4px;
   @include respond(tab-land) {
@@ -709,7 +709,7 @@ span.css-htszrh-MuiButton-startIcon {
   color: #f58232;
 }
 .Mui-error {
-  font-size: 12px;
+  font-size: 12px !important;
 }
 .MuiSelect-iconOutlined {
   color: #f58232;

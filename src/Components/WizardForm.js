@@ -29,6 +29,7 @@ import {
 import RequiredFiles from './sections/RequiredFiles';
 import { padding } from '@mui/system';
 import Close from '@mui/icons-material/Close';
+import CommonMessageDialog from './Dialogs/CommonMessageDialog';
 
 const WizardForm = () => {
     const [stepperPosition, setStepperPosition] = useState('')
@@ -36,6 +37,24 @@ const WizardForm = () => {
     const [fontColor, setFontColor] = useState('black')
     const [openDialog, setOpenDialog] = useState(false);
     const [screenWidth, setScreenWidth] = useState(window.innerWidth);
+    const [dialogContent, setDialogContent] = useState('')
+    const [dialogType, setDialogType] = useState('')
+
+    const [openCloseOrDraftDialog, setOpenCloseOrDraftDialog] = useState(false)
+
+    const handleDialogFunction = ((functionToExcute) => {
+        if (functionToExcute === 'draft') {
+            setOpenCloseOrDraftDialog(true)
+            saveDraft()
+            setOpenCloseOrDraftDialog(false)
+            return
+        }
+        setOpenCloseOrDraftDialog(true)
+        setOpenCloseOrDraftDialog(false)
+        navigate("/")
+        return
+
+    })
     const language = useSelector(state => state.language.language);
     const navigate = useNavigate();
     const location = useLocation();
@@ -126,10 +145,6 @@ const WizardForm = () => {
         var position = element.getBoundingClientRect();
 
         // checking whether fully visible
-        if (position.top >= 0 && position.bottom <= window.innerHeight) {
-            // console.log('Element is fully visible in screen');
-        }
-
         // checking for partial visibility
         if (position.top < window.innerHeight && position.bottom >= 0) {
             // console.log('visible in screen');
@@ -151,11 +166,11 @@ const WizardForm = () => {
                 initialValues={location.state || initialValues}
                 onSubmit={(values) => {
                     // setFinalValues(values);
-                    // setFinished(true);
+                    setFinished(true);
                     console.log(values);
 
                     // console.log("first")
-                    // setOpenDialog(true)
+                    setOpenDialog(true)
 
                 }}
                 validateOnNext
@@ -205,12 +220,19 @@ const WizardForm = () => {
                                 <Hidden mdDown>
                                     <div>
                                         <ButtonBase
-                                            onClick={() => { saveDraft(values) }}
-                                        >
+                                            onClick={() => {
+                                                setDialogContent('save_draft_msg')
+                                                setDialogType('draft')
+                                                setOpenCloseOrDraftDialog(true)
+                                            }}                                          >
                                             <SaveIcon style={{ fontSize: '30px', margin: '0 16px' }} />
                                         </ButtonBase>
                                         <ButtonBase
-                                            onClick={() => navigate("/")}                                    >
+                                            onClick={() => {
+                                                setDialogContent('close_form_msg')
+                                                setDialogType('close')
+                                                setOpenCloseOrDraftDialog(true)
+                                            }}                                    >
                                             <Close color='error' style={{ fontSize: '30px', margin: '0 16px' }}
                                             />
                                         </ButtonBase>
@@ -241,11 +263,21 @@ const WizardForm = () => {
 
                                         <div className={`wizard__stepper--mobile-close-draft`}>
                                             <SaveIcon
-                                                onClick={() => { saveDraft(values) }}
+                                                onClick={() => {
+                                                    setDialogContent('save_draft_msg')
+                                                    setDialogType('draft')
+                                                    setOpenCloseOrDraftDialog(true)
+                                                }}
                                                 sx={{ margin: language === "ar" ? "0 0 0 10px" : "0 10px 0 0" }}
 
                                             />
-                                            <CloseIcon onClick={() => navigate("/")} />
+                                            <CloseIcon
+                                                onClick={() => {
+                                                    setDialogContent('close_form_msg')
+                                                    setDialogType('close')
+                                                    setOpenCloseOrDraftDialog(true)
+                                                }} 
+                                            />
                                         </div>
 
                                     </Box>
@@ -280,7 +312,8 @@ const WizardForm = () => {
                                     </Box>
                                 </Hidden>
 
-                                <Box className='wizard__content--inputs' my="2rem">{renderComponent()}</Box>
+                                <Box className='wizard__content--inputs' my="2rem"
+                                >{renderComponent()}</Box>
                                 <Box
                                     className='wizard__buttons'
                                     style={screenWidth <= 600 ?
@@ -297,16 +330,13 @@ const WizardForm = () => {
                                 >
 
                                     <div style={{ display: 'flex', alignContent: 'center', alignItems: 'center' }}>
-                                        {screenWidth <= 600 && (
-                                            <h3 style={{ fontSize: "16px", padding: '0 16px' }}>{currentStepIndex + 1} / {5}</h3>
-                                        )}
+
                                         <Button
                                             className="btn wizard__button--next"
                                             variant="contained"
                                             sx={{
                                                 fontSize: language === "ar" ? "16px !important" : "",
                                                 width: '200px',
-                                                margin: "0 0 0px 16px",
 
                                             }}
                                             disabled={isNextDisabled}
@@ -317,8 +347,10 @@ const WizardForm = () => {
                                             {currentStepIndex === 5 ? t("Submit") : t("Continue")}
                                         </Button>
                                     </div>
-
-                                    <Grid style={{ display: 'flex', justifyContent: 'space-between', padding: '24px' }}>
+                                    {screenWidth <= 600 && (
+                                        <h3 style={{ fontSize: "16px" }}>{currentStepIndex + 1} / {5}</h3>
+                                    )}
+                                    <Grid style={{ display: 'flex', justifyContent: 'space-between' }}>
                                         {currentStepIndex !== 0 && (
                                             <Button
                                                 className="btn"
@@ -341,9 +373,19 @@ const WizardForm = () => {
                                     <ConfirmationDialog
                                         closeDialog={() => setOpenDialog(false)}
                                         handleConfirmation={() => handleConfirmation(values)}
-                                    />
-                                )}
 
+                                    />
+
+                                )}
+                                {openCloseOrDraftDialog && (
+                                    <CommonMessageDialog
+                                        closeDialog={() => setOpenCloseOrDraftDialog(false)}
+                                        handleConfirmation={() => handleDialogFunction(dialogType)}
+                                        dialogContent={dialogContent}
+
+                                    />
+
+                                )}
                             </div>
                             {/* <Box>
                         <pre>{JSON.stringify(values, null, 2)}</pre>

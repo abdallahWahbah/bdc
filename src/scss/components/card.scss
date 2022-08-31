@@ -16,7 +16,8 @@
 .card__icon--container {
   background-color: $color-orange-main;
   flex-basis: 40%;
-  align-self: stretch;
+  align-self: baseline;
+  height: 100%;
   padding: 25px 35px;
 
   @include respond(phone) {
