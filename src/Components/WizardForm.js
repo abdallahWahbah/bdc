@@ -225,7 +225,7 @@ const WizardForm = () => {
                                                 setDialogType('draft')
                                                 setOpenCloseOrDraftDialog(true)
                                             }}                                          >
-                                            <SaveIcon style={{ fontSize: '30px', margin: '0 16px' }} />
+                                            <SaveIcon style={{color:"#424242", fontSize: '30px', margin: '0 16px' }} />
                                         </ButtonBase>
                                         <ButtonBase
                                             onClick={() => {

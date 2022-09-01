@@ -422,9 +422,12 @@
 }
 .wizard__main--header {
   height: 90px;
+  color: #424242;
   display: flex;
   justify-content: space-between;
   align-items: center;
+  margin-bottom: 24px;
+  border-bottom: 1px solid #ccc;
   & > * {
     font-size: 22px;
     font-weight: 600;
@@ -446,8 +449,12 @@
 }
 .wizard__content--inputs {
   flex: 1;
-
-  margin-bottom: 5rem !important;
+  margin-top: 0 !important;
+  margin-bottom: 24px !important;
+}
+.wizard__content--inputs .MuiGrid-container {
+  margin: 0 !important;
+  width: 100% !important;
 }
 .wizard__custom-stepper .MuiStepLabel-iconContainer {
   padding-right: 0;
