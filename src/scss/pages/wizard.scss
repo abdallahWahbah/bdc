@@ -393,7 +393,8 @@
   }
   @include respond(phone) {
     width: 90%;
-    margin-bottom: 6rem;
+    margin-top: 80px;
+    margin-bottom: 90px;
   }
 
   .Mui-active {
@@ -551,7 +552,7 @@
   margin-right: 0 !important;
 }
 .css-ahj2mt-MuiTypography-root {
-  font-size: 1.4rem !important;
+  font-size: 1.4rem ;
 } // checkbox font size, the last page
 .MuiStep-alternativeLabel svg // stepper
 {

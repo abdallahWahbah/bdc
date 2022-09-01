@@ -54,7 +54,7 @@ const WizardForm = () => {
     window.addEventListener("resize", () => setScreenWidth(window.innerWidth));
     window.addEventListener('scroll', (x) => {
         console.log('window.pageYOffset::', window.innerWidth);
-        if (window.pageYOffset < 180) {
+        if (window.pageYOffset < 10) {
             setStepperPosition('')
             setStepperBgColor('transparent')
             setFontColor('#424242')
@@ -157,7 +157,14 @@ const WizardForm = () => {
     return (
         <div className='wizard'>
             <FormikWizard
-                initialValues={location.state || initialValues}
+                initialValues={
+                    {
+                        ...initialValues,
+                        ...location.state,
+                        maxValue: '100000',
+                    }
+
+                }
                 onSubmit={(values) => {
                     // setFinalValues(values);
                     setFinished(true);
@@ -203,6 +210,7 @@ const WizardForm = () => {
                     handleNext,
                     isNextDisabled,
                     isPrevDisabled,
+                    setFieldValue,
                     values
                 }) => {
                     return (

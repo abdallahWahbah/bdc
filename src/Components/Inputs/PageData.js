@@ -105,7 +105,7 @@ export const EvaluationEligibilityInformationPage = ({ errors, values, handleCha
     )
 }
 
-export const UpcomingStepPage2 = ({ errors, values, handleChange, getFieldProps }) => {
+export const UpcomingStepPage2 = ({ errors, values, handleChange, getFieldProps, setFieldValue }) => {
     const language = useSelector(state => state.language.language);
 
     const formContent5 = <>
@@ -117,6 +117,8 @@ export const UpcomingStepPage2 = ({ errors, values, handleChange, getFieldProps 
             getFieldProps={getFieldProps} /> */}
         <ClientValidty
             values={values}
+            handleChange={handleChange}
+            setFieldValue={setFieldValue}
         />
     </>
 

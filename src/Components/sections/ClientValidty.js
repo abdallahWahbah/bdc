@@ -1,20 +1,28 @@
 import { Box, Button, Divider, Grid, Switch, TextField, ToggleButton, Typography } from '@mui/material'
 import { textAlign, width } from '@mui/system'
-import React from 'react'
+import React, { useEffect } from 'react'
 import { useTranslation } from 'react-i18next'
 import clientValidtyImage from '../../Assets/clientValidty.png'
 import Card from '../Card'
 
-export default function ClientValidty() {
+export default function ClientValidty({ setFieldValue, values, handleChange }) {
     const { t } = useTranslation();
-
+    useEffect(() => {
+        setFieldValue('noor', 'testttt')
+    }, [])
     return (
         <Grid
-            style={{
-                width: '100%',
-            }}
+
             spacing={3}
-            pt={'48px'}
+            sx={{
+                pt: '48px',
+                width: '100%',
+                '@media (max-width: 600px)': {
+                    paddingBottom: '0px !important',
+                    paddingTop: '8px !important',
+
+                },
+            }}
             container
         >
             <Grid xs={12} sx={{
@@ -40,8 +48,9 @@ export default function ClientValidty() {
                     sx={{
                         color: '#656666',
                         '@media (max-width: 600px)': {
+                            padding: '8px',
                             fontSize: '15px',
-                            textAlign:'center'
+                            textAlign: 'right'
                         },
                     }}
                 >
@@ -70,7 +79,7 @@ export default function ClientValidty() {
             </Grid>
 
             <Grid container xs={12} spacing={3} sx={{
-                padding: '24px'
+                padding: '24px',
             }}>
                 <Grid item xs={12}
                     sx={{
@@ -79,6 +88,8 @@ export default function ClientValidty() {
                         justifyContent: 'space-around',
                         '@media (max-width: 600px)': {
                             width: '100%',
+                            padding: '8px !important'
+
                         },
                     }}
                 >
@@ -89,7 +100,6 @@ export default function ClientValidty() {
                         maxWidth: '450px',
                         '@media (max-width: 600px)': {
                             maxWidth: '100%',
-                            margin: '24px',
 
                         },
 
@@ -108,6 +118,10 @@ export default function ClientValidty() {
                                 className='bigTextField'
                                 variant='standard'
                                 placeholder='00.00'
+                                fullWidth
+                                name={'loanAmount'}
+                                value={values && values?.loanAmount}
+                                onChange={handleChange}
                             ></TextField>
 
                             <Typography
@@ -121,7 +135,7 @@ export default function ClientValidty() {
                                     },
                                 }}
                             >
-                                {t('max_value')} :000.0
+                                {t('max_value')} : {values?.maxValue}
 
                             </Typography>
                         </div>
@@ -158,17 +172,20 @@ export default function ClientValidty() {
                         justifyContent: 'space-around',
                         alignContent: 'center',
                         alignItems: 'center',
-                        flexDirection: 'column'
+                        flexDirection: 'column',
+                        '@media (max-width: 600px)': {
+                            padding: '8px !important',
+                        },
                     }}
                 >
                     <Divider
 
                         sx={{
-                            borderBottomWidth: 4,
+                            borderBottomWidth: 1,
                             width: '450px'
                         }}
                     />
-                    <Box container spacing={3}
+                    <Box container
                         sx={{
                             margin: '24px 0px',
                             display: 'flex',
@@ -177,7 +194,8 @@ export default function ClientValidty() {
                             padding: '24px',
                             '@media (max-width: 600px)': {
                                 width: '100%',
-                                padding: '0px',
+                                padding: '8px 0',
+                                margin: '8px 0',
 
                             },
                         }}>
@@ -194,13 +212,23 @@ export default function ClientValidty() {
                         </Typography>
 
                         <Switch
+                            checked={values?.maxValueChecked}
+                            onClick={() => {
+                                if (!values?.maxValueChecked)
+                                    setFieldValue('loanAmount', values?.maxValue)
+                                if (!!values?.maxValueChecked)
+                                    setFieldValue('loanAmount', '')
+                                setFieldValue('maxValueChecked', !values?.maxValueChecked)
+
+
+                            }}
                         />
 
                     </Box>
                     <Divider
 
                         sx={{
-                            borderBottomWidth: 3,
+                            borderBottomWidth: 1,
                             width: '450px'
                         }}
                     />
