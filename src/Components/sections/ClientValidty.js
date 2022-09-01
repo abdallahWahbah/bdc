@@ -41,6 +41,7 @@ export default function ClientValidty() {
                         color: '#656666',
                         '@media (max-width: 600px)': {
                             fontSize: '15px',
+                            textAlign:'center'
                         },
                     }}
                 >

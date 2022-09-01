@@ -24,14 +24,33 @@ export default function RequiredFiles() {
             }}>
                 {t("attachments_notes")}
             </Typography>
-            <Grid container spacing={6}>
-                <Grid item md={4} xs={12}>
+            <Grid container spacing={6} display='flex' alignItems={'center'} >
+                <Grid item md={4} xs={12} sx={{
+                    '@media (max-width: 600px)': {
+                        width: '90%',
+                        pl: '0 !important',
+                    },
+
+
+                }}>
                     <FilesCard />
                 </Grid>
-                <Grid item md={4} xs={12}>
+                <Grid item md={4} xs={12} sx={{
+                    '@media (max-width: 600px)': {
+                        width: '90%',
+                        pl: '0 !important',
+                    },
+
+                }}>
                     <FilesCard />
                 </Grid>
-                <Grid item md={4} xs={12}>
+                <Grid item md={4} xs={12} sx={{
+                    '@media (max-width: 600px)': {
+                        width: '90%',
+                        pl: '0 !important',
+                    },
+
+                }}>
                     <FilesCard />
                 </Grid>
             </Grid>
