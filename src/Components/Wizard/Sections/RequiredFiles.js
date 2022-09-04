@@ -1,8 +1,9 @@
-import { Box, Button, Card, CardContent, Checkbox, Grid, Typography } from '@mui/material'
+import { Checkbox, Grid, Typography } from '@mui/material'
 import React from 'react'
 import { useTranslation } from 'react-i18next';
 import { useSelector } from 'react-redux';
 import FilesCard from './FilesCard'
+import testFile from '../../../Assets/test.pdf'
 
 export default function RequiredFiles() {
     const { t } = useTranslation();
@@ -26,13 +27,19 @@ export default function RequiredFiles() {
             </Typography>
             <Grid container spacing={6}>
                 <Grid item md={4} xs={12}>
-                    <FilesCard />
+                    <FilesCard
+                        testFile={testFile}
+                    />
                 </Grid>
                 <Grid item md={4} xs={12}>
-                    <FilesCard />
+                    <FilesCard
+                        testFile={testFile}
+                    />
                 </Grid>
                 <Grid item md={4} xs={12}>
-                    <FilesCard />
+                    <FilesCard
+                        testFile={testFile}
+                    />
                 </Grid>
             </Grid>
             <div

@@ -1,12 +1,11 @@
-import React, { useState, useEffect } from 'react'
+import React, { useState } from 'react'
 import {
-    CustomerInformation,
-    FinancialEligibilityInformation,
-    Generaleligibilityinformation,
-    EvaluationEligibilityInformation,
-    UpcomingStep2
-} from './Inputs/Schema';
-import InitialValuesValidators from './Inputs/InitialValuesValidators';
+    CustomerInformationSchema,
+    FinancialEligibilityInformationSchema,
+    GeneralEligibilityinformationSchema,
+    EvaluationEligibilityInformationSchema,
+} from '../Inputs/Schema';
+import InitialValuesValidators from '../Inputs/InitialValuesValidators';
 import * as yup from 'yup';
 import { FormikWizard } from "formik-wizard-form";
 import { Box, Stepper, Button, Step, StepLabel, Typography, Hidden, Grid, ButtonBase } from '@mui/material';
@@ -14,22 +13,18 @@ import { useSelector } from 'react-redux';
 import { useNavigate } from 'react-router-dom';
 import { useTranslation } from 'react-i18next';
 import { v4 as uuidv4 } from 'uuid';
-import ConfirmationDialog from './Dialogs/ConfirmationDialog';
+import ConfirmationDialog from '../Dialogs/ConfirmationDialog';
 import { useLocation } from 'react-router-dom';
 import SaveIcon from '@mui/icons-material/Save';
 import CloseIcon from '@mui/icons-material/Close';
-
-import {
-    CustomerInformationPage,
-    FinancialEligibilityInformationPage,
-    GeneraleligibilityinformationPage,
-    EvaluationEligibilityInformationPage,
-    UpcomingStepPage2
-} from './Inputs/PageData';
-import RequiredFiles from './sections/RequiredFiles';
-import { padding } from '@mui/system';
+import CustomerInformationPage from './Sections/CustomerInformationPage';
+import FinancialEligibilityInformationPage from './Sections/FinancialEligibilityInformationPage';
+import GeneralEligibilityinformationPage from './Sections/GeneralEligibilityinformationPage';
+import EvaluationEligibilityInformationPage from './Sections/EvaluationEligibilityInformationPage';
+import CheckCustomerEligibilityPage from './Sections/CheckCustomerEligibilityPage';
+import RequiredFiles from './Sections/RequiredFiles';
 import Close from '@mui/icons-material/Close';
-import CommonMessageDialog from './Dialogs/CommonMessageDialog';
+import CommonMessageDialog from '../Dialogs/CommonMessageDialog';
 
 const WizardForm = () => {
     const [stepperPosition, setStepperPosition] = useState('')
@@ -76,24 +71,27 @@ const WizardForm = () => {
         }
     }, true);
 
-    const initialValues1 = InitialValuesValidators("initialValues", CustomerInformation).initialValues;
-    const initialValues2 = InitialValuesValidators("initialValues", FinancialEligibilityInformation).initialValues;
-    const initialValues3 = InitialValuesValidators("initialValues", Generaleligibilityinformation).initialValues;
-    const initialValues4 = InitialValuesValidators("initialValues", EvaluationEligibilityInformation).initialValues;
-    const initialValues5 = InitialValuesValidators("initialValues", UpcomingStep2).initialValues;
 
-    const validator1 = yup.object(InitialValuesValidators("validators", CustomerInformation).validators);
-    const validator2 = yup.object(InitialValuesValidators("validators", FinancialEligibilityInformation).validators);
-    const validator3 = prop => {
+    // Initial Values for the form
+    const customerInfoInitialValues = InitialValuesValidators("initialValues", CustomerInformationSchema).initialValues;
+    const financialInfoInitialValues = InitialValuesValidators("initialValues", FinancialEligibilityInformationSchema).initialValues;
+    const generalEligibilityInitialValues = InitialValuesValidators("initialValues", GeneralEligibilityinformationSchema).initialValues;
+    const evaluationEligibilityInitialValues = InitialValuesValidators("initialValues", EvaluationEligibilityInformationSchema).initialValues;
+    // const initialValues5 = InitialValuesValidators("initialValues", UpcomingStep2).initialValues;
+
+    // Validators for the form
+    const customerInfoValidators = yup.object(InitialValuesValidators("validators", CustomerInformationSchema).validators);
+    const financialEligibilityValidators = yup.object(InitialValuesValidators("validators", FinancialEligibilityInformationSchema).validators);
+    const generalEligibilityValidators = prop => {
         return yup.lazy(values => {
-            return yup.object(InitialValuesValidators("validators", Generaleligibilityinformation, values).validators)
+            return yup.object(InitialValuesValidators("validators", GeneralEligibilityinformationSchema, values).validators)
         })
     }
-    let validator4 = InitialValuesValidators("validators", EvaluationEligibilityInformation).validators;
-    const validator5 = yup.object(InitialValuesValidators("validators", UpcomingStep2).validators);
-
-    let tempValidation = {
-        ...validator4,
+    let evaluationEligibilityValidators = InitialValuesValidators("validators", EvaluationEligibilityInformationSchema).validators;
+    const checkCustomerEligibilityValidators = yup.object({maxLoanAmount: yup.number().required("Please, enter the loan amount")})
+    
+    let additionalEvaluationEligibilityValidators = {
+        ...evaluationEligibilityValidators,
         ownerList: yup.array(yup.object({
             ownerType: yup.string().required("Type is required"),
             nationalID: yup.number().required("ID can't be empty")
@@ -106,14 +104,15 @@ const WizardForm = () => {
         })).required("required").min(3, 'You need to provide at least 3 suppliers')
     };
 
-    validator4 = yup.object(tempValidation)
+    evaluationEligibilityValidators = yup.object(additionalEvaluationEligibilityValidators)
 
     const initialValues = {
-        ...initialValues1,
-        ...initialValues2,
-        ...initialValues3,
-        ...initialValues4,
-        ...initialValues5
+        ...customerInfoInitialValues,
+        ...financialInfoInitialValues,
+        ...generalEligibilityInitialValues,
+        ...evaluationEligibilityInitialValues,
+        maxLoanAmount:"", // related to CheckCustomerEligibilityPage
+        maxAmount: false, // related to CheckCustomerEligibilityPage
     };
 
     const [finalValues, setFinalValues] = React.useState({});
@@ -135,8 +134,9 @@ const WizardForm = () => {
         t("Customer information"),
         t("Financial eligibility information"),
         t("General eligibility information"),
-        t("Upcoming Step1"),
-        t("Upcoming Step2"),
+        t("Evaluation Eligibility Information"),
+        t("check_customer_eligibility"),
+        t("required_documents"),
     ];
 
     // putting the buttons upon the footer when scrolling (reaching it)
@@ -166,11 +166,11 @@ const WizardForm = () => {
                 initialValues={location.state || initialValues}
                 onSubmit={(values) => {
                     // setFinalValues(values);
-                    setFinished(true);
+                    // setFinished(true);
                     console.log(values);
 
                     // console.log("first")
-                    setOpenDialog(true)
+                    // setOpenDialog(true)
 
                 }}
                 validateOnNext
@@ -178,23 +178,23 @@ const WizardForm = () => {
                 steps={[
                     {
                         component: CustomerInformationPage,
-                        // validationSchema: validator1
+                        validationSchema: customerInfoValidators
                     },
                     {
                         component: FinancialEligibilityInformationPage,
-                        // validationSchema: validator2
+                        validationSchema: financialEligibilityValidators
                     },
                     {
-                        component: GeneraleligibilityinformationPage,
-                        // validationSchema: validator3
+                        component: GeneralEligibilityinformationPage,
+                        validationSchema: generalEligibilityValidators
                     },
                     {
                         component: EvaluationEligibilityInformationPage,
-                        // validationSchema: validator4
+                        validationSchema: evaluationEligibilityValidators
                     },
                     {
-                        component: UpcomingStepPage2,
-                        // validationSchema: validator5
+                        component: CheckCustomerEligibilityPage,
+                        validationSchema: checkCustomerEligibilityValidators
                     },
                     {
                         component: RequiredFiles,

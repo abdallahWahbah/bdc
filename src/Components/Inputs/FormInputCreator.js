@@ -14,18 +14,36 @@ const FormInputCreator = ({ jsonObject, values, handleChange, errors, getFieldPr
 
 
     const formContent = jsonObject.map(element => {
-        if ((element?.name === "companyName" ||
-            element?.name === "commercialRegistrationNumber" ||
-            element?.name === "contactMobileNumber" ||
-            element?.name === "loanAmount" ||
-            element?.name === "customerID" ||
-            element?.name === "otherCompanyActivity" ||
-            element?.name === "annualSales" ||
-            element?.name === "nationalID" ||
-            element?.name === "suppliersList" ||
-            element?.name === "requestedLoanAmount" ||
-            element?.name === "requestTrackerNumber")
-            && (element?.showWhen?.(values) !== false)) {
+        // if ((element?.name === "companyName" ||
+        //     element?.name === "commercialRegistrationNumber" ||
+        //     element?.name === "contactMobileNumber" ||
+        //     element?.name === "loanAmount" ||
+        //     element?.name === "customerID" ||
+        //     element?.name === "otherCompanyActivity" ||
+        //     element?.name === "annualSales" ||
+        //     element?.name === "nationalID" ||
+        //     element?.name === "suppliersList" ||
+        //     element?.name === "requestedLoanAmount" ||
+        //     element?.name === "requestTrackerNumber")
+        //     && (element?.showWhen?.(values) !== false)) {
+
+        //     return (
+        //         <Grid item xs={12} lg={6} key={element.name}>
+        //             <TextField
+        //                 className={`${language === "ar" ? "custom-field" : ""}`}
+        //                 fullWidth
+        //                 name={element.name}
+        //                 type={element.type ? element.type : "text"}
+        //                 label={t(element.label)}
+        //                 error={!!errors[element.name]}
+        //                 helperText={t(errors[element.name])}
+        //                 value={values && values[element.name]}
+        //                 onChange={handleChange}
+        //             />
+        //         </Grid>
+        //     )
+        // }
+        if (element.type === "text" && (element?.showWhen?.(values) !== false)) {
 
             return (
                 <Grid item xs={12} lg={6} key={element.name}>
@@ -33,7 +51,7 @@ const FormInputCreator = ({ jsonObject, values, handleChange, errors, getFieldPr
                         className={`${language === "ar" ? "custom-field" : ""}`}
                         fullWidth
                         name={element.name}
-                        type={element.type ? element.type : "text"}
+                        type={"text"}
                         label={t(element.label)}
                         error={!!errors[element.name]}
                         helperText={t(errors[element.name])}
@@ -43,25 +61,69 @@ const FormInputCreator = ({ jsonObject, values, handleChange, errors, getFieldPr
                 </Grid>
             )
         }
-        if ((element?.name === "nearestBankBranch" ||
-            element?.name === "annualSalesTurnover" ||
-            element?.name === "capitalAmount" ||
-            element?.name === "legalFormOfTheCompany" ||
-            element?.name === "personAge" ||
-            element?.name === "companyYearsInBusiness" ||
-            element?.name === "companyResidence" ||
-            element?.name === "companyActivity" ||
-            element?.name === "personalBelongings" ||
-            element?.name === "StabilityCapitalAmount" ||
-            element?.name === "availabilityFinancialStatements" ||
-            element?.name === "CompanyIndustrialSector" ||
-            element?.name === "numberOfHeadcount" ||
-            element?.name === "companyLicense" ||
-            element?.name === "yearsOfExperience" ||
-            element?.name === "secondLevelOfManagement" ||
-            element?.name === "numberOfBanks" ||
-            element?.name === "numberYearsRelationWithOurBank")
-            && (element?.showWhen?.(values) !== false)) {
+        if (element.type === "number" && (element?.showWhen?.(values) !== false)) {
+
+            return (
+                <Grid item xs={12} lg={6} key={element.name}>
+                    <TextField
+                        className={`${language === "ar" ? "custom-field" : ""}`}
+                        fullWidth
+                        name={element.name}
+                        type={"number"}
+                        label={t(element.label)}
+                        error={!!errors[element.name]}
+                        helperText={t(errors[element.name])}
+                        value={values && values[element.name]}
+                        onChange={handleChange}
+                    />
+                </Grid>
+            )
+        }
+        // if ((element?.name === "nearestBankBranch" ||
+        //     element?.name === "annualSalesTurnover" ||
+        //     element?.name === "capitalAmount" ||
+        //     element?.name === "legalFormOfTheCompany" ||
+        //     element?.name === "personAge" ||
+        //     element?.name === "companyYearsInBusiness" ||
+        //     element?.name === "companyResidence" ||
+        //     element?.name === "companyActivity" ||
+        //     element?.name === "personalBelongings" ||
+        //     element?.name === "StabilityCapitalAmount" ||
+        //     element?.name === "availabilityFinancialStatements" ||
+        //     element?.name === "CompanyIndustrialSector" ||
+        //     element?.name === "numberOfHeadcount" ||
+        //     element?.name === "companyLicense" ||
+        //     element?.name === "yearsOfExperience" ||
+        //     element?.name === "secondLevelOfManagement" ||
+        //     element?.name === "numberOfBanks" ||
+        //     element?.name === "numberYearsRelationWithOurBank")
+        //     && (element?.showWhen?.(values) !== false)) {
+        //     return (
+        //         <Grid item xs={12} lg={6} key={element.name} className={`${language === "ar" ? "custom-label-field" : ""}`}>
+        //             <FormControl fullWidth sx={element.sx ? element.sx : null}>
+        //                 <InputLabel id={element.id}>{t(element.label)}</InputLabel>
+        //                 <Select
+        //                     className={`${language === "ar" ? "custom-field" : ""}`}
+        //                     labelId={element.id}
+        //                     id={element.selectId}
+        //                     name={element.name}
+        //                     error={!!errors[element.name]}
+        //                     helperText={'t(errors[element.name])'}
+        //                     label={t(element.label)}
+        //                     value={values[element.name]}
+        //                     onChange={handleChange}
+        //                 >
+        //                     {element.options.map(option =>
+        //                     (
+        //                         <MenuItem dir={language === "ar" ? "rtl" : "ltr"} key={option.value} value={option.value} sx={{ fontSize: "15px" }}>{t(option.title)}</MenuItem>
+        //                     ))}
+        //                 </Select>
+        //                 <FormHelperText sx={{ color: '#d32f2f', fontSize: '12px' }}>{t(errors[element.name])}</FormHelperText>
+        //             </FormControl>
+        //         </Grid >
+        //     )
+        // }
+        if (element.type === "select" && (element?.showWhen?.(values) !== false)) {
             return (
                 <Grid item xs={12} lg={6} key={element.name} className={`${language === "ar" ? "custom-label-field" : ""}`}>
                     <FormControl fullWidth sx={element.sx ? element.sx : null}>
@@ -222,7 +284,7 @@ const FormInputCreator = ({ jsonObject, values, handleChange, errors, getFieldPr
                                 <Grid
                                     item
                                     className='wizard__fieldArray--add-button'
-                                    onClick={() => push({ name: "", crn: "", amount: "", soldItems: "" })}
+                                    onClick={() => push({ownerType: "", nationalID: ""})}
                                 >
                                     <AddIcon
                                         sx={{ margin: language === "ar" ? "0 0 0 10px" : "0 10px 0 0" }}

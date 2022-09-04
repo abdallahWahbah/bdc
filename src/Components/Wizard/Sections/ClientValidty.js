@@ -1,11 +1,9 @@
-import { Box, Button, Divider, Grid, Switch, TextField, ToggleButton, Typography } from '@mui/material'
-import { textAlign, width } from '@mui/system'
+import { Box, Divider, Grid, Switch, TextField, Typography } from '@mui/material'
 import React from 'react'
 import { useTranslation } from 'react-i18next'
-import clientValidtyImage from '../../Assets/clientValidty.png'
-import Card from '../Card'
+import clientValidtyImage from '../../../Assets/clientValidty.png'
 
-export default function ClientValidty() {
+export default function ClientValidty({values, errors, handleChange, setFieldValue}) {
     const { t } = useTranslation();
 
     return (
@@ -107,7 +105,14 @@ export default function ClientValidty() {
                                 className='bigTextField'
                                 variant='standard'
                                 placeholder='00.00'
-                            ></TextField>
+                                name="maxLoanAmount"
+                                type="number"
+                                // error={!!errors["maxLoanAmount"]}
+                                // helperText={t(errors["maxLoanAmount"])}
+                                value={values && values["maxLoanAmount"]}
+                                onChange={handleChange}
+                            />
+                            {errors.maxLoanAmount && <h3 style={{fontSize:"15px", color: "red"}}>{t(errors.maxLoanAmount)}</h3>}
 
                             <Typography
                                 fontWeight={'900'}
@@ -193,7 +198,13 @@ export default function ClientValidty() {
                         </Typography>
 
                         <Switch
+                            name="maxAmount"
+                            checked={values.maxAmount === true}
+                            onChange={(event, checked) => {
+                                setFieldValue("maxAmount", checked ? true : false);
+                            }}
                         />
+                        {/* <Field component={Switch} type="checkbox" name="switch" />; */}
 
                     </Box>
                     <Divider

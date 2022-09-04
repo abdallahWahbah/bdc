@@ -1,10 +1,10 @@
 import React, { useState } from 'react';
 import { useNavigate } from 'react-router-dom';
-import Background from '../Assets/background.png';
+import Background from '../../Assets/background.png';
 import Card from './Card';
-import applyImage from '../Assets/apply.png'
-import viewImage from '../Assets/view.png'
-import ViewEnjaz from './ViewEnjaz';
+import applyImage from '../../Assets/apply.png'
+import viewImage from '../../Assets/view.png'
+import ViewEnjaz from '../ViewEnjaz';
 import { useTranslation } from 'react-i18next';
 import { useSelector } from 'react-redux';
 import { Grid } from '@mui/material';

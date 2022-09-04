@@ -1,6 +1,6 @@
 import * as yup from 'yup';
 
-export const CustomerInformation = 
+export const CustomerInformationSchema = 
 [
     {
         name: "companyName",
@@ -42,6 +42,7 @@ export const CustomerInformation =
     
     {
         name: "nearestBankBranch",
+        type: "select",
         id: "demo-simple-select-label",
         label: "The nearest Bank Branch",
         selectId: "demo-simple-select",
@@ -339,10 +340,11 @@ export const CustomerInformation =
 
 
 
-export const FinancialEligibilityInformation = 
+export const FinancialEligibilityInformationSchema = 
 [
     {
         name: "annualSalesTurnover",
+        type: "select",
         inputId: "demo-simple-select-label",
         labelId: "demo-simple-select-label",
         label: "Annual Sales Turnover for the previous financial year in EGP",
@@ -375,6 +377,7 @@ export const FinancialEligibilityInformation =
     },
     {
         name: "capitalAmount",
+        type: "select",
         inputId: "demo-simple-select-label",
         labelId: "demo-simple-select-label",
         label: "Paid In capital Amount",
@@ -408,10 +411,11 @@ export const FinancialEligibilityInformation =
 
 
 
-export const Generaleligibilityinformation = 
+export const GeneralEligibilityinformationSchema = 
 [
     {
         name: "legalFormOfTheCompany",
+        type: "select",
         inputId: "demo-simple-select-label",
         labelId: "demo-simple-select-label",
         label: "The legal form of the company",
@@ -440,6 +444,7 @@ export const Generaleligibilityinformation =
     },
     {
         name: "personAge",
+        type: "select",
         inputId: "demo-simple-select-label",
         labelId: "demo-simple-select-label",
         label: "Key Person's/Owner's Age?",
@@ -467,6 +472,7 @@ export const Generaleligibilityinformation =
     },
     {
         name: "companyYearsInBusiness",
+        type: "select",
         inputId: "demo-simple-select-label",
         labelId: "demo-simple-select-label",
         label: "Company's Years in business",
@@ -495,6 +501,7 @@ export const Generaleligibilityinformation =
     },
     {
         name: "companyResidence",
+        type: "select",
         inputId: "demo-simple-select-label",
         labelId: "demo-simple-select-label",
         label: "Company residence",
@@ -535,6 +542,7 @@ export const Generaleligibilityinformation =
     },
     {
         name: "companyActivity",
+        type: "select",
         inputId: "demo-simple-select-label",
         labelId: "demo-simple-select-label",
         label: "Company Activity",
@@ -615,6 +623,7 @@ export const Generaleligibilityinformation =
     },
     {
         name: "personalBelongings",
+        type: "select",
         inputId: "demo-simple-select-label",
         labelId: "demo-simple-select-label",
         label: "Have any personal belongings?",
@@ -648,10 +657,11 @@ export const Generaleligibilityinformation =
 
 
 
-export const EvaluationEligibilityInformation = 
+export const EvaluationEligibilityInformationSchema = 
 [
     {
         name: "StabilityCapitalAmount",
+        type: "select",
         inputId: "demo-simple-select-label",
         labelId: "demo-simple-select-label",
         label: "Stability in capital amount in the last 3 months",
@@ -672,6 +682,7 @@ export const EvaluationEligibilityInformation =
     },
     {
         name: "availabilityFinancialStatements",
+        type: "select",
         inputId: "demo-simple-select-label",
         labelId: "demo-simple-select-label",
         label: "Availability of Financial Statements or list of assets",
@@ -700,6 +711,7 @@ export const EvaluationEligibilityInformation =
     },
     {
         name: "CompanyIndustrialSector",
+        type: "select",
         inputId: "demo-simple-select-label",
         labelId: "demo-simple-select-label",
         label: "Company's industrial sector",
@@ -728,6 +740,7 @@ export const EvaluationEligibilityInformation =
     },
     {
         name: "numberOfHeadcount",
+        type: "select",
         inputId: "demo-simple-select-label",
         labelId: "demo-simple-select-label",
         label: "Number of headcount",
@@ -752,6 +765,7 @@ export const EvaluationEligibilityInformation =
     },
     {
         name: "companyLicense",
+        type: "select",
         inputId: "demo-simple-select-label",
         labelId: "demo-simple-select-label",
         label: "Company's License /certificate of practicing the profession are available?",
@@ -772,6 +786,7 @@ export const EvaluationEligibilityInformation =
     },
     {
         name: "yearsOfExperience",
+        type: "select",
         inputId: "demo-simple-select-label",
         labelId: "demo-simple-select-label",
         label: "Years of experience of the key person/owner?",
@@ -796,6 +811,7 @@ export const EvaluationEligibilityInformation =
     },
     {
         name: "secondLevelOfManagement",
+        type: "select",
         inputId: "demo-simple-select-label",
         labelId: "demo-simple-select-label",
         label: "Is there a second level of management?",
@@ -820,6 +836,7 @@ export const EvaluationEligibilityInformation =
     },
     {
         name: "numberOfBanks",
+        type: "select",
         inputId: "demo-simple-select-label",
         labelId: "demo-simple-select-label",
         label: "Number of banks granted a credit facility to the company",
@@ -844,6 +861,7 @@ export const EvaluationEligibilityInformation =
     },
     {
         name: "numberYearsRelationWithOurBank",
+        type: "select",
         inputId: "demo-simple-select-label",
         labelId: "demo-simple-select-label",
         label: "Number of years of the relation with our bank",
@@ -888,44 +906,6 @@ export const EvaluationEligibilityInformation =
     {
         name: "supplierList",
         initialValue: [{name: "", crn: "", amount: "", soldItems: ""}, {name: "", crn: "", amount: "", soldItems: ""}, {name: "", crn: "", amount: "", soldItems: ""}]
-    },
-]
-
-
-
-
-
-
-export const UpcomingStep2 = 
-[
-    {
-        name: "text__box",
-        title: "You are initially eligible for this loan and the maximum loan amount up to In accordance with the terms and conditions.",
-        details:
-        [
-            "{Maximum loan amount that can be taken from our bank}",
-            "Where “Maximum loan amount that can be taken from our bank” is 35% of Annual Sales"
-        ]
-    },
-    {
-        name: "requestedLoanAmount",
-        type: "number",
-        label: "Requested loan amount",
-        initialValue: "",
-    },
-    {
-        name: "uploadedFile",
-        type: "file",
-        label: "Please Upload Pre-Approval Documents documents",
-        initialValue: "",
-    },
-    {
-        name: "conditions",
-        type: "checkbox",
-        label: "I approve and authorize BDC to perform I-Score investigation and all required investigations to proceed the loan request",
-        sx: {marginTop:"20px"},
-        // validator: yup.boolean().required("You have to accept the terms and conditions first"),
-        initialValue: "",
     },
 ]
 

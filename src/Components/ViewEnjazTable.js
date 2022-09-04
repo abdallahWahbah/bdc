@@ -4,7 +4,7 @@ import { useTranslation } from 'react-i18next';
 import { useSelector } from 'react-redux';
 import { useNavigate } from 'react-router-dom';
 
-const EnjazTable = ({tableData}) => 
+const ViewEnjazTable = ({tableData}) => 
 {
     const { t } = useTranslation();
     const language = useSelector(state => state.language.language);
@@ -57,4 +57,4 @@ const EnjazTable = ({tableData}) =>
     )
 }
 
-export default EnjazTable
+export default ViewEnjazTable

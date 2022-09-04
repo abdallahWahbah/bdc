@@ -9,7 +9,7 @@ import InitialValuesValidators from './Inputs/InitialValuesValidators';
 import { viewEnjazJson } from './Inputs/Schema';
 import FormInputCreator from './Inputs/FormInputCreator';
 import { Grid } from '@mui/material';
-import EnjazTable from './EnjazTable';
+import EnjazTable from './ViewEnjazTable';
 
 const Transition = React.forwardRef(function Transition(props, ref) {
   return <Slide direction="up" ref={ref} {...props} />;
