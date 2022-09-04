@@ -1,5 +1,5 @@
-import { Box, Divider, Grid, Switch, TextField, Typography } from '@mui/material'
-import React from 'react'
+import { Alert, Box, Divider, Grid, Snackbar, Switch, TextField, Typography } from '@mui/material'
+import React, {useEffect} from 'react'
 import { useTranslation } from 'react-i18next'
 import clientValidtyImage from '../../../Assets/clientValidty.png'
 
@@ -118,13 +118,16 @@ export default function ClientValidty({values, errors, handleChange, setFieldVal
                                 placeholder='00.00'
                                 name="maxLoanAmount"
                                 type="number"
-                                // error={!!errors["maxLoanAmount"]}
-                                // helperText={t(errors["maxLoanAmount"])}
                                 value={values && values["maxLoanAmount"]}
                                 onChange={handleChange}
                             />
-                            {errors.maxLoanAmount && <h3 style={{fontSize:"15px", color: "red"}}>{t(errors.maxLoanAmount)}</h3>}
-
+                            {errors.maxLoanAmount && (
+                                <Snackbar open={errors.maxLoanAmount} autoHideDuration={6000}>
+                                    <Alert severity="warning" sx={{ width: '100%', fontSize: "14px" }}>
+                                        {t(errors.maxLoanAmount)}
+                                    </Alert>
+                                </Snackbar>
+                            )}
                             <Typography
                                 fontWeight={'900'}
                                 sx={{
@@ -216,15 +219,14 @@ export default function ClientValidty({values, errors, handleChange, setFieldVal
                             name="maxAmount"
                             checked={values.maxAmount === true}
                             onChange={(event, checked) => {
-                                if (!values?.maxAmount)
-                                setFieldValue('maxLoanAmount', values?.maxValue)
-                            if (!!values?.maxAmount)
-                                setFieldValue('maxLoanAmount', '')
-                            setFieldValue('maxAmount', !values?.maxValueChecked)
+
+                                if (!values?.maxAmount) setFieldValue('maxLoanAmount', values?.maxValue)
+                                if (!!values?.maxAmount) setFieldValue('maxLoanAmount', '')
+
+                                setFieldValue('maxAmount', !values?.maxAmount)
 
                             }}
                         />
-                        {/* <Field component={Switch} type="checkbox" name="switch" />; */}
 
                     </Box>
                     <Divider

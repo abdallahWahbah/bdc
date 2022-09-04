@@ -1,12 +1,11 @@
-import React, { useState, useEffect } from 'react'
+import React, { useState } from 'react'
 import {
-    CustomerInformation,
-    FinancialEligibilityInformation,
-    Generaleligibilityinformation,
-    EvaluationEligibilityInformation,
-    UpcomingStep2
-} from './Inputs/Schema';
-import InitialValuesValidators from './Inputs/InitialValuesValidators';
+    CustomerInformationSchema,
+    FinancialEligibilityInformationSchema,
+    GeneralEligibilityinformationSchema,
+    EvaluationEligibilityInformationSchema,
+} from '../Inputs/Schema';
+import InitialValuesValidators from '../Inputs/InitialValuesValidators';
 import * as yup from 'yup';
 import { FormikWizard } from "formik-wizard-form";
 import { Box, Stepper, Button, Step, StepLabel, Typography, Hidden, Grid, ButtonBase } from '@mui/material';
@@ -14,22 +13,18 @@ import { useSelector } from 'react-redux';
 import { useNavigate } from 'react-router-dom';
 import { useTranslation } from 'react-i18next';
 import { v4 as uuidv4 } from 'uuid';
-import ConfirmationDialog from './Dialogs/ConfirmationDialog';
+import ConfirmationDialog from '../Dialogs/ConfirmationDialog';
 import { useLocation } from 'react-router-dom';
 import SaveIcon from '@mui/icons-material/Save';
 import CloseIcon from '@mui/icons-material/Close';
-
-import {
-    CustomerInformationPage,
-    FinancialEligibilityInformationPage,
-    GeneraleligibilityinformationPage,
-    EvaluationEligibilityInformationPage,
-    UpcomingStepPage2
-} from './Inputs/PageData';
-import RequiredFiles from './sections/RequiredFiles';
-import { padding } from '@mui/system';
+import CustomerInformationPage from './Sections/CustomerInformationPage';
+import FinancialEligibilityInformationPage from './Sections/FinancialEligibilityInformationPage';
+import GeneralEligibilityinformationPage from './Sections/GeneralEligibilityinformationPage';
+import EvaluationEligibilityInformationPage from './Sections/EvaluationEligibilityInformationPage';
+import CheckCustomerEligibilityPage from './Sections/CheckCustomerEligibilityPage';
+import RequiredFiles from './Sections/RequiredFiles';
 import Close from '@mui/icons-material/Close';
-import CommonMessageDialog from './Dialogs/CommonMessageDialog';
+import CommonMessageDialog from '../Dialogs/CommonMessageDialog';
 
 const WizardForm = () => {
     const [stepperPosition, setStepperPosition] = useState('')
@@ -62,7 +57,7 @@ const WizardForm = () => {
     window.addEventListener("resize", () => setScreenWidth(window.innerWidth));
     window.addEventListener('scroll', (x) => {
         console.log('window.pageYOffset::', window.innerWidth);
-        if (window.pageYOffset < 10) {
+        if (window.pageYOffset < 180) {
             setStepperPosition('')
             setStepperBgColor('transparent')
             setFontColor('#424242')
@@ -118,6 +113,7 @@ const WizardForm = () => {
         ...evaluationEligibilityInitialValues,
         maxLoanAmount:"", // related to CheckCustomerEligibilityPage
         maxAmount: false, // related to CheckCustomerEligibilityPage
+        maxValue: 100000 // related to CheckCustomerEligibilityPage
     };
 
     const [finalValues, setFinalValues] = React.useState({});
@@ -139,8 +135,9 @@ const WizardForm = () => {
         t("Customer information"),
         t("Financial eligibility information"),
         t("General eligibility information"),
-        t("Upcoming Step1"),
-        t("Upcoming Step2"),
+        t("Evaluation Eligibility Information"),
+        t("check_customer_eligibility"),
+        t("required_documents"),
     ];
 
     // putting the buttons upon the footer when scrolling (reaching it)
@@ -167,41 +164,31 @@ const WizardForm = () => {
     return (
         <div className='wizard'>
             <FormikWizard
-                initialValues={
-                    {
-                        ...initialValues,
-                        ...location.state,
-                        maxValue: '100000',
-                    }
-
-                }
+                initialValues={location.state || initialValues}
                 onSubmit={(values) => {
+                    console.log(values);
                     // setFinalValues(values);
                     // setFinished(true);
-                    console.log(values);
-
-                    // console.log("first")
                     // setOpenDialog(true)
-
                 }}
                 validateOnNext
                 activeStepIndex={0}
                 steps={[
                     {
-                        component: CustomerInformationPage,
-                        validationSchema: customerInfoValidators
+                        component: RequiredFiles,
+                        // validationSchema: customerInfoValidators
                     },
                     {
                         component: FinancialEligibilityInformationPage,
-                        validationSchema: financialEligibilityValidators
+                        // validationSchema: financialEligibilityValidators
                     },
                     {
                         component: GeneralEligibilityinformationPage,
-                        validationSchema: generalEligibilityValidators
+                        // validationSchema: generalEligibilityValidators
                     },
                     {
                         component: EvaluationEligibilityInformationPage,
-                        validationSchema: evaluationEligibilityValidators
+                        // validationSchema: evaluationEligibilityValidators
                     },
                     {
                         component: CheckCustomerEligibilityPage,
@@ -220,7 +207,6 @@ const WizardForm = () => {
                     handleNext,
                     isNextDisabled,
                     isPrevDisabled,
-                    setFieldValue,
                     values
                 }) => {
                     return (
@@ -232,16 +218,14 @@ const WizardForm = () => {
                                 <Hidden mdDown>
                                     <div>
                                         <ButtonBase
-                                            className={`wizard__stepper--mobile-close-draft`}
                                             onClick={() => {
                                                 setDialogContent('save_draft_msg')
                                                 setDialogType('draft')
                                                 setOpenCloseOrDraftDialog(true)
                                             }}                                          >
-                                            <SaveIcon style={{ color: "#424242", fontSize: '30px', margin: '0 16px' }} />
+                                            <SaveIcon style={{ fontSize: '30px', margin: '0 16px' }} />
                                         </ButtonBase>
                                         <ButtonBase
-                                            className={`wizard__stepper--mobile-close-draft`}
                                             onClick={() => {
                                                 setDialogContent('close_form_msg')
                                                 setDialogType('close')
@@ -282,9 +266,7 @@ const WizardForm = () => {
                                                     setDialogType('draft')
                                                     setOpenCloseOrDraftDialog(true)
                                                 }}
-                                                sx={{
-                                                    margin: language === "ar" ? "0 0 0 10px" : "0 10px 0 0",
-                                                }}
+                                                sx={{ margin: language === "ar" ? "0 0 0 10px" : "0 10px 0 0" }}
 
                                             />
                                             <CloseIcon
@@ -292,7 +274,7 @@ const WizardForm = () => {
                                                     setDialogContent('close_form_msg')
                                                     setDialogType('close')
                                                     setOpenCloseOrDraftDialog(true)
-                                                }}
+                                                }} 
                                             />
                                         </div>
 
@@ -328,8 +310,7 @@ const WizardForm = () => {
                                     </Box>
                                 </Hidden>
 
-                                <Box className='wizard__content--inputs' my="2rem"
-                                >{renderComponent()}</Box>
+                                <Box className='wizard__content--inputs' my="2rem">{renderComponent()}</Box>
                                 <Box
                                     className='wizard__buttons'
                                     style={screenWidth <= 600 ?
@@ -418,7 +399,7 @@ const WizardForm = () => {
                     );
                 }}
             </FormikWizard>
-        </div >
+        </div>
     )
 }
 

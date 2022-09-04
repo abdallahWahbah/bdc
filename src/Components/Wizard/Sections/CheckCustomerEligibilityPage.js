@@ -7,11 +7,11 @@ const CheckCustomerEligibilityPage = ({ errors, values, handleChange, setFieldVa
     const language = useSelector(state => state.language.language);
     console.log(setFieldValue)
     const checkCustomerEligibilityContent =  <ClientValidty
-            values={values}
-            errors={errors}
-            handleChange={handleChange}
-            setFieldValue={setFieldValue}
-        />
+                                                values={values}
+                                                errors={errors}
+                                                handleChange={handleChange}
+                                                setFieldValue={setFieldValue}
+                                            />
 
     return (
         <div>

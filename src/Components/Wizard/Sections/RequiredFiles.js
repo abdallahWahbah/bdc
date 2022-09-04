@@ -25,11 +25,14 @@ export default function RequiredFiles() {
             }}>
                 {t("attachments_notes")}
             </Typography>
-            <Grid container spacing={6} display='flex' alignItems={'center'} >
+            {/* css file: pages/home */}
+            <Grid container spacing={6} display='flex' alignItems={'center'} className="required__files"> 
                 <Grid item md={4} xs={12} sx={{
+                    '@media (max-width: 900px)': {
+                        pl: '0 !important',
+                    },
                     '@media (max-width: 600px)': {
                         width: '90%',
-                        pl: '0 !important',
                     },
 
 
@@ -39,9 +42,11 @@ export default function RequiredFiles() {
                     />
                 </Grid>
                 <Grid item md={4} xs={12} sx={{
+                    '@media (max-width: 900px)': {
+                        pl: '0 !important',
+                    },
                     '@media (max-width: 600px)': {
                         width: '90%',
-                        pl: '0 !important',
                     },
 
                 }}>
@@ -50,11 +55,12 @@ export default function RequiredFiles() {
                     />
                 </Grid>
                 <Grid item md={4} xs={12} sx={{
-                    '@media (max-width: 600px)': {
-                        width: '90%',
+                    '@media (max-width: 900px)': {
                         pl: '0 !important',
                     },
-
+                    '@media (max-width: 600px)': {
+                        width: '90%',
+                    },
                 }}>
                     <FilesCard
                         testFile={testFile}
