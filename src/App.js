@@ -21,13 +21,13 @@ const App = () => {
     <ThemeProvider theme={theme}>
       <div className='app'>
         <Header />
+          <Routes >
+            
+            <Route path="/" element={<Navigate to="home" />} />
 
-        <Routes>
-          <Route path="/" element={<Navigate to="home" />} />
-          <Route path="/home" element={<Home />} />
-          <Route path="/form" element={<WizardForm />} />
-        </Routes>
-
+            <Route path="/home" element={<Home />} />
+            <Route path="/form" element={<WizardForm />} />
+          </Routes>
         <Footer />
       </div>
     </ThemeProvider>

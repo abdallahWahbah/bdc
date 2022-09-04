@@ -16,6 +16,14 @@
 
     @include respond(phone)
     {
+        z-index: 1;
+        position: fixed;
+        bottom: 0;
         font-size: 11px;
     }
+}
+.footer-text{
+    text-align: center !important;
+    font-size: 11px ;
+
 }

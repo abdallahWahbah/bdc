@@ -5,14 +5,22 @@ import clientValidtyImage from '../../../Assets/clientValidty.png'
 
 export default function ClientValidty({values, errors, handleChange, setFieldValue}) {
     const { t } = useTranslation();
-
+    useEffect(() => {
+        setFieldValue('noor', 'testttt')
+    }, [])
     return (
         <Grid
-            style={{
-                width: '100%',
-            }}
+
             spacing={3}
-            pt={'48px'}
+            sx={{
+                pt: '48px',
+                width: '100%',
+                '@media (max-width: 600px)': {
+                    paddingBottom: '0px !important',
+                    paddingTop: '8px !important',
+
+                },
+            }}
             container
         >
             <Grid xs={12} sx={{
@@ -38,7 +46,9 @@ export default function ClientValidty({values, errors, handleChange, setFieldVal
                     sx={{
                         color: '#656666',
                         '@media (max-width: 600px)': {
+                            padding: '8px',
                             fontSize: '15px',
+                            textAlign: 'right'
                         },
                     }}
                 >
@@ -67,7 +77,7 @@ export default function ClientValidty({values, errors, handleChange, setFieldVal
             </Grid>
 
             <Grid container xs={12} spacing={3} sx={{
-                padding: '24px'
+                padding: '24px',
             }}>
                 <Grid item xs={12}
                     sx={{
@@ -76,6 +86,8 @@ export default function ClientValidty({values, errors, handleChange, setFieldVal
                         justifyContent: 'space-around',
                         '@media (max-width: 600px)': {
                             width: '100%',
+                            padding: '8px !important'
+
                         },
                     }}
                 >
@@ -86,7 +98,6 @@ export default function ClientValidty({values, errors, handleChange, setFieldVal
                         maxWidth: '450px',
                         '@media (max-width: 600px)': {
                             maxWidth: '100%',
-                            margin: '24px',
 
                         },
 
@@ -125,7 +136,7 @@ export default function ClientValidty({values, errors, handleChange, setFieldVal
                                     },
                                 }}
                             >
-                                {t('max_value')} :000.0
+                                {t('max_value')} : {values?.maxValue}
 
                             </Typography>
                         </div>
@@ -162,17 +173,20 @@ export default function ClientValidty({values, errors, handleChange, setFieldVal
                         justifyContent: 'space-around',
                         alignContent: 'center',
                         alignItems: 'center',
-                        flexDirection: 'column'
+                        flexDirection: 'column',
+                        '@media (max-width: 600px)': {
+                            padding: '8px !important',
+                        },
                     }}
                 >
                     <Divider
 
                         sx={{
-                            borderBottomWidth: 4,
+                            borderBottomWidth: 1,
                             width: '450px'
                         }}
                     />
-                    <Box container spacing={3}
+                    <Box container
                         sx={{
                             margin: '24px 0px',
                             display: 'flex',
@@ -181,7 +195,8 @@ export default function ClientValidty({values, errors, handleChange, setFieldVal
                             padding: '24px',
                             '@media (max-width: 600px)': {
                                 width: '100%',
-                                padding: '0px',
+                                padding: '8px 0',
+                                margin: '8px 0',
 
                             },
                         }}>
@@ -201,7 +216,12 @@ export default function ClientValidty({values, errors, handleChange, setFieldVal
                             name="maxAmount"
                             checked={values.maxAmount === true}
                             onChange={(event, checked) => {
-                                setFieldValue("maxAmount", checked ? true : false);
+                                if (!values?.maxAmount)
+                                setFieldValue('maxLoanAmount', values?.maxValue)
+                            if (!!values?.maxAmount)
+                                setFieldValue('maxLoanAmount', '')
+                            setFieldValue('maxAmount', !values?.maxValueChecked)
+
                             }}
                         />
                         {/* <Field component={Switch} type="checkbox" name="switch" />; */}
@@ -210,7 +230,7 @@ export default function ClientValidty({values, errors, handleChange, setFieldVal
                     <Divider
 
                         sx={{
-                            borderBottomWidth: 3,
+                            borderBottomWidth: 1,
                             width: '450px'
                         }}
                     />

@@ -1,11 +1,12 @@
-import React, { useState } from 'react'
+import React, { useState, useEffect } from 'react'
 import {
-    CustomerInformationSchema,
-    FinancialEligibilityInformationSchema,
-    GeneralEligibilityinformationSchema,
-    EvaluationEligibilityInformationSchema,
-} from '../Inputs/Schema';
-import InitialValuesValidators from '../Inputs/InitialValuesValidators';
+    CustomerInformation,
+    FinancialEligibilityInformation,
+    Generaleligibilityinformation,
+    EvaluationEligibilityInformation,
+    UpcomingStep2
+} from './Inputs/Schema';
+import InitialValuesValidators from './Inputs/InitialValuesValidators';
 import * as yup from 'yup';
 import { FormikWizard } from "formik-wizard-form";
 import { Box, Stepper, Button, Step, StepLabel, Typography, Hidden, Grid, ButtonBase } from '@mui/material';
@@ -13,18 +14,22 @@ import { useSelector } from 'react-redux';
 import { useNavigate } from 'react-router-dom';
 import { useTranslation } from 'react-i18next';
 import { v4 as uuidv4 } from 'uuid';
-import ConfirmationDialog from '../Dialogs/ConfirmationDialog';
+import ConfirmationDialog from './Dialogs/ConfirmationDialog';
 import { useLocation } from 'react-router-dom';
 import SaveIcon from '@mui/icons-material/Save';
 import CloseIcon from '@mui/icons-material/Close';
-import CustomerInformationPage from './Sections/CustomerInformationPage';
-import FinancialEligibilityInformationPage from './Sections/FinancialEligibilityInformationPage';
-import GeneralEligibilityinformationPage from './Sections/GeneralEligibilityinformationPage';
-import EvaluationEligibilityInformationPage from './Sections/EvaluationEligibilityInformationPage';
-import CheckCustomerEligibilityPage from './Sections/CheckCustomerEligibilityPage';
-import RequiredFiles from './Sections/RequiredFiles';
+
+import {
+    CustomerInformationPage,
+    FinancialEligibilityInformationPage,
+    GeneraleligibilityinformationPage,
+    EvaluationEligibilityInformationPage,
+    UpcomingStepPage2
+} from './Inputs/PageData';
+import RequiredFiles from './sections/RequiredFiles';
+import { padding } from '@mui/system';
 import Close from '@mui/icons-material/Close';
-import CommonMessageDialog from '../Dialogs/CommonMessageDialog';
+import CommonMessageDialog from './Dialogs/CommonMessageDialog';
 
 const WizardForm = () => {
     const [stepperPosition, setStepperPosition] = useState('')
@@ -57,7 +62,7 @@ const WizardForm = () => {
     window.addEventListener("resize", () => setScreenWidth(window.innerWidth));
     window.addEventListener('scroll', (x) => {
         console.log('window.pageYOffset::', window.innerWidth);
-        if (window.pageYOffset < 180) {
+        if (window.pageYOffset < 10) {
             setStepperPosition('')
             setStepperBgColor('transparent')
             setFontColor('#424242')
@@ -134,9 +139,8 @@ const WizardForm = () => {
         t("Customer information"),
         t("Financial eligibility information"),
         t("General eligibility information"),
-        t("Evaluation Eligibility Information"),
-        t("check_customer_eligibility"),
-        t("required_documents"),
+        t("Upcoming Step1"),
+        t("Upcoming Step2"),
     ];
 
     // putting the buttons upon the footer when scrolling (reaching it)
@@ -163,7 +167,14 @@ const WizardForm = () => {
     return (
         <div className='wizard'>
             <FormikWizard
-                initialValues={location.state || initialValues}
+                initialValues={
+                    {
+                        ...initialValues,
+                        ...location.state,
+                        maxValue: '100000',
+                    }
+
+                }
                 onSubmit={(values) => {
                     // setFinalValues(values);
                     // setFinished(true);
@@ -209,6 +220,7 @@ const WizardForm = () => {
                     handleNext,
                     isNextDisabled,
                     isPrevDisabled,
+                    setFieldValue,
                     values
                 }) => {
                     return (
@@ -220,14 +232,16 @@ const WizardForm = () => {
                                 <Hidden mdDown>
                                     <div>
                                         <ButtonBase
+                                            className={`wizard__stepper--mobile-close-draft`}
                                             onClick={() => {
                                                 setDialogContent('save_draft_msg')
                                                 setDialogType('draft')
                                                 setOpenCloseOrDraftDialog(true)
                                             }}                                          >
-                                            <SaveIcon style={{ fontSize: '30px', margin: '0 16px' }} />
+                                            <SaveIcon style={{ color: "#424242", fontSize: '30px', margin: '0 16px' }} />
                                         </ButtonBase>
                                         <ButtonBase
+                                            className={`wizard__stepper--mobile-close-draft`}
                                             onClick={() => {
                                                 setDialogContent('close_form_msg')
                                                 setDialogType('close')
@@ -248,7 +262,7 @@ const WizardForm = () => {
                                             width: '100%',
                                             backgroundColor: stepperBgColor,
                                             color: fontColor,
-                                            top: '0',
+                                            top: '90px',
                                             left: 0,
                                             right: 0
                                         }}
@@ -268,7 +282,9 @@ const WizardForm = () => {
                                                     setDialogType('draft')
                                                     setOpenCloseOrDraftDialog(true)
                                                 }}
-                                                sx={{ margin: language === "ar" ? "0 0 0 10px" : "0 10px 0 0" }}
+                                                sx={{
+                                                    margin: language === "ar" ? "0 0 0 10px" : "0 10px 0 0",
+                                                }}
 
                                             />
                                             <CloseIcon
@@ -276,7 +292,7 @@ const WizardForm = () => {
                                                     setDialogContent('close_form_msg')
                                                     setDialogType('close')
                                                     setOpenCloseOrDraftDialog(true)
-                                                }} 
+                                                }}
                                             />
                                         </div>
 
@@ -319,7 +335,7 @@ const WizardForm = () => {
                                     style={screenWidth <= 600 ?
                                         {
                                             position: "fixed",
-                                            bottom: "0",
+                                            bottom: "70px",
                                             left: "0",
                                             right: "0",
                                             padding: "16px",
@@ -348,25 +364,33 @@ const WizardForm = () => {
                                         </Button>
                                     </div>
                                     {screenWidth <= 600 && (
-                                        <h3 style={{ fontSize: "16px" }}>{currentStepIndex + 1} / {5}</h3>
+                                        <h3 style={{ fontSize: "16px" }}>{currentStepIndex + 1} / {6}</h3>
                                     )}
                                     <Grid style={{ display: 'flex', justifyContent: 'space-between' }}>
-                                        {currentStepIndex !== 0 && (
-                                            <Button
-                                                className="btn"
-                                                disabled={isPrevDisabled}
-                                                type="primary"
-                                                onClick={handlePrev}
-                                                sx={{
-                                                    backgroundColor: "#e8eaf6",
-                                                    color: "#908e8e",
-                                                    width: '200px',
-                                                    fontSize: language === "ar" ? "16px !important" : ""
-                                                }}
-                                            >
-                                                {t("Previous")}
-                                            </Button>
-                                        )}
+
+                                        <Button
+                                            className="btn"
+                                            disabled={isPrevDisabled || currentStepIndex === 0}
+                                            type="primary"
+                                            onClick={handlePrev}
+                                            sx={{
+                                                opacity: currentStepIndex === 0 ? 0 : 1,
+
+                                                backgroundColor: "#e8eaf6",
+                                                color: "black",
+                                                width: '200px',
+                                                fontSize: language === "ar" ? "16px !important" : "",
+                                                '&:hover': {
+                                                    cursor: currentStepIndex === 0 ? 'default' : 'pointer',
+                                                    color: 'white',
+                                                    backgroundColor: "#8f8f8f",
+
+                                                }
+                                            }}
+                                        >
+                                            {t("Previous")}
+                                        </Button>
+
                                     </Grid>
                                 </Box>
                                 {openDialog && (
@@ -394,7 +418,7 @@ const WizardForm = () => {
                     );
                 }}
             </FormikWizard>
-        </div>
+        </div >
     )
 }
 

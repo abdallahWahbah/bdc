@@ -22,7 +22,7 @@ const Home = () => {
             <Grid item lg={6} md={6} xs={12} className='home__background--container'>
                 <img className='home__background' src={Background} alt='home' />
                 <div className='home__background--text-container'>
-                    <h1 className='header__primary'>{t("Enjaz")}</h1>
+                    <h1 className='header__primary'>{t("Engaz")}</h1>
                     <p className='paragraph' style={{ textAlign: language === "ar" ? "rtl" : "ltr" }}>
                         {t("header_description")}
                     </p>
