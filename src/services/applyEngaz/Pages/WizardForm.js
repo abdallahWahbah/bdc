@@ -4,8 +4,8 @@ import {
     FinancialEligibilityInformationSchema,
     GeneralEligibilityinformationSchema,
     EvaluationEligibilityInformationSchema,
-} from '../Inputs/Schema';
-import InitialValuesValidators from '../Inputs/InitialValuesValidators';
+} from '../../../Components/Inputs/Schema';
+import InitialValuesValidators from '../../../Components/Inputs/InitialValuesValidators';
 import * as yup from 'yup';
 import { FormikWizard } from "formik-wizard-form";
 import { Box, Stepper, Button, Step, StepLabel, Typography, Hidden, Grid, ButtonBase } from '@mui/material';
@@ -13,18 +13,18 @@ import { useSelector } from 'react-redux';
 import { useNavigate } from 'react-router-dom';
 import { useTranslation } from 'react-i18next';
 import { v4 as uuidv4 } from 'uuid';
-import SubmittingDialog from '../Dialogs/SubmittingDialog';
+import SubmittingDialog from '../../../Components/Dialogs/SubmittingDialog';
 import { useLocation } from 'react-router-dom';
 import SaveIcon from '@mui/icons-material/Save';
 import CloseIcon from '@mui/icons-material/Close';
-import CustomerInformationPage from './Sections/CustomerInformationPage';
-import FinancialEligibilityInformationPage from './Sections/FinancialEligibilityInformationPage';
-import GeneralEligibilityinformationPage from './Sections/GeneralEligibilityinformationPage';
-import EvaluationEligibilityInformationPage from './Sections/EvaluationEligibilityInformationPage';
-import CheckCustomerEligibilityPage from './Sections/CheckCustomerEligibilityPage';
-import RequiredFiles from './Sections/RequiredFiles';
+import CustomerInformationPage from '../Sections/CustomerInformationPage';
+import FinancialEligibilityInformationPage from '../Sections/FinancialEligibilityInformationPage';
+import GeneralEligibilityinformationPage from '../Sections/GeneralEligibilityinformationPage';
+import EvaluationEligibilityInformationPage from '../Sections/EvaluationEligibilityInformationPage';
+import CheckCustomerEligibilityPage from '../Sections/CheckCustomerEligibilityPage';
+import RequiredFiles from '../Sections/RequiredFiles';
 import Close from '@mui/icons-material/Close';
-import CommonMessageDialog from '../Dialogs/CommonMessageDialog';
+import CommonMessageDialog from '../../../Components/Dialogs/CommonMessageDialog';
 
 const WizardForm = () => {
     const [stepperPosition, setStepperPosition] = useState('')

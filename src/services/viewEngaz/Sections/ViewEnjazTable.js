@@ -15,7 +15,7 @@ const ViewEnjazTable = ({tableData}) =>
         navigate("/form", {state: data});
     }
 
-    return (
+    return ( // css file: pages/home
         <TableContainer component={Paper} dir={language === "ar" ? "rtl" :"ltr"}>
             <Table aria-label="simple table">
                 <TableHead>

@@ -5,7 +5,7 @@ import { Route, Routes, Navigate } from 'react-router-dom'
 import Footer from './Components/Footer';
 import Header from './Components/Header';
 import Home from './pages/Home/Home';
-import WizardForm from './Components/Wizard/WizardForm';
+import WizardForm from './services/applyEngaz/Pages/WizardForm'
 
 const App = () => {
   const theme = createTheme({

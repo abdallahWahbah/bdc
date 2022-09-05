@@ -1,6 +1,6 @@
 import React from 'react'
-import FormInputCreator from "../../Inputs/FormInputCreator";
-import { FinancialEligibilityInformationSchema } from '../../Inputs/Schema';
+import FormInputCreator from "../../../Components/Inputs/FormInputCreator";
+import { FinancialEligibilityInformationSchema } from '../../../Components/Inputs/Schema';
 import { useSelector } from 'react-redux';
 import Grid from "@mui/material/Grid";
 

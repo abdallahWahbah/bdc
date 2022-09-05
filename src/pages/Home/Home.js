@@ -4,10 +4,10 @@ import Background from '../../Assets/background.png';
 import Card from './Card';
 import applyImage from '../../Assets/apply.png'
 import viewImage from '../../Assets/view.png'
-import ViewEnjaz from '../../Components/ViewEnjaz';
 import { useTranslation } from 'react-i18next';
 import { useSelector } from 'react-redux';
 import { Grid } from '@mui/material';
+import ViewEnjaz from '../../services/viewEngaz/Pages/ViewEnjaz';
 
 const Home = () => {
     const navigate = useNavigate();

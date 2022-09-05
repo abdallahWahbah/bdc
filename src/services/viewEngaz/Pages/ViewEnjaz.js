@@ -5,11 +5,11 @@ import { useTranslation } from 'react-i18next';
 import { useSelector } from 'react-redux';
 import { useFormik } from 'formik';
 import * as yup from 'yup';
-import InitialValuesValidators from './Inputs/InitialValuesValidators';
-import { viewEnjazJson } from './Inputs/Schema';
-import FormInputCreator from './Inputs/FormInputCreator';
+import InitialValuesValidators from '../../../Components/Inputs/InitialValuesValidators';
+import { viewEnjazJson } from '../../../Components/Inputs/Schema';
+import FormInputCreator from '../../../Components/Inputs/FormInputCreator';
 import { Grid } from '@mui/material';
-import EnjazTable from './ViewEnjazTable';
+import EnjazTable from '../Sections/ViewEnjazTable';
 
 const Transition = React.forwardRef(function Transition(props, ref) {
   return <Slide direction="up" ref={ref} {...props} />;

@@ -107,11 +107,16 @@
   align-content: center;
   justify-content: center;
 }
-
-// .required__files
-// {
-//   & > *:last-of-type
-//   {
-//     padding-left: 0;
-//   }
-// }
+.table__button {
+  cursor: pointer;
+  color: $color-orange-main;
+}
+th
+{
+  font-size: 15px !important;
+  font-weight: 600 !important;
+}
+td
+{
+  font-size: 14px !important;
+}

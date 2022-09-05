@@ -26,7 +26,7 @@ export default function RequiredFiles() {
                 {t("attachments_notes")}
             </Typography>
             {/* css file: pages/home */}
-            <Grid container spacing={6} display='flex' alignItems={'center'} className="required__files"> 
+            <Grid container spacing={6} display='flex' alignItems={'center'}> 
                 <Grid item md={4} xs={12} sx={{
                     '@media (max-width: 900px)': {
                         pl: '0 !important',
