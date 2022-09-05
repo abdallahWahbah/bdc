@@ -39,6 +39,7 @@ const WizardForm = () => {
     const [openCloseOrDraftDialog, setOpenCloseOrDraftDialog] = useState(false)
     const [showTrackNumberPopup, setShowTrackNumberPopup] = useState(false);
     const [trackNumberMessage, setTrackNumberMessage] = useState("");
+    const [popupActions, setPopupActions] = useState("");
     const language = useSelector(state => state.language.language);
     const navigate = useNavigate();
     const location = useLocation();
@@ -59,7 +60,9 @@ const WizardForm = () => {
         })
     }
     let evaluationEligibilityValidators = InitialValuesValidators("validators", EvaluationEligibilityInformationSchema).validators;
-    const checkCustomerEligibilityValidators = yup.object({ maxLoanAmount: yup.string().required("Please, enter the loan amount") })
+    const checkCustomerEligibilityValidators = yup.object({maxLoanAmount: yup.number()
+                                                                    .max(100000, "max loan amount must be less than or equal to 100000")
+                                                                    .required("Please, enter the loan amount") })
 
     let additionalEvaluationEligibilityValidators = {
         ...evaluationEligibilityValidators,
@@ -112,7 +115,7 @@ const WizardForm = () => {
     const showSuccessPopup = (values, type) => {
         let randomValue = Math.floor(Math.random() * 100000000000)
         let content = type === "draft" ? "saved as a draft" : "submitted";
-        setTrackNumberMessage(`Your application is ${content} and your track number is ${randomValue}`);
+        setTrackNumberMessage(t(`Your application is ${content} and your track number is`) + " " + randomValue);
         setShowTrackNumberPopup(true);
 
         localStorage.setItem(randomValue, JSON.stringify({ ...values, requestTrackerNumber: randomValue, status: type === "draft" ? "Draft" : "Pending"}));
@@ -220,6 +223,7 @@ const WizardForm = () => {
                                     <div>
                                         {currentStepIndex > 0 && <ButtonBase
                                             onClick={() => {
+                                                setPopupActions("draft")
                                                 setDialogContent('save_draft_msg')
                                                 setDialogType('draft')
                                                 setOpenCloseOrDraftDialog(true)
@@ -234,6 +238,7 @@ const WizardForm = () => {
                                         </ButtonBase>}
                                         <ButtonBase
                                             onClick={() => {
+                                                setPopupActions("close")
                                                 setDialogContent('close_form_msg')
                                                 setDialogType('close')
                                                 setOpenCloseOrDraftDialog(true)
@@ -275,6 +280,7 @@ const WizardForm = () => {
                                         <div className={`wizard__stepper--mobile-close-draft`}>
                                             {currentStepIndex > 0 && <SaveIcon
                                                 onClick={() => {
+                                                    setPopupActions("draft")
                                                     setDialogContent('save_draft_msg')
                                                     setDialogType('draft')
                                                     setOpenCloseOrDraftDialog(true)
@@ -290,6 +296,7 @@ const WizardForm = () => {
                                             />}
                                             <CloseIcon
                                                 onClick={() => {
+                                                    setPopupActions("close")
                                                     setDialogContent('close_form_msg')
                                                     setDialogType('close')
                                                     setOpenCloseOrDraftDialog(true)
@@ -407,6 +414,7 @@ const WizardForm = () => {
                                 )}
                                 {openCloseOrDraftDialog && (
                                     <CommonMessageDialog
+                                        popupActions={popupActions}
                                         closeDialog={() => setOpenCloseOrDraftDialog(false)}
                                         handleConfirmation={() => handleDialogFunction(dialogType, values)}
                                         dialogContent={dialogContent}

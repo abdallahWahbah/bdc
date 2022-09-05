@@ -5,15 +5,18 @@ import DialogContent from '@mui/material/DialogContent';
 import React from 'react';
 import { useTranslation } from 'react-i18next';
 import { useSelector } from 'react-redux';
+import { useNavigate } from 'react-router-dom';
 
-export default function CommonMessageDialog({ closeDialog, handleConfirmation, dialogContent }) {
+export default function CommonMessageDialog({ closeDialog, handleConfirmation, dialogContent, popupActions }) {
     const { t } = useTranslation();
     const language = useSelector(state => state.language.language);
+    const navigate = useNavigate();
+
     return ( // css file: comp/dialog
         <React.Fragment>
             <Dialog
                 open={true}
-                onClose={closeDialog}
+                onClose={popupActions === "close" || popupActions === "draft" ? closeDialog : null}
             >
                 <DialogContent sx={{ direction: language === "ar" ? "rtl" : "ltr" }}>
                     <p className='dialog__paragraph'>
@@ -21,21 +24,35 @@ export default function CommonMessageDialog({ closeDialog, handleConfirmation, d
                     </p>
                 </DialogContent>
                 <DialogActions className={`dialog__actions ${language === "ar" ? "direction__left" : ""}`}>
-                    <Button
-                        className={`dialog__button dialog__button--no`}
-                        variant="outlined"
-                        onClick={closeDialog}
-                    >
-                        {t("No")}
-                    </Button>
-                    <Button
-                        className={`dialog__button dialog__button--yes ${language === "ar" ? "margin__right" : ""}`}
-                        variant="contained"
-                        type="primary"
-                        onClick={handleConfirmation}
-                    >
-                        {t("Yes")}
-                    </Button>
+                    {popupActions === "close" || popupActions === "draft" ? (
+                        <>
+                            <Button
+                                className={`dialog__button dialog__button--no`}
+                                variant="outlined"
+                                onClick={closeDialog}
+                            >
+                                {t("No")}
+                            </Button>
+                            <Button
+                                className={`dialog__button dialog__button--yes ${language === "ar" ? "margin__right" : ""}`}
+                                variant="contained"
+                                type="primary"
+                                onClick={handleConfirmation}
+                            >
+                                {t("Yes")}
+                            </Button>
+                        </>
+                    ) : (
+                        <Button
+                            className={`dialog__button dialog__button--yes`}
+                            variant="contained"
+                            type="primary"
+                            onClick={()=>navigate("/")}
+                            sx={{width: "50%"}}
+                        >
+                            {t("goToMainPage")}
+                        </Button>
+                    )}
                 </DialogActions>
             </Dialog>
         </React.Fragment>

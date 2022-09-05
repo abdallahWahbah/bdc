@@ -191,5 +191,9 @@
     "attachments_notes": "الرجاء تحميل النموذج الخاص بكل ملف من خلال الضغط على زر تحميل النموذج ثم تعبئته ورفعه من خلال الضغط على زر ارفاق المستند",
     "save_draft_msg": "هل أنت متأكد من حفظ الطلب كمسودة؟",
     "close_form_msg": "هل أنت متأكد من أنك تريد إغلاق الملف",
-    "Please, enter the loan amount":"من فضلك اكتب مقدار القرض المطلوب"
+    "Please, enter the loan amount":"من فضلك اكتب مقدار القرض المطلوب",
+    "max loan amount must be less than or equal to 100000":"قيمة القرض يجب ألا تزيد عن 100000",
+    "Your application is saved as a draft and your track number is": "تم حفظ طلبك كمسودة برقم تتبعي",
+    "Your application is submitted and your track number is": "تم تسجيل طلبك بنجاح برقم تتبعي",
+    "goToMainPage":"الصفحة الرئيسية"
 }

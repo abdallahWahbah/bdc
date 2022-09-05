@@ -188,5 +188,9 @@
     "attachments_notes": "Please download the template related to each file, via clicking on the download template button, then upload it after filling it via the upload template button",
     "save_draft_msg": "are you sure you want to save the request as draft?",
     "close_form_msg": "are you sure you want to close the request?",
-    "Please, enter the loan amount":"Please, enter the loan amount"
+    "Please, enter the loan amount":"Please, enter the loan amount",
+    "max loan amount must be less than or equal to 100000":"max loan amount must be less than or equal to 100000",
+    "Your application is saved as a draft and your track number is": "Your application is saved as a draft and your track number is",
+    "Your application is submitted and your track number is": "Your application is submitted and your track number is",
+    "goToMainPage": "Go to main page"
 }
