@@ -34,9 +34,7 @@ const ViewEnjazTable = ({tableData}) =>
                         <TableRow 
                             key={row.name}
                         >
-                            <TableCell component="th" scope="row">
-                                {row.requestedTrackNumber}
-                            </TableCell>
+                            <TableCell sx={{textAlign: "center"}}>{row.requestTrackerNumber || "-----"}</TableCell>
                             <TableCell sx={{textAlign: "center"}}>{row.companyName || "-----"}</TableCell>
                             <TableCell sx={{textAlign: "center"}}>{row.commercialRegistrationNumber || "-----"}</TableCell>
                             <TableCell sx={{textAlign: "center"}}>{row.customerID || "-----"}</TableCell>

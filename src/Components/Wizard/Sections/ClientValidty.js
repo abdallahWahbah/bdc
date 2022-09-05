@@ -1,13 +1,17 @@
 import { Alert, Box, Divider, Grid, Snackbar, Switch, TextField, Typography } from '@mui/material'
 import React, {useEffect} from 'react'
 import { useTranslation } from 'react-i18next'
+import { useSelector } from 'react-redux'
 import clientValidtyImage from '../../../Assets/clientValidty.png'
 
 export default function ClientValidty({values, errors, handleChange, setFieldValue}) {
     const { t } = useTranslation();
+    const language = useSelector(state => state.language.language);
+
     useEffect(() => {
         setFieldValue('noor', 'testttt')
     }, [])
+  
     return (
         <Grid
 
@@ -122,7 +126,11 @@ export default function ClientValidty({values, errors, handleChange, setFieldVal
                                 onChange={handleChange}
                             />
                             {errors.maxLoanAmount && (
-                                <Snackbar open={errors.maxLoanAmount} autoHideDuration={6000}>
+                                <Snackbar 
+                                    open={errors.maxLoanAmount} 
+                                    autoHideDuration={6000}
+                                    sx={language === "ar" ? {right: "24px !important", left: "auto !important"} : {}}
+                                >
                                     <Alert severity="warning" sx={{ width: '100%', fontSize: "14px" }}>
                                         {t(errors.maxLoanAmount)}
                                     </Alert>

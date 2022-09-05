@@ -6,7 +6,7 @@ import DialogContent from '@mui/material/DialogContent';
 import { useTranslation } from 'react-i18next';
 import { useSelector } from 'react-redux';
 
-export default function ConfirmationDialog({closeDialog, handleConfirmation}) {
+export default function SubmittingDialog({closeDialog, handleConfirmation}) {
   const { t } = useTranslation();
   const language = useSelector(state => state.language.language);
   return ( // css file: comp/dialog

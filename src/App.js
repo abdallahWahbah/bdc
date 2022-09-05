@@ -4,7 +4,7 @@ import { Route, Routes, Navigate } from 'react-router-dom'
 
 import Footer from './Components/Footer';
 import Header from './Components/Header';
-import Home from './Components/Home/Home';
+import Home from './pages/Home/Home';
 import WizardForm from './Components/Wizard/WizardForm';
 
 const App = () => {

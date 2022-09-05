@@ -13,7 +13,7 @@ import { useSelector } from 'react-redux';
 import { useNavigate } from 'react-router-dom';
 import { useTranslation } from 'react-i18next';
 import { v4 as uuidv4 } from 'uuid';
-import ConfirmationDialog from '../Dialogs/ConfirmationDialog';
+import SubmittingDialog from '../Dialogs/SubmittingDialog';
 import { useLocation } from 'react-router-dom';
 import SaveIcon from '@mui/icons-material/Save';
 import CloseIcon from '@mui/icons-material/Close';
@@ -34,50 +34,21 @@ const WizardForm = () => {
     const [screenWidth, setScreenWidth] = useState(window.innerWidth);
     const [dialogContent, setDialogContent] = useState('')
     const [dialogType, setDialogType] = useState('')
-
+    const [finalValues, setFinalValues] = useState({});
+    const [finished, setFinished] = useState(false);
     const [openCloseOrDraftDialog, setOpenCloseOrDraftDialog] = useState(false)
-
-    const handleDialogFunction = ((functionToExcute) => {
-        if (functionToExcute === 'draft') {
-            setOpenCloseOrDraftDialog(true)
-            saveDraft()
-            setOpenCloseOrDraftDialog(false)
-            return
-        }
-        setOpenCloseOrDraftDialog(true)
-        setOpenCloseOrDraftDialog(false)
-        navigate("/")
-        return
-
-    })
+    const [showTrackNumberPopup, setShowTrackNumberPopup] = useState(false);
+    const [trackNumberMessage, setTrackNumberMessage] = useState("");
     const language = useSelector(state => state.language.language);
     const navigate = useNavigate();
     const location = useLocation();
     const { t } = useTranslation();
-    window.addEventListener("resize", () => setScreenWidth(window.innerWidth));
-    window.addEventListener('scroll', (x) => {
-        console.log('window.pageYOffset::', window.innerWidth);
-        if (window.pageYOffset < 180) {
-            setStepperPosition('')
-            setStepperBgColor('transparent')
-            setFontColor('#424242')
-
-        } else {
-            setStepperPosition('fixed')
-            setStepperBgColor('#424242')
-            setFontColor('white')
-
-            //on scroll on mobile
-        }
-    }, true);
-
 
     // Initial Values for the form
     const customerInfoInitialValues = InitialValuesValidators("initialValues", CustomerInformationSchema).initialValues;
     const financialInfoInitialValues = InitialValuesValidators("initialValues", FinancialEligibilityInformationSchema).initialValues;
     const generalEligibilityInitialValues = InitialValuesValidators("initialValues", GeneralEligibilityinformationSchema).initialValues;
     const evaluationEligibilityInitialValues = InitialValuesValidators("initialValues", EvaluationEligibilityInformationSchema).initialValues;
-    // const initialValues5 = InitialValuesValidators("initialValues", UpcomingStep2).initialValues;
 
     // Validators for the form
     const customerInfoValidators = yup.object(InitialValuesValidators("validators", CustomerInformationSchema).validators);
@@ -116,21 +87,6 @@ const WizardForm = () => {
         maxValue: 100000 // related to CheckCustomerEligibilityPage
     };
 
-    const [finalValues, setFinalValues] = React.useState({});
-    const [finished, setFinished] = React.useState(false);
-
-    const saveDraft = (values) => {
-        console.log(values);
-        let randomValue = uuidv4();
-        localStorage.setItem(uuidv4(), JSON.stringify({ ...values, id: randomValue, status: "Draft" }));
-        navigate("/")
-    }
-
-    const handleConfirmation = (values) => {
-        let randomValue = uuidv4();
-        localStorage.setItem(uuidv4(), JSON.stringify({ ...values, id: randomValue, status: "Pending" }));
-        navigate("/")
-    }
     const steps = [
         t("Customer information"),
         t("Financial eligibility information"),
@@ -139,6 +95,51 @@ const WizardForm = () => {
         t("check_customer_eligibility"),
         t("required_documents"),
     ];
+
+    const handleDialogFunction = ((dialogType, values) => {
+        if (dialogType === 'draft') {
+            setOpenCloseOrDraftDialog(true)
+            showSuccessPopup(values, "draft")
+            setOpenCloseOrDraftDialog(false)
+            return
+        }
+        setOpenCloseOrDraftDialog(true)
+        setOpenCloseOrDraftDialog(false)
+        navigate("/")
+        return
+
+    })
+    const showSuccessPopup = (values, type) => {
+        let randomValue = Math.floor(Math.random() * 100000000000)
+        let content = type === "draft" ? "saved as a draft" : "submitted";
+        setTrackNumberMessage(`Your application is ${content} and your track number is ${randomValue}`);
+        setShowTrackNumberPopup(true);
+
+        localStorage.setItem(randomValue, JSON.stringify({ ...values, requestTrackerNumber: randomValue, status: type === "draft" ? "Draft" : "Pending"}));
+    }
+
+    const handleSubmitting = (values) => {
+        showSuccessPopup(values, "submitted");
+        setOpenDialog(false);
+    }
+    
+
+    window.addEventListener("resize", () => setScreenWidth(window.innerWidth));
+    window.addEventListener('scroll', (x) => {
+        console.log('window.pageYOffset::', window.innerWidth);
+        if (window.pageYOffset < 180) {
+            setStepperPosition('')
+            setStepperBgColor('transparent')
+            setFontColor('#424242')
+
+        } else {
+            setStepperPosition('fixed')
+            setStepperBgColor('#424242')
+            setFontColor('white')
+
+            //on scroll on mobile
+        }
+    }, true);
 
     // putting the buttons upon the footer when scrolling (reaching it)
     window.addEventListener('scroll', function () {
@@ -167,15 +168,15 @@ const WizardForm = () => {
                 initialValues={location.state || initialValues}
                 onSubmit={(values) => {
                     console.log(values);
-                    // setFinalValues(values);
-                    // setFinished(true);
-                    // setOpenDialog(true)
+                    setFinalValues(values);
+                    setFinished(true);
+                    setOpenDialog(true)
                 }}
                 validateOnNext
                 activeStepIndex={0}
                 steps={[
                     {
-                        component: RequiredFiles,
+                        component: CustomerInformationPage,
                         // validationSchema: customerInfoValidators
                     },
                     {
@@ -192,7 +193,7 @@ const WizardForm = () => {
                     },
                     {
                         component: CheckCustomerEligibilityPage,
-                        validationSchema: checkCustomerEligibilityValidators
+                        // validationSchema: checkCustomerEligibilityValidators
                     },
                     {
                         component: RequiredFiles,
@@ -375,21 +376,27 @@ const WizardForm = () => {
                                     </Grid>
                                 </Box>
                                 {openDialog && (
-                                    <ConfirmationDialog
+                                    <SubmittingDialog
                                         closeDialog={() => setOpenDialog(false)}
-                                        handleConfirmation={() => handleConfirmation(values)}
-
+                                        handleConfirmation={() => handleSubmitting(values)}
                                     />
 
                                 )}
                                 {openCloseOrDraftDialog && (
                                     <CommonMessageDialog
                                         closeDialog={() => setOpenCloseOrDraftDialog(false)}
-                                        handleConfirmation={() => handleDialogFunction(dialogType)}
+                                        handleConfirmation={() => handleDialogFunction(dialogType, values)}
                                         dialogContent={dialogContent}
 
                                     />
 
+                                )}
+                                {showTrackNumberPopup && (
+                                    <CommonMessageDialog
+                                        closeDialog={() => setShowTrackNumberPopup(false)}
+                                        handleConfirmation={() => navigate("/")}
+                                        dialogContent={trackNumberMessage}
+                                    />
                                 )}
                             </div>
                             {/* <Box>
