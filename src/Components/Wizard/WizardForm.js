@@ -223,7 +223,13 @@ const WizardForm = () => {
                                                 setDialogType('draft')
                                                 setOpenCloseOrDraftDialog(true)
                                             }}                                          >
-                                            <SaveIcon style={{ fontSize: '30px', margin: '0 16px' }} />
+                                            <SaveIcon sx={{
+                                                fontSize: '30px',
+                                                margin: '0 16px',
+                                                "&:hover": {
+                                                    color: '#f58232'
+                                                }
+                                            }} />
                                         </ButtonBase>}
                                         <ButtonBase
                                             onClick={() => {
@@ -231,7 +237,13 @@ const WizardForm = () => {
                                                 setDialogType('close')
                                                 setOpenCloseOrDraftDialog(true)
                                             }}                                    >
-                                            <Close color='error' style={{ fontSize: '30px', margin: '0 16px' }}
+                                            <Close color='error' sx={{
+                                                fontSize: '30px',
+                                                margin: '0 16px',
+                                                "&:hover": {
+                                                    color: '#f58232'
+                                                }
+                                            }}
                                             />
                                         </ButtonBase>
                                     </div>
@@ -266,7 +278,13 @@ const WizardForm = () => {
                                                     setDialogType('draft')
                                                     setOpenCloseOrDraftDialog(true)
                                                 }}
-                                                sx={{ margin: language === "ar" ? "0 0 0 10px" : "0 10px 0 0" }}
+                                                sx={{
+                                                    margin: language === "ar" ? "0 0 0 10px"
+                                                        : "0 10px 0 0",
+                                                    "&:hover": {
+                                                        color: '#f58232'
+                                                    }
+                                                }}
 
                                             />}
                                             <CloseIcon
@@ -274,6 +292,11 @@ const WizardForm = () => {
                                                     setDialogContent('close_form_msg')
                                                     setDialogType('close')
                                                     setOpenCloseOrDraftDialog(true)
+                                                }}
+                                                sx={{
+                                                    "&:hover": {
+                                                        color: '#f58232'
+                                                    }
                                                 }}
                                             />
                                         </div>
