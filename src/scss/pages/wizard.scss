@@ -111,7 +111,7 @@
   padding: 1rem;
   margin-bottom: 2rem;
   &-close-draft {
-    :hover{
+    :hover {
       color: #f58232;
     }
     display: flex;
@@ -173,7 +173,7 @@
   margin-right: 0 !important;
 }
 .css-ahj2mt-MuiTypography-root {
-  font-size: 1.4rem ;
+  font-size: 1.4rem;
 } // checkbox font size, the last page
 .MuiStep-alternativeLabel svg // stepper
 {
@@ -431,7 +431,6 @@ span.css-htszrh-MuiButton-startIcon {
 .supplier__list {
   display: flex;
   align-items: center;
-  margin-bottom: 1.5rem;
 
   & > div {
     height: 77px;
@@ -443,16 +442,5 @@ span.css-htszrh-MuiButton-startIcon {
   & > svg {
     // height: 77px;
     margin-top: -30px;
-  }
-
-  &.ml {
-    & > *:not(:last-child) {
-      margin-left: 1rem;
-    }
-  }
-  &.mr {
-    & > *:not(:last-child) {
-      margin-right: 1rem;
-    }
   }
 }

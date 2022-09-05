@@ -59,8 +59,8 @@ const WizardForm = () => {
         })
     }
     let evaluationEligibilityValidators = InitialValuesValidators("validators", EvaluationEligibilityInformationSchema).validators;
-    const checkCustomerEligibilityValidators = yup.object({maxLoanAmount: yup.number().required("Please, enter the loan amount")})
-    
+    const checkCustomerEligibilityValidators = yup.object({ maxLoanAmount: yup.string().required("Please, enter the loan amount") })
+
     let additionalEvaluationEligibilityValidators = {
         ...evaluationEligibilityValidators,
         ownerList: yup.array(yup.object({
@@ -82,7 +82,7 @@ const WizardForm = () => {
         ...financialInfoInitialValues,
         ...generalEligibilityInitialValues,
         ...evaluationEligibilityInitialValues,
-        maxLoanAmount:"", // related to CheckCustomerEligibilityPage
+        maxLoanAmount: "", // related to CheckCustomerEligibilityPage
         maxAmount: false, // related to CheckCustomerEligibilityPage
         maxValue: 100000 // related to CheckCustomerEligibilityPage
     };
@@ -216,23 +216,35 @@ const WizardForm = () => {
                                 <h1>
                                     {t("Apply For Very Small Business Loan Request")}
                                 </h1>
-                                <Hidden mdDown>
+                                <Hidden smDown>
                                     <div>
-                                        <ButtonBase
+                                        {currentStepIndex > 0 && <ButtonBase
                                             onClick={() => {
                                                 setDialogContent('save_draft_msg')
                                                 setDialogType('draft')
                                                 setOpenCloseOrDraftDialog(true)
                                             }}                                          >
-                                            <SaveIcon style={{ fontSize: '30px', margin: '0 16px' }} />
-                                        </ButtonBase>
+                                            <SaveIcon sx={{
+                                                fontSize: '30px',
+                                                margin: '0 16px',
+                                                "&:hover": {
+                                                    color: '#f58232'
+                                                }
+                                            }} />
+                                        </ButtonBase>}
                                         <ButtonBase
                                             onClick={() => {
                                                 setDialogContent('close_form_msg')
                                                 setDialogType('close')
                                                 setOpenCloseOrDraftDialog(true)
                                             }}                                    >
-                                            <Close color='error' style={{ fontSize: '30px', margin: '0 16px' }}
+                                            <Close color='error' sx={{
+                                                fontSize: '30px',
+                                                margin: '0 16px',
+                                                "&:hover": {
+                                                    color: '#f58232'
+                                                }
+                                            }}
                                             />
                                         </ButtonBase>
                                     </div>
@@ -261,21 +273,32 @@ const WizardForm = () => {
                                         </Typography>
 
                                         <div className={`wizard__stepper--mobile-close-draft`}>
-                                            <SaveIcon
+                                            {currentStepIndex > 0 && <SaveIcon
                                                 onClick={() => {
                                                     setDialogContent('save_draft_msg')
                                                     setDialogType('draft')
                                                     setOpenCloseOrDraftDialog(true)
                                                 }}
-                                                sx={{ margin: language === "ar" ? "0 0 0 10px" : "0 10px 0 0" }}
+                                                sx={{
+                                                    margin: language === "ar" ? "0 0 0 10px"
+                                                        : "0 10px 0 0",
+                                                    "&:hover": {
+                                                        color: '#f58232'
+                                                    }
+                                                }}
 
-                                            />
+                                            />}
                                             <CloseIcon
                                                 onClick={() => {
                                                     setDialogContent('close_form_msg')
                                                     setDialogType('close')
                                                     setOpenCloseOrDraftDialog(true)
-                                                }} 
+                                                }}
+                                                sx={{
+                                                    "&:hover": {
+                                                        color: '#f58232'
+                                                    }
+                                                }}
                                             />
                                         </div>
 
@@ -337,7 +360,7 @@ const WizardForm = () => {
                                                 width: '200px',
 
                                             }}
-                                            disabled={isNextDisabled}
+                                            // disabled={isNextDisabled}
                                             type="primary"
                                             onClick={handleNext}
 

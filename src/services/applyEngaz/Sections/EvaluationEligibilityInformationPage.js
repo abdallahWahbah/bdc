@@ -15,7 +15,6 @@ const EvaluationEligibilityInformationPage = ({ errors, values, handleChange }) 
                                                     />;
 
     return (
-        <div>
             <Grid
                 container
                 spacing={3}
@@ -24,7 +23,6 @@ const EvaluationEligibilityInformationPage = ({ errors, values, handleChange }) 
             >
                 {evaluationEligibilityInformationContent}
             </Grid>
-        </div>
     )
 }
 
