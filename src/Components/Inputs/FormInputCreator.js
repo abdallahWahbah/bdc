@@ -13,8 +13,7 @@ const FormInputCreator = ({ jsonObject, values, handleChange, errors, getFieldPr
     const language = useSelector(state => state.language.language);
 
 
-    const formContent = jsonObject.map(element => 
-    {
+    const formContent = jsonObject.map(element => {
         if (element.type === "text" && (element?.showWhen?.(values) !== false)) {
 
             return (
@@ -137,93 +136,95 @@ const FormInputCreator = ({ jsonObject, values, handleChange, errors, getFieldPr
         }
         if (element.name === "ownerList") {
             return (
-                <Grid item xs={12} sx={{ paddingLeft: "0 !important" }}>
-                    <FieldArray name={element.name} key={element.name} sx={{ width: "100%" }}>
-                        {({ push, remove }) => (
-                            <div>
-                                {values.ownerList.map((item, index) => (
-                                    <>
-                                        <div className={`supplier__list ${language === "ar" ? "ml" : "mr"}`}>
-                                            <div>
-                                                <TextField
-                                                    className={`${language === "ar" ? "custom-field" : ""}`}
-                                                    fullWidth
-                                                    name={`ownerList[${index}].nationalID`}
-                                                    label={t(`National ID`)}
-                                                    // sx={{height: "60px !important"}}
-                                                    value={values.ownerList[index].nationalID}
-                                                    onChange={handleChange}
-                                                    type="number"
-                                                />
-                                                {errors?.ownerList?.[index]?.nationalID ? <div className='wizard__error'>{t(errors?.ownerList?.[index]?.nationalID)}</div> : null}
-                                            </div>
-                                            <div className={`${language === "ar" ? "custom-label-field" : ""}`}>
-                                                <FormControl fullWidth sx={element.sx ? element.sx : null}>
-                                                    <InputLabel id="demo-simple-select-label">{t("Owner Type")}</InputLabel>
-                                                    <Select
-                                                        className={`${language === "ar" ? "custom-field" : ""}`}
-                                                        labelId="demo-simple-select-label"
-                                                        id="demo-simple-select"
-                                                        // sx={{height: "60px !important"}}
-                                                        name={`ownerList[${index}].ownerType`}
-                                                        label={t("Owner Type")}
-                                                        value={values.ownerList[index].ownerType}
-                                                        onChange={handleChange}
-                                                    >
-                                                        <MenuItem
-                                                            dir={language === "ar" ? "rtl" : "ltr"}
-                                                            value="owner"
-                                                            sx={{ fontSize: "15px" }}
-                                                        >
-                                                            {t("Owner")}
-                                                        </MenuItem>
-                                                        <MenuItem
-                                                            dir={language === "ar" ? "rtl" : "ltr"}
-                                                            value="partener"
-                                                            sx={{ fontSize: "15px" }}
-                                                        >
-                                                            {t("Partener")}
-                                                        </MenuItem>
-                                                        <MenuItem
-                                                            dir={language === "ar" ? "rtl" : "ltr"}
-                                                            value="guarantor"
-                                                            sx={{ fontSize: "15px" }}
-                                                        >
-                                                            {t("Guarantor")}
-                                                        </MenuItem>
-                                                    </Select>
-                                                    {errors?.ownerList?.[index]?.ownerType ? <div className='wizard__error'>{t(errors?.ownerList?.[index]?.ownerType)}</div> : null}
-                                                </FormControl>                                    </div>
-                                            <DeleteIcon
-                                                onClick={() => remove(index)}
-                                                sx={{ fontSize: "30px !important", color: "#F05030", cursor: "pointer" }}
-                                            />
-                                        </div>
-                                    </>
-                                ))}
-                                <Grid item sx={{ width: "100% !important", marginBottom: "15px !important" }}>
-                                    {typeof errors[element.name] === 'string' ? (
-                                        <Typography color="#F05030" sx={{ fontSize: "15px !important" }}>
-                                            {t(errors[element.name])}
-                                        </Typography>
-                                    ) : null}
-                                </Grid>
+                <FieldArray name={element.name} key={element.name} sx={{ width: "100%", display: 'flex', alignItems: 'center' }}>
+                    {({ push, remove }) => (
+                        <Grid container item md={12} sx={{ display: 'flex', alignItems: 'center' }}>
+                            {values.ownerList.map((item, index) => (
+                                <Grid container item md={12} spacing={3} className={`supplier__list ${language === "ar" ? "ml" : "mr"}`}>
 
-                                <Grid
-                                    item
-                                    className='wizard__fieldArray--add-button'
-                                    onClick={() => push({ownerType: "", nationalID: ""})}
-                                >
-                                    <AddIcon
-                                        sx={{ margin: language === "ar" ? "0 0 0 10px" : "0 10px 0 0" }}
-                                    />
-                                    <span> {t("Add Supplier")}</span>
-                                </Grid>
+                                    <Grid item md={6} sx={{ display: 'flex', alignItems: 'center' }}>
+                                        <TextField
+                                            className={`${language === "ar" ? "custom-field" : ""}`}
+                                            fullWidth
+                                            name={`ownerList[${index}].nationalID`}
+                                            label={t(`National ID`)}
+                                            // sx={{height: "60px !important"}}
+                                            value={values.ownerList[index].nationalID}
+                                            onChange={handleChange}
+                                            type="number"
+                                        />
+                                        {errors?.ownerList?.[index]?.nationalID ? <div className='wizard__error'>{t(errors?.ownerList?.[index]?.nationalID)}</div> : null}
+                                    </Grid>
 
-                            </div>
-                        )}
-                    </FieldArray>
-                </Grid>
+                                    <Grid item md={5.5} sx={{ display: 'flex', alignItems: 'center' }} className={`${language === "ar" ? "custom-label-field" : ""}`}>
+                                        <FormControl fullWidth sx={element.sx ? element.sx : null}>
+                                            <InputLabel id="demo-simple-select-label">{t("Owner Type")}</InputLabel>
+                                            <Select
+                                                className={`${language === "ar" ? "custom-field" : ""}`}
+                                                labelId="demo-simple-select-label"
+                                                id="demo-simple-select"
+                                                // sx={{height: "60px !important"}}
+                                                name={`ownerList[${index}].ownerType`}
+                                                label={t("Owner Type")}
+                                                value={values.ownerList[index].ownerType}
+                                                onChange={handleChange}
+                                            >
+                                                <MenuItem
+                                                    dir={language === "ar" ? "rtl" : "ltr"}
+                                                    value="owner"
+                                                    sx={{ fontSize: "15px" }}
+                                                >
+                                                    {t("Owner")}
+                                                </MenuItem>
+                                                <MenuItem
+                                                    dir={language === "ar" ? "rtl" : "ltr"}
+                                                    value="partener"
+                                                    sx={{ fontSize: "15px" }}
+                                                >
+                                                    {t("Partener")}
+                                                </MenuItem>
+                                                <MenuItem
+                                                    dir={language === "ar" ? "rtl" : "ltr"}
+                                                    value="guarantor"
+                                                    sx={{ fontSize: "15px" }}
+                                                >
+                                                    {t("Guarantor")}
+                                                </MenuItem>
+                                            </Select>
+                                            {errors?.ownerList?.[index]?.ownerType ? <div className='wizard__error'>{t(errors?.ownerList?.[index]?.ownerType)}</div> : null}
+                                        </FormControl>
+
+                                    </Grid>
+                                    <Grid item md={0.5} sx={{ display: 'flex', alignItems: 'center' }}>
+                                        <DeleteIcon
+                                            onClick={() => remove(index)}
+                                            sx={{ fontSize: "30px !important", color: "#F05030", cursor: "pointer" }}
+                                        />
+                                    </Grid>
+                                </Grid>
+                            ))}
+                            <Grid item sx={{ width: "100% !important", marginBottom: "15px !important" }}>
+                                {typeof errors[element.name] === 'string' ? (
+                                    <Typography color="#F05030" sx={{ fontSize: "15px !important" }}>
+                                        {t(errors[element.name])}
+                                    </Typography>
+                                ) : null}
+                            </Grid>
+
+                            <Grid
+                                item
+                                className='wizard__fieldArray--add-button'
+                                onClick={() => push({ ownerType: "", nationalID: "" })}
+                            >
+                                <AddIcon
+                                    sx={{ margin: language === "ar" ? "0 0 0 10px" : "0 10px 0 0" }}
+                                />
+                                <span> {t("Add Supplier")}</span>
+                            </Grid>
+
+                        </Grid>
+                    )}
+                </FieldArray>
             )
         }
         if (element.name === "supplierList") {
@@ -235,11 +236,9 @@ const FormInputCreator = ({ jsonObject, values, handleChange, errors, getFieldPr
                                 {values.supplierList.map((item, index) => (
                                     <Box sx={
                                         {
-                                            padding: '8px',
                                             borderRadius: '3px',
-                                            margin: '24px 0',
                                             '@media (max-width: 600px)': {
-                                                padding:'24px',
+                                                padding: '24px',
                                                 boxShadow: '1px 2px 1px 2px rgba(136, 136, 136, 0.5)',
                                             },
                                         }}>

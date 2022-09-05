@@ -122,7 +122,7 @@ export default function ClientValidty({values, errors, handleChange, setFieldVal
                                 onChange={handleChange}
                             />
                             {errors.maxLoanAmount && (
-                                <Snackbar open={errors.maxLoanAmount} autoHideDuration={6000}>
+                                <Snackbar open={errors.maxLoanAmount} autoHideDuration={100}>
                                     <Alert severity="warning" sx={{ width: '100%', fontSize: "14px" }}>
                                         {t(errors.maxLoanAmount)}
                                     </Alert>
@@ -177,6 +177,8 @@ export default function ClientValidty({values, errors, handleChange, setFieldVal
                         alignContent: 'center',
                         alignItems: 'center',
                         flexDirection: 'column',
+                        paddingTop:'8px !important',
+                        paddingRight: '0px !important',
                         '@media (max-width: 600px)': {
                             padding: '8px !important',
                         },
@@ -191,11 +193,10 @@ export default function ClientValidty({values, errors, handleChange, setFieldVal
                     />
                     <Box container
                         sx={{
-                            margin: '24px 0px',
                             display: 'flex',
                             justifyContent: 'space-between',
                             width: '450px',
-                            padding: '24px',
+                            padding: '8px 0',
                             '@media (max-width: 600px)': {
                                 width: '100%',
                                 padding: '8px 0',
