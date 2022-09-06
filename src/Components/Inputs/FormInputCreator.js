@@ -23,6 +23,7 @@ const FormInputCreator = ({ jsonObject, values, handleChange, errors, getFieldPr
                         fullWidth
                         name={element.name}
                         type={"text"}
+                        required={!!element.validator || !!element.validatorFunc}
                         label={t(element.label)}
                         error={!!errors[element.name]}
                         helperText={t(errors[element.name])}
@@ -41,6 +42,7 @@ const FormInputCreator = ({ jsonObject, values, handleChange, errors, getFieldPr
                         fullWidth
                         name={element.name}
                         type={"number"}
+                        required={!!element.validator}
                         label={t(element.label)}
                         error={!!errors[element.name]}
                         helperText={t(errors[element.name])}
@@ -54,7 +56,7 @@ const FormInputCreator = ({ jsonObject, values, handleChange, errors, getFieldPr
             return (
                 <Grid item xs={12} lg={6} key={element.name} className={`${language === "ar" ? "custom-label-field" : ""}`}>
                     <FormControl fullWidth sx={element.sx ? element.sx : null}>
-                        <InputLabel id={element.id}>{t(element.label)}</InputLabel>
+                        <InputLabel id={element.id} required={!!element.validator}>{t(element.label)}</InputLabel>
                         <Select
                             className={`${language === "ar" ? "custom-field" : ""}`}
                             labelId={element.id}

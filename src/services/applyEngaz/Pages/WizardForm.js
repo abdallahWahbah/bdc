@@ -188,7 +188,7 @@ const WizardForm = () => {
                     },
                     {
                         component: GeneralEligibilityinformationPage,
-                        // validationSchema: generalEligibilityValidators
+                        validationSchema: generalEligibilityValidators
                     },
                     {
                         component: EvaluationEligibilityInformationPage,

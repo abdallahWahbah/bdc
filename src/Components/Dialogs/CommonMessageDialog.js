@@ -16,14 +16,15 @@ export default function CommonMessageDialog({ closeDialog, handleConfirmation, d
         <React.Fragment>
             <Dialog
                 open={true}
-                onClose={popupActions === "close" || popupActions === "draft" ? closeDialog : null}
+                onClose={popupActions === "close" || popupActions === "draft" ? closeDialog : () => navigate("/")}
             >
                 <DialogContent sx={{ direction: language === "ar" ? "rtl" : "ltr" }}>
                     <p className='dialog__paragraph'>
                         {t(dialogContent)}
                     </p>
                 </DialogContent>
-                <DialogActions className={`dialog__actions ${language === "ar" ? "direction__left" : ""}`}>
+                <DialogActions className={`dialog__actions ${language === "ar" ? "direction__left" : ""} 
+                                ${(popupActions=== "close" || popupActions === "draft") ? "" : "justifyCenter"}`}>
                     {popupActions === "close" || popupActions === "draft" ? (
                         <>
                             <Button
@@ -48,7 +49,12 @@ export default function CommonMessageDialog({ closeDialog, handleConfirmation, d
                             variant="contained"
                             type="primary"
                             onClick={()=>navigate("/")}
-                            sx={{width: "50%"}}
+                            sx={{
+                                minWidth: "40%",
+                                '@media (max-width: 600px)': {
+                                    minWidth: "50%",
+                                },
+                            }}
                         >
                             {t("goToMainPage")}
                         </Button>
