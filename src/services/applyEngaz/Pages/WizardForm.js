@@ -192,7 +192,7 @@ const WizardForm = () => {
                     },
                     {
                         component: EvaluationEligibilityInformationPage,
-                        validationSchema: evaluationEligibilityValidators
+                        // validationSchema: evaluationEligibilityValidators
                     },
                     {
                         component: CheckCustomerEligibilityPage,

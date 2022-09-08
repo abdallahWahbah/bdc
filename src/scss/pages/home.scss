@@ -115,10 +115,31 @@ th
 {
   font-size: 15px !important;
   font-weight: 600 !important;
+
+  @include respond(tab-port)
+  {
+    font-size: 13px !important;
+  }
 }
 td
 {
   font-size: 14px !important;
+
+  @include respond(tab-port)
+  {
+    font-size: 13px !important;
+  }
+}
+.table__no--data
+{
+  position: relative;
+  & > td
+  {
+    position: absolute;
+    left: 50%;
+    transform: translateX(-50%);
+    font-weight: 600;
+  }
 }
 input::-webkit-outer-spin-button,
 input::-webkit-inner-spin-button {

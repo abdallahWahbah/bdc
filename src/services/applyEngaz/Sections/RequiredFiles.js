@@ -37,6 +37,7 @@ export default function RequiredFiles() {
 
 
                 }}>
+                    {/* files names: file1, file2, file3 */}
                     <FilesCard
                         testFile={testFile}
                     />
@@ -71,6 +72,7 @@ export default function RequiredFiles() {
                 dir={language === "ar" ? "rtl" : "ltr"}
                 style={{ display: 'flex', alignItems: 'center', fontSize: '14px', marginTop: '24px' }}>
                 <Checkbox size='large' />
+                {/* Add name here: conditions */}
                 {t("T&C")}
             </div>
         </div >

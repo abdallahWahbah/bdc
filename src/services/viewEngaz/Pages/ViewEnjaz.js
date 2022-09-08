@@ -20,6 +20,7 @@ const ViewEnjaz = ({closeEnjaz}) =>
     const { t } = useTranslation();
     const language = useSelector(state => state.language.language);
     const [tableData, setTableData] = useState([]);
+    const [showTable, setShowTable] = useState(false);
 
     
     const {initialValues} = InitialValuesValidators("initialValues", viewEnjazJson)
@@ -27,7 +28,8 @@ const ViewEnjaz = ({closeEnjaz}) =>
 
     const onSubmit = (values)=>
     {
-        console.log(values)
+        setShowTable(true);
+        // console.log(values)
         let results = [], temp = [];
         let allKeys = Object.keys(localStorage);
         allKeys.forEach(key => key !== "i18nextLng" && results.push(JSON.parse(localStorage.getItem(key))));
@@ -52,7 +54,7 @@ const ViewEnjaz = ({closeEnjaz}) =>
         }
         
         temp = [...new Map(temp.map((item, key) => [item[key], item])).values()]
-        console.log(temp);
+        // console.log(temp);
 
         setTableData(temp);
     }
@@ -88,7 +90,7 @@ const ViewEnjaz = ({closeEnjaz}) =>
                         {formContent}
                     </Grid>
                 </form>
-                {tableData.length !== 0 && (
+                {showTable && (
                     <div className="fullDialog__header--table">
                         <EnjazTable  tableData={tableData}/>
                     </div>

@@ -195,5 +195,8 @@
     "max loan amount must be less than or equal to 100000":"قيمة القرض يجب ألا تزيد عن 100000",
     "Your application is saved as a draft and your track number is": "تم حفظ طلبك كمسودة برقم تتبعي",
     "Your application is submitted and your track number is": "تم تسجيل طلبك بنجاح برقم تتبعي",
-    "goToMainPage":"الصفحة الرئيسية"
+    "goToMainPage":"الصفحة الرئيسية",
+    "No Data":"لا يوجد بيانات",
+    "Company Details":"تفاصيل الشركة",
+    "Company Information":"معلومات الشركة"
 }

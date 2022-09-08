@@ -192,5 +192,8 @@
     "max loan amount must be less than or equal to 100000":"max loan amount must be less than or equal to 100000",
     "Your application is saved as a draft and your track number is": "Your application is saved as a draft and your track number is",
     "Your application is submitted and your track number is": "Your application is submitted and your track number is",
-    "goToMainPage": "main page"
+    "goToMainPage": "main page",
+    "No Data":"No Data",
+    "Company Details":"Company Details",
+    "Company Information":"Company Information"
 }

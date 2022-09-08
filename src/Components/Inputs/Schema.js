@@ -29,13 +29,13 @@ export const CustomerInformationSchema =
     },
     {
         name: "loanAmount",
-        type: "text",
+        type: "number",
         label: "Requested Loan amount in EGP",
         initialValue: "",
     },
     {
         name: "customerID",
-        type: "text",
+        type: "number",
         label: "Customer ID (CIF)",
         initialValue: "",
     },
@@ -897,6 +897,8 @@ export const EvaluationEligibilityInformationSchema =
     },
     {
         name: "ownerList",
+        label: "Owner List",
+        type: "fieldArray",
         initialValue: [{ownerType: "", nationalID: ""}]
     },
     {
@@ -905,6 +907,8 @@ export const EvaluationEligibilityInformationSchema =
     },
     {
         name: "supplierList",
+        label: "Supplier List",
+        type: "fieldArray",
         initialValue: [{name: "", crn: "", amount: "", soldItems: ""}, {name: "", crn: "", amount: "", soldItems: ""}, {name: "", crn: "", amount: "", soldItems: ""}]
     },
 ]

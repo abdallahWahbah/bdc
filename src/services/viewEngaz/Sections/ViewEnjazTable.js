@@ -29,26 +29,36 @@ const ViewEnjazTable = ({tableData}) =>
                         <TableCell sx={{textAlign: "center"}}></TableCell>
                     </TableRow>
                 </TableHead>
-                <TableBody>
-                    {tableData.map(row =>(
-                        <TableRow 
-                            key={row.name}
-                        >
-                            <TableCell sx={{textAlign: "center"}}>{row.requestTrackerNumber || "-----"}</TableCell>
-                            <TableCell sx={{textAlign: "center"}}>{row.companyName || "-----"}</TableCell>
-                            <TableCell sx={{textAlign: "center"}}>{row.commercialRegistrationNumber || "-----"}</TableCell>
-                            <TableCell sx={{textAlign: "center"}}>{row.customerID || "-----"}</TableCell>
-                            <TableCell sx={{textAlign: "center"}}>{row.contactMobileNumber || "-----"}</TableCell>
-                            <TableCell sx={{textAlign: "center"}}>{t(row.status) || "-----"}</TableCell>
-                            <TableCell sx={{textAlign: "center"}}>
-                                {row.status === "Draft" ? 
-                                    <span className='table__button' onClick={() => goToForm(row)}>{t("Continue filling")}</span>
-                                : 
-                                    <span className='table__button'>{t("View")}</span>
-                                }
-                            </TableCell>
-                        </TableRow>
-                    ))}
+                <TableBody sx={{height: tableData.length === 0 ? "55px !important" : "auto"}}>
+                    {tableData.length !== 0 ? (
+                        <>
+                            {tableData.map(row =>(
+                                <TableRow 
+                                    key={row.name}
+                                >
+                                    <TableCell sx={{textAlign: "center"}}>{row.requestTrackerNumber || "-----"}</TableCell>
+                                    <TableCell sx={{textAlign: "center"}}>{row.companyName || "-----"}</TableCell>
+                                    <TableCell sx={{textAlign: "center"}}>{row.commercialRegistrationNumber || "-----"}</TableCell>
+                                    <TableCell sx={{textAlign: "center"}}>{row.customerID || "-----"}</TableCell>
+                                    <TableCell sx={{textAlign: "center"}}>{row.contactMobileNumber || "-----"}</TableCell>
+                                    <TableCell sx={{textAlign: "center"}}>{t(row.status) || "-----"}</TableCell>
+                                    <TableCell sx={{textAlign: "center"}}>
+                                        {row.status === "Draft" ? 
+                                            <span className='table__button' onClick={() => goToForm(row)}>{t("Continue filling")}</span>
+                                        : 
+                                            <span className='table__button' onClick={() => navigate("/data", {state: row})}>{t("View")}</span>
+                                        }
+                                    </TableCell>
+                                </TableRow>
+                            ))}
+                        </>
+                    ) : (
+                        <>
+                            <TableRow className='table__no--data'>
+                                <TableCell>{t("No Data")}</TableCell>
+                            </TableRow>
+                        </>
+                    )}
                 </TableBody>
             </Table>
         </TableContainer>

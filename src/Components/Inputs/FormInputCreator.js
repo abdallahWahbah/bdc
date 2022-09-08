@@ -111,7 +111,7 @@ const FormInputCreator = ({ jsonObject, values, handleChange, errors, getFieldPr
         }
         if (element.name === "buttonWide") {
             return (
-                <Grid item xs={12} md={6} key={element.name}>
+                <Grid item xs={12} lg={6} key={element.name}>
                     <Button
                         key={element.name}
                         className="wizard__button--next"
@@ -296,6 +296,7 @@ const FormInputCreator = ({ jsonObject, values, handleChange, errors, getFieldPr
                                                     helperText={t(errors?.supplierList?.[index]?.name)}
                                                     value={values.supplierList[index].name}
                                                     onChange={handleChange}
+                                                    type="text"
                                                 />
                                             </Grid>
                                             <Grid item lg={2.9} md={6} sm={6} xs={6}>
