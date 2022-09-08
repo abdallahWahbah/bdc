@@ -131,7 +131,7 @@ export default function ClientValidty({values, errors, handleChange, setFieldVal
                                     autoHideDuration={6000}
                                     sx={language === "ar" ? {right: "24px !important", left: "auto !important"} : {}}
                                 >
-                                    <Alert severity="warning" sx={{ width: '100%', fontSize: "14px" }}>
+                                    <Alert severity="error" sx={{ width: '100%', fontSize: "14px" }}>
                                         {t(errors.maxLoanAmount)}
                                     </Alert>
                                 </Snackbar>

@@ -1,6 +1,6 @@
 import React from 'react'
 
-import { FormControl, MenuItem, Select, InputLabel, TextField, Grid, Box, Button, FormGroup, FormControlLabel, Checkbox, Typography, FormHelperText, Hidden } from '@mui/material';
+import { FormControl, MenuItem, Select, InputLabel, TextField, Grid, Box, Button, FormGroup, FormControlLabel, Checkbox, Typography, FormHelperText, Hidden, Snackbar, Alert } from '@mui/material';
 import { useTranslation } from 'react-i18next';
 import { useSelector } from 'react-redux';
 import { FieldArray } from 'formik';
@@ -63,7 +63,7 @@ const FormInputCreator = ({ jsonObject, values, handleChange, errors, getFieldPr
                             id={element.selectId}
                             name={element.name}
                             error={!!errors[element.name]}
-                            helperText={'t(errors[element.name])'}
+                            // helperText={'t(errors[element.name])'}
                             label={t(element.label)}
                             value={values[element.name]}
                             onChange={handleChange}
@@ -138,27 +138,15 @@ const FormInputCreator = ({ jsonObject, values, handleChange, errors, getFieldPr
         }
         if (element.name === "ownerList") {
             return (
-                <FieldArray name={element.name} key={element.name} sx={{ width: "100%", display: 'flex', alignItems: 'center' }}>
+                <FieldArray name={element.name} key={element.name} sx={{ width: "100%", display: 'flex', alignItems: 'center'}}>
                     {({ push, remove }) => (
-                        <Grid container item md={12} sx={{ display: 'flex', alignItems: 'center' }}>
+                        <Grid container item md={12} sx={{ display: 'flex', alignItems: 'center', paddingLeft: "0 !important" }}>
                             {values.ownerList.map((item, index) => (
                                 <Grid container item md={12} spacing={3} className={`supplier__list ${language === "ar" ? "ml" : "mr"}`}>
 
-                                    <Grid item md={6} sx={{ display: 'flex', alignItems: 'center' }}>
-                                        <TextField
-                                            className={`${language === "ar" ? "custom-field" : ""}`}
-                                            fullWidth
-                                            name={`ownerList[${index}].nationalID`}
-                                            label={t(`National ID`)}
-                                            // sx={{height: "60px !important"}}
-                                            value={values.ownerList[index].nationalID}
-                                            onChange={handleChange}
-                                            type="number"
-                                        />
-                                        {errors?.ownerList?.[index]?.nationalID ? <div className='wizard__error'>{t(errors?.ownerList?.[index]?.nationalID)}</div> : null}
-                                    </Grid>
+                                    
 
-                                    <Grid item md={5.5} sx={{ display: 'flex', alignItems: 'center' }} className={`${language === "ar" ? "custom-label-field" : ""}`}>
+                                    <Grid item md={6} className={`${language === "ar" ? "custom-label-field" : ""}`}>
                                         <FormControl fullWidth sx={element.sx ? element.sx : null}>
                                             <InputLabel id="demo-simple-select-label">{t("Owner Type")}</InputLabel>
                                             <Select
@@ -170,6 +158,8 @@ const FormInputCreator = ({ jsonObject, values, handleChange, errors, getFieldPr
                                                 label={t("Owner Type")}
                                                 value={values.ownerList[index].ownerType}
                                                 onChange={handleChange}
+                                                error={!!errors?.ownerList?.[index]?.ownerType}
+                                                // helperText={t(errors?.ownerList?.[index]?.ownerType)}
                                             >
                                                 <MenuItem
                                                     dir={language === "ar" ? "rtl" : "ltr"}
@@ -193,30 +183,68 @@ const FormInputCreator = ({ jsonObject, values, handleChange, errors, getFieldPr
                                                     {t("Guarantor")}
                                                 </MenuItem>
                                             </Select>
-                                            {errors?.ownerList?.[index]?.ownerType ? <div className='wizard__error'>{t(errors?.ownerList?.[index]?.ownerType)}</div> : null}
+                                            <FormHelperText sx={{ color: '#d32f2f', fontSize: '12px' }}>{t(errors?.ownerList?.[index]?.ownerType)}</FormHelperText>
                                         </FormControl>
+                                        {/* {errors?.ownerList?.[index]?.ownerType ? <div className='wizard__error'>{t(errors?.ownerList?.[index]?.ownerType)}</div> : null} */}
+                                    </Grid>
+                                    <Grid item md={5.5} sx={{paddingLeft: language === "en" ? "0 !important" : "auto"}}>
+                                        <TextField
+                                            className={`${language === "ar" ? "custom-field" : ""}`}
+                                            fullWidth
+                                            name={`ownerList[${index}].nationalID`}
+                                            label={t(`National ID`)}
+                                            value={values.ownerList[index].nationalID}
+                                            onChange={handleChange}
+                                            type="number"
+                                            error={!!errors?.ownerList?.[index]?.nationalID}
+                                            helperText={t(errors?.ownerList?.[index]?.nationalID)}
+                                        />
+                                        {/* {errors?.ownerList?.[index]?.nationalID ? <div className='wizard__error'>{t(errors?.ownerList?.[index]?.nationalID)}</div> : null} */}
 
                                     </Grid>
-                                    <Grid item md={0.5} sx={{ display: 'flex', alignItems: 'center' }}>
+                                    <Grid item md={0.5} 
+                                        sx={{ 
+                                            display: 'flex', 
+                                            alignItems: 'center',
+                                            justifyContent: "flex-end",
+                                            paddingLeft: language === "ar" ? "0 !important" : "auto"
+                                            }}>
                                         <DeleteIcon
                                             onClick={() => remove(index)}
-                                            sx={{ fontSize: "30px !important", color: "#F05030", cursor: "pointer" }}
+                                            sx={{ 
+                                                fontSize: "30px !important", 
+                                                color: "#F05030", 
+                                                cursor: "pointer", 
+                                                // display: values.ownerList.length <= 1 ? "none" :"" 
+                                            }}
                                         />
                                     </Grid>
+
                                 </Grid>
                             ))}
-                            <Grid item sx={{ width: "100% !important", marginBottom: "15px !important" }}>
-                                {typeof errors[element.name] === 'string' ? (
-                                    <Typography color="#F05030" sx={{ fontSize: "15px !important" }}>
-                                        {t(errors[element.name])}
-                                    </Typography>
-                                ) : null}
-                            </Grid>
-
+                            {typeof errors[element.name] === 'string' ? (
+                                <>
+                                    {/* <Grid item sx={{ width: "100% !important", marginBottom: "15px !important" }}>
+                                            <Typography color="#F05030" sx={{ fontSize: "15px !important" }}>
+                                                {t(errors[element.name])}
+                                            </Typography>
+                                    </Grid> */}
+                                    <Snackbar 
+                                        open={errors?.[element?.name]} 
+                                        autoHideDuration={6000}
+                                        sx={language === "ar" ? {right: "24px !important", left: "auto !important"} : {}}
+                                    >
+                                        <Alert severity="error" sx={{ width: '100%', fontSize: "14px" }}>
+                                            {t(errors?.[element.name])}
+                                        </Alert>
+                                    </Snackbar>
+                                </>
+                            ) : null}
                             <Grid
                                 item
                                 className='wizard__fieldArray--add-button'
                                 onClick={() => push({ ownerType: "", nationalID: "" })}
+                                sx={{ marginTop: "20px"}}
                             >
                                 <AddIcon
                                     sx={{ margin: language === "ar" ? "0 0 0 10px" : "0 10px 0 0" }}
@@ -249,7 +277,7 @@ const FormInputCreator = ({ jsonObject, values, handleChange, errors, getFieldPr
                                                 display: 'flex',
                                                 alignItems: 'center',
                                             }}>
-                                            <Hidden mdUp>
+                                            <Hidden lgUp>
                                                 <Grid item sm={12} xs={12} sx={{ textAlign: 'end' }}>
 
                                                     <Close
@@ -258,7 +286,7 @@ const FormInputCreator = ({ jsonObject, values, handleChange, errors, getFieldPr
                                                     />
                                                 </Grid>
                                             </Hidden>
-                                            <Grid item md={2.9} sm={6} xs={6}>
+                                            <Grid item lg={2.9} md={6} sm={6} xs={6}>
                                                 <TextField
                                                     className={`${language === "ar" ? "custom-field" : ""}`}
                                                     fullWidth
@@ -270,7 +298,7 @@ const FormInputCreator = ({ jsonObject, values, handleChange, errors, getFieldPr
                                                     onChange={handleChange}
                                                 />
                                             </Grid>
-                                            <Grid item md={2.9} sm={6} xs={6}>
+                                            <Grid item lg={2.9} md={6} sm={6} xs={6}>
                                                 <TextField
                                                     className={`${language === "ar" ? "custom-field" : ""}`}
                                                     fullWidth
@@ -283,7 +311,7 @@ const FormInputCreator = ({ jsonObject, values, handleChange, errors, getFieldPr
                                                     type="number"
                                                 />
                                             </Grid>
-                                            <Grid item md={2.9} sm={6} xs={6}>
+                                            <Grid item lg={2.9} md={6} sm={6} xs={6}>
                                                 <TextField
                                                     className={`${language === "ar" ? "custom-field" : ""}`}
                                                     fullWidth
@@ -296,7 +324,7 @@ const FormInputCreator = ({ jsonObject, values, handleChange, errors, getFieldPr
                                                     type="number"
                                                 />
                                             </Grid>
-                                            <Grid item md={2.9} sm={6} xs={6}>
+                                            <Grid item lg={2.9} md={6} sm={6} xs={6}>
                                                 <TextField
                                                     className={`${language === "ar" ? "custom-field" : ""}`}
                                                     fullWidth
@@ -308,7 +336,7 @@ const FormInputCreator = ({ jsonObject, values, handleChange, errors, getFieldPr
                                                     onChange={handleChange}
                                                 />
                                             </Grid>
-                                            <Hidden mdDown>
+                                            <Hidden lgDown>
                                                 <Grid item md={0.4} sm={6} xs={6}>
 
                                                     <DeleteIcon

@@ -188,15 +188,15 @@ const WizardForm = () => {
                     },
                     {
                         component: GeneralEligibilityinformationPage,
-                        validationSchema: generalEligibilityValidators
+                        // validationSchema: generalEligibilityValidators
                     },
                     {
                         component: EvaluationEligibilityInformationPage,
-                        // validationSchema: evaluationEligibilityValidators
+                        validationSchema: evaluationEligibilityValidators
                     },
                     {
                         component: CheckCustomerEligibilityPage,
-                        // validationSchema: checkCustomerEligibilityValidators
+                        validationSchema: checkCustomerEligibilityValidators
                     },
                     {
                         component: RequiredFiles,
@@ -220,7 +220,7 @@ const WizardForm = () => {
                                     {t("Apply For Very Small Business Loan Request")}
                                 </h1>
                                 <Hidden smDown>
-                                    <div>
+                                    <div  style={{display: "flex"}}>
                                         {currentStepIndex > 0 && <ButtonBase
                                             onClick={() => {
                                                 setPopupActions("draft")
@@ -266,7 +266,7 @@ const WizardForm = () => {
                                             color: fontColor,
                                             top: '90px',
                                             left: 0,
-                                            right: 0
+                                            right: 0,
                                         }}
                                     >
                                         <Typography
@@ -286,8 +286,7 @@ const WizardForm = () => {
                                                     setOpenCloseOrDraftDialog(true)
                                                 }}
                                                 sx={{
-                                                    margin: language === "ar" ? "0 0 0 10px"
-                                                        : "0 10px 0 0",
+                                                    margin: language === "ar" ? "0 0 0 10px": "0 10px 0 0",
                                                     "&:hover": {
                                                         color: '#f58232'
                                                     }
