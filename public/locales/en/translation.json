@@ -195,5 +195,19 @@
     "goToMainPage": "main page",
     "No Data":"No Data",
     "Company Details":"Company Details",
-    "Company Information":"Company Information"
+    "Company Information":"Company Information",
+    "Can't choose trnasportation, please choose other":"Can't choose Transportation, please choose other",
+    "Can't choose constructions, please choose other":"Can't choose Constructions, please choose other",
+    "Can't choose agriculture, please choose other":"Can't choose Agriculture, please choose other",
+    "Can't choose tourism, please choose other":"Can't choose Tourism, please choose other",
+    "Can't choose steelFactory, please choose other":"Can't choose Steel Factory, please choose other",
+    "Can't choose sugarFactory, please choose other":"Can't choose Sugar Factory, please choose other",
+    "Can't choose weaponsTrade, please choose other":"Can't choose Weapons Trade, please choose other",
+    "Can't choose goldTrade, please choose other":"Can't choose Gold Trade, please choose other",
+    "Can't choose pharmacies, please choose other":"Can't choose Pharmacies, please choose other",
+    "Can't choose software, please choose other":"Can't choose Software, please choose other",
+    "Can't choose nonBanking, please choose other":"Can't choose Non Banking, please choose other",
+    "Can't choose cementOrCeramic, please choose other":"Can't choose Cement Or Ceramic, please choose other",
+    "Can't choose textile, please choose other":"Can't choose Textile, please choose other",
+    "Can't choose fertilisers, please choose other":"Can't choose Fertilisers, please choose other"
 }

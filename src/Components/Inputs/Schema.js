@@ -548,7 +548,7 @@ export const GeneralEligibilityinformationSchema =
         label: "Company Activity",
         selectId: "demo-simple-select",
         initialValue: "",
-        validator: yup.string().required("Company Activity is required"),
+        validatorFunc: (values) => validateCompanyActivity(values),
         options: 
         [
             {
@@ -651,6 +651,19 @@ export const GeneralEligibilityinformationSchema =
         ]
     },
 ]
+
+const validateCompanyActivity = (values) =>
+{
+    if(values.companyActivity === undefined) return yup.string().required("Company Activity is required")
+    
+    if(values.companyActivity !== "other")
+    {
+        console.log(values.companyActivity)
+        const validator = yup.string().required("Can't choose " + values.companyActivity + ", please choose other")
+        values.companyActivity = ""
+        return validator;
+    }
+}
 
 
 

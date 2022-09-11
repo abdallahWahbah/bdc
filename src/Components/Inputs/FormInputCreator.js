@@ -63,7 +63,6 @@ const FormInputCreator = ({ jsonObject, values, handleChange, errors, getFieldPr
                             id={element.selectId}
                             name={element.name}
                             error={!!errors[element.name]}
-                            // helperText={'t(errors[element.name])'}
                             label={t(element.label)}
                             value={values[element.name]}
                             onChange={handleChange}
@@ -148,18 +147,16 @@ const FormInputCreator = ({ jsonObject, values, handleChange, errors, getFieldPr
 
                                     <Grid item md={6} className={`${language === "ar" ? "custom-label-field" : ""}`}>
                                         <FormControl fullWidth sx={element.sx ? element.sx : null}>
-                                            <InputLabel id="demo-simple-select-label">{t("Owner Type")}</InputLabel>
+                                            <InputLabel required id="demo-simple-select-label">{t("Owner Type")}</InputLabel>
                                             <Select
                                                 className={`${language === "ar" ? "custom-field" : ""}`}
                                                 labelId="demo-simple-select-label"
                                                 id="demo-simple-select"
-                                                // sx={{height: "60px !important"}}
                                                 name={`ownerList[${index}].ownerType`}
                                                 label={t("Owner Type")}
                                                 value={values.ownerList[index].ownerType}
                                                 onChange={handleChange}
                                                 error={!!errors?.ownerList?.[index]?.ownerType}
-                                                // helperText={t(errors?.ownerList?.[index]?.ownerType)}
                                             >
                                                 <MenuItem
                                                     dir={language === "ar" ? "rtl" : "ltr"}
@@ -191,6 +188,7 @@ const FormInputCreator = ({ jsonObject, values, handleChange, errors, getFieldPr
                                         <TextField
                                             className={`${language === "ar" ? "custom-field" : ""}`}
                                             fullWidth
+                                            required
                                             name={`ownerList[${index}].nationalID`}
                                             label={t(`National ID`)}
                                             value={values.ownerList[index].nationalID}
@@ -215,7 +213,6 @@ const FormInputCreator = ({ jsonObject, values, handleChange, errors, getFieldPr
                                                 fontSize: "30px !important", 
                                                 color: "#F05030", 
                                                 cursor: "pointer", 
-                                                // display: values.ownerList.length <= 1 ? "none" :"" 
                                             }}
                                         />
                                     </Grid>
@@ -224,11 +221,6 @@ const FormInputCreator = ({ jsonObject, values, handleChange, errors, getFieldPr
                             ))}
                             {typeof errors[element.name] === 'string' ? (
                                 <>
-                                    {/* <Grid item sx={{ width: "100% !important", marginBottom: "15px !important" }}>
-                                            <Typography color="#F05030" sx={{ fontSize: "15px !important" }}>
-                                                {t(errors[element.name])}
-                                            </Typography>
-                                    </Grid> */}
                                     <Snackbar 
                                         open={errors?.[element?.name]} 
                                         autoHideDuration={6000}
@@ -290,6 +282,7 @@ const FormInputCreator = ({ jsonObject, values, handleChange, errors, getFieldPr
                                                 <TextField
                                                     className={`${language === "ar" ? "custom-field" : ""}`}
                                                     fullWidth
+                                                    required
                                                     name={`supplierList[${index}].name`}
                                                     label={t(`Supplier Name`)}
                                                     error={errors?.supplierList?.[index]?.name}
@@ -303,6 +296,7 @@ const FormInputCreator = ({ jsonObject, values, handleChange, errors, getFieldPr
                                                 <TextField
                                                     className={`${language === "ar" ? "custom-field" : ""}`}
                                                     fullWidth
+                                                    required
                                                     name={`supplierList[${index}].crn`}
                                                     label={t(`CRN`)}
                                                     error={!!errors?.supplierList?.[index]?.crn}
@@ -316,6 +310,7 @@ const FormInputCreator = ({ jsonObject, values, handleChange, errors, getFieldPr
                                                 <TextField
                                                     className={`${language === "ar" ? "custom-field" : ""}`}
                                                     fullWidth
+                                                    required
                                                     name={`supplierList[${index}].amount`}
                                                     label={t(`Amount`)}
                                                     error={!!errors?.supplierList?.[index]?.amount}
@@ -329,6 +324,7 @@ const FormInputCreator = ({ jsonObject, values, handleChange, errors, getFieldPr
                                                 <TextField
                                                     className={`${language === "ar" ? "custom-field" : ""}`}
                                                     fullWidth
+                                                    required
                                                     name={`supplierList[${index}].soldItems`}
                                                     label={t(`Sold Items`)}
                                                     error={errors?.supplierList?.[index]?.soldItems}
