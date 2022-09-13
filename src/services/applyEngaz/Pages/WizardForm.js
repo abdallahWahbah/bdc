@@ -178,7 +178,7 @@ const WizardForm = () => {
                 }}
                 validateOnNext={true}
                 validateOnBlur={true}
-                validateOnChange={false}
+                validateOnChange={true}
                 validateOnMount={false}
                 activeStepIndex={0}
                 steps={[

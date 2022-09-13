@@ -22,7 +22,6 @@ const CustomerInformationPage = (props) => {
 
     return (
         <div>
-            <>{JSON.stringify(values?.nextClicked)} </>
             <Grid
                 container
                 spacing={3}
