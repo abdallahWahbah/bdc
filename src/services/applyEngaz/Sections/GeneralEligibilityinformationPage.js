@@ -4,15 +4,19 @@ import { GeneralEligibilityinformationSchema } from '../../../Components/Inputs/
 import { useSelector } from 'react-redux';
 import Grid from "@mui/material/Grid";
 
-const GeneralEligibilityinformationPage = ({ errors, values, handleChange }) => {
+const GeneralEligibilityinformationPage = ({ errors, values, handleChange, setTouched, touched, isNextDisabled }) => {
     const language = useSelector(state => state.language.language);
 
     const generaleligibilityinformationContent = <FormInputCreator
-                                                    jsonObject={GeneralEligibilityinformationSchema}
-                                                    errors={errors}
-                                                    values={values}
-                                                    handleChange={handleChange} 
-                                                />;
+        jsonObject={GeneralEligibilityinformationSchema}
+        errors={errors}
+        values={values}
+        handleChange={handleChange}
+        touched={touched}
+        setTouched={setTouched}
+        isNextDisabled={isNextDisabled}
+
+    />;
 
     return (
         <div>

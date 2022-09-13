@@ -1,30 +1,27 @@
-import React, { useState } from 'react'
-import {
-    CustomerInformationSchema,
-    FinancialEligibilityInformationSchema,
-    GeneralEligibilityinformationSchema,
-    EvaluationEligibilityInformationSchema,
-} from '../../../Components/Inputs/Schema';
-import InitialValuesValidators from '../../../Components/Inputs/InitialValuesValidators';
-import * as yup from 'yup';
+import { Box, Button, ButtonBase, Grid, Hidden, Step, StepLabel, Stepper, Typography } from '@mui/material';
 import { FormikWizard } from "formik-wizard-form";
-import { Box, Stepper, Button, Step, StepLabel, Typography, Hidden, Grid, ButtonBase } from '@mui/material';
+import React, { useState } from 'react';
+import { useTranslation } from 'react-i18next';
 import { useSelector } from 'react-redux';
 import { useNavigate } from 'react-router-dom';
-import { useTranslation } from 'react-i18next';
+import * as yup from 'yup';
+import InitialValuesValidators from '../../../Components/Inputs/InitialValuesValidators';
+import {
+    CustomerInformationSchema, EvaluationEligibilityInformationSchema, FinancialEligibilityInformationSchema,
+    GeneralEligibilityinformationSchema
+} from '../../../Components/Inputs/Schema';
 // import { v4 as uuidv4 } from 'uuid';
-import SubmittingDialog from '../../../Components/Dialogs/SubmittingDialog';
-import { useLocation } from 'react-router-dom';
+import { default as Close, default as CloseIcon } from '@mui/icons-material/Close';
 import SaveIcon from '@mui/icons-material/Save';
-import CloseIcon from '@mui/icons-material/Close';
+import { useLocation } from 'react-router-dom';
+import CommonMessageDialog from '../../../Components/Dialogs/CommonMessageDialog';
+import SubmittingDialog from '../../../Components/Dialogs/SubmittingDialog';
+import CheckCustomerEligibilityPage from '../Sections/CheckCustomerEligibilityPage';
 import CustomerInformationPage from '../Sections/CustomerInformationPage';
+import EvaluationEligibilityInformationPage from '../Sections/EvaluationEligibilityInformationPage';
 import FinancialEligibilityInformationPage from '../Sections/FinancialEligibilityInformationPage';
 import GeneralEligibilityinformationPage from '../Sections/GeneralEligibilityinformationPage';
-import EvaluationEligibilityInformationPage from '../Sections/EvaluationEligibilityInformationPage';
-import CheckCustomerEligibilityPage from '../Sections/CheckCustomerEligibilityPage';
 import RequiredFiles from '../Sections/RequiredFiles';
-import Close from '@mui/icons-material/Close';
-import CommonMessageDialog from '../../../Components/Dialogs/CommonMessageDialog';
 
 const WizardForm = () => {
     const [stepperPosition, setStepperPosition] = useState('')
@@ -52,7 +49,7 @@ const WizardForm = () => {
     const evaluationEligibilityInitialValues = InitialValuesValidators("initialValues", EvaluationEligibilityInformationSchema).initialValues;
 
     // Validators for the form
-    const customerInfoValidators = yup.object(InitialValuesValidators("validators", CustomerInformationSchema).validators);
+    const customerInfoValidators = yup.object().shape(InitialValuesValidators("validators", CustomerInformationSchema).validators);
     const financialEligibilityValidators = yup.object(InitialValuesValidators("validators", FinancialEligibilityInformationSchema).validators);
     const generalEligibilityValidators = prop => {
         return yup.lazy(values => {
@@ -60,9 +57,10 @@ const WizardForm = () => {
         })
     }
     let evaluationEligibilityValidators = InitialValuesValidators("validators", EvaluationEligibilityInformationSchema).validators;
-    const checkCustomerEligibilityValidators = yup.object({maxLoanAmount: yup.number()
-                                                                    .max(100000, "max loan amount must be less than or equal to 100000")
-                                                                    .required("Please, enter the loan amount") })
+    const checkCustomerEligibilityValidators = yup.object({
+        maxLoanAmount: yup.number()
+            .required("Please, enter the loan amount")
+    })
 
     let additionalEvaluationEligibilityValidators = {
         ...evaluationEligibilityValidators,
@@ -79,6 +77,7 @@ const WizardForm = () => {
     };
 
     evaluationEligibilityValidators = yup.object(additionalEvaluationEligibilityValidators)
+    const requiredFilesValidators = yup.object({ conditions: yup.bool().oneOf([true], t('Please, accept the conditions')) });
 
     const initialValues = {
         ...customerInfoInitialValues,
@@ -87,7 +86,9 @@ const WizardForm = () => {
         ...evaluationEligibilityInitialValues,
         maxLoanAmount: "", // related to CheckCustomerEligibilityPage
         maxAmount: false, // related to CheckCustomerEligibilityPage
-        maxValue: 100000 // related to CheckCustomerEligibilityPage
+        maxValue: 100000, // related to CheckCustomerEligibilityPage
+        conditions: false
+
     };
 
     const steps = [
@@ -118,14 +119,14 @@ const WizardForm = () => {
         setTrackNumberMessage(t(`Your application is ${content} and your track number is`) + " " + randomValue);
         setShowTrackNumberPopup(true);
 
-        localStorage.setItem(randomValue, JSON.stringify({ ...values, requestTrackerNumber: randomValue, status: type === "draft" ? "Draft" : "Pending"}));
+        localStorage.setItem(randomValue, JSON.stringify({ ...values, requestTrackerNumber: randomValue, status: type === "draft" ? "Draft" : "Pending" }));
     }
 
     const handleSubmitting = (values) => {
         showSuccessPopup(values, "submitted");
         setOpenDialog(false);
     }
-    
+
 
     window.addEventListener("resize", () => setScreenWidth(window.innerWidth));
     window.addEventListener('scroll', (x) => {
@@ -173,34 +174,63 @@ const WizardForm = () => {
                     console.log(values);
                     setFinalValues(values);
                     setFinished(true);
-                    setOpenDialog(true)
+                    handleSubmitting(values)
                 }}
-                validateOnNext
+                validateOnNext={true}
+                validateOnBlur={true}
+                validateOnChange={false}
+                validateOnMount={false}
                 activeStepIndex={0}
                 steps={[
                     {
                         component: CustomerInformationPage,
-                        // validationSchema: customerInfoValidators
+                        validationSchema: customerInfoValidators,
+                        beforeNext: (values, formikBag) => {
+                            console.log("valuesvaluesvalues::", values);
+                            formikBag.setFieldValue('nextClicked', false)
+
+                        }
                     },
                     {
                         component: FinancialEligibilityInformationPage,
-                        // validationSchema: financialEligibilityValidators
+                        validationSchema: financialEligibilityValidators,
+                        beforeNext: (values, formikBag) => {
+                            console.log("valuesvaluesvalues::", values);
+                            formikBag.setFieldValue('nextClicked', false)
+
+                        }
                     },
                     {
                         component: GeneralEligibilityinformationPage,
-                        validationSchema: generalEligibilityValidators
+                        validationSchema: generalEligibilityValidators,
+                        beforeNext: (values, formikBag) => {
+                            console.log("valuesvaluesvalues::", values);
+                            formikBag.setFieldValue('nextClicked', false)
+
+                        }
+
                     },
                     {
                         component: EvaluationEligibilityInformationPage,
-                        // validationSchema: evaluationEligibilityValidators
+                        validationSchema: evaluationEligibilityValidators,
+                        beforeNext: (values, formikBag) => {
+                            console.log("valuesvaluesvalues::", values);
+                            formikBag.setFieldValue('nextClicked', false)
+
+                        }
                     },
                     {
                         component: CheckCustomerEligibilityPage,
-                        // validationSchema: checkCustomerEligibilityValidators
+                        validationSchema: checkCustomerEligibilityValidators,
+                        beforeNext: (values, formikBag) => {
+                            console.log("valuesvaluesvalues::", values);
+                            formikBag.setFieldValue('nextClicked', false)
+
+                        }
                     },
                     {
                         component: RequiredFiles,
-                        // validationSchema: validator5
+                        validationSchema: requiredFilesValidators
                     },
                 ]}
             >
@@ -209,8 +239,15 @@ const WizardForm = () => {
                     renderComponent,
                     handlePrev,
                     handleNext,
-                    isNextDisabled,
                     isPrevDisabled,
+                    isFirstStep,
+                    submitCount,
+                    isSubmitting,
+                    isValidating,
+                    dirty,
+                    isValid,
+                    initialTouched,
+                    setFieldValue,
                     values
                 }) => {
                     return (
@@ -220,7 +257,7 @@ const WizardForm = () => {
                                     {t("Apply For Very Small Business Loan Request")}
                                 </h1>
                                 <Hidden smDown>
-                                    <div  style={{display: "flex"}}>
+                                    <div style={{ display: "flex" }}>
                                         {currentStepIndex > 0 && <ButtonBase
                                             onClick={() => {
                                                 setPopupActions("draft")
@@ -286,7 +323,7 @@ const WizardForm = () => {
                                                     setOpenCloseOrDraftDialog(true)
                                                 }}
                                                 sx={{
-                                                    margin: language === "ar" ? "0 0 0 10px": "0 10px 0 0",
+                                                    margin: language === "ar" ? "0 0 0 10px" : "0 10px 0 0",
                                                     "&:hover": {
                                                         color: '#f58232'
                                                     }
@@ -368,8 +405,12 @@ const WizardForm = () => {
                                             }}
                                             // disabled={isNextDisabled}
                                             type="primary"
-                                            onClick={handleNext}
-
+                                            onClick={() => {
+                                                setFieldValue('nextClicked', true);
+                                                (currentStepIndex === 4 && values.maxLoanAmount > 100000)
+                                                    ? setOpenDialog(true)
+                                                    : handleNext()
+                                            }}
                                         >
                                             {currentStepIndex === 5 ? t("Submit") : t("Continue")}
                                         </Button>
@@ -407,7 +448,7 @@ const WizardForm = () => {
                                 {openDialog && (
                                     <SubmittingDialog
                                         closeDialog={() => setOpenDialog(false)}
-                                        handleConfirmation={() => handleSubmitting(values)}
+                                        handleConfirmation={() => { handleNext(); setOpenDialog(false) }}
                                     />
 
                                 )}
@@ -429,9 +470,8 @@ const WizardForm = () => {
                                     />
                                 )}
                             </div>
-                            {/* <Box>
-                        <pre>{JSON.stringify(values, null, 2)}</pre>
-                    </Box> */}
+                            <Box>
+                            </Box>
                         </>
                     );
                 }}

@@ -5,7 +5,7 @@ import { useSelector } from 'react-redux';
 import FilesCard from './FilesCard'
 import testFile from '../../../Assets/test.pdf'
 
-export default function RequiredFiles() {
+export default function RequiredFiles({ values, handleChange, setFieldValue, errors }) {
     const { t } = useTranslation();
     const language = useSelector(state => state.language.language);
 
@@ -26,7 +26,7 @@ export default function RequiredFiles() {
                 {t("attachments_notes")}
             </Typography>
             {/* css file: pages/home */}
-            <Grid container spacing={6} display='flex' alignItems={'center'}> 
+            <Grid container spacing={6} display='flex' alignItems={'center'}>
                 <Grid item md={4} xs={12} sx={{
                     '@media (max-width: 900px)': {
                         pl: '0 !important',
@@ -68,13 +68,23 @@ export default function RequiredFiles() {
                     />
                 </Grid>
             </Grid>
-            <div
+            <Grid item xs={12}
                 dir={language === "ar" ? "rtl" : "ltr"}
-                style={{ display: 'flex', alignItems: 'center', fontSize: '14px', marginTop: '24px' }}>
-                <Checkbox size='large' />
-                {/* Add name here: conditions */}
-                {t("T&C")}
-            </div>
+
+            >
+                <div style={{ display: 'flex', alignItems: 'center', fontSize: '14px', marginTop: '24px' }}>
+                    <Checkbox size='large' name="conditions"
+                        checked={values.conditions}
+                        onChange={() => setFieldValue('conditions', !values.conditions)}
+                    >
+                    </Checkbox>
+                    {t("T&C")}
+                </div>
+
+                <Typography sx={{ color: 'red', fontSize: "14px", margin: language === "ar" ? "0 9px 0 0" : "0 0 0 9px" }}>
+                    {errors['conditions']}
+                </Typography>
+            </Grid>
         </div >
     )
 }

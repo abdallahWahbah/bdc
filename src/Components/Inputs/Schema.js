@@ -1,5 +1,34 @@
+
 import * as yup from 'yup';
 
+// const validateCompanyActivity = (values) =>
+// {
+//     if(values.companyActivity === undefined) return yup.string().required("Company Activity is required")
+    
+//     if(values.companyActivity !== "other")
+//     {
+//         console.log(values.companyActivity)
+//         const validator = yup.string().required("Can't choose " + values.companyActivity + ", please choose other")
+//         values.companyActivity = ""
+//         return validator;
+//     }
+// }
+
+const validateSpecificDropDownValue = (values, fieldName, desiredValues, initialMessage, errorMessage) =>
+{
+    if(values[fieldName] === undefined) return yup.string().required(initialMessage)
+
+    for(let i = 0; i < desiredValues.length; i++)
+    {
+        if(values[fieldName] === desiredValues[i])
+        {
+            return yup.string().required(initialMessage)
+        }
+    }
+    values[fieldName] = ""
+
+    return yup.string().required(errorMessage)
+}
 export const CustomerInformationSchema = 
 [
     {
@@ -32,6 +61,8 @@ export const CustomerInformationSchema =
         type: "number",
         label: "Requested Loan amount in EGP",
         initialValue: "",
+        validator: yup.number().required("Requested Loan amount in EGP is required")
+
     },
     {
         name: "customerID",
@@ -450,6 +481,7 @@ export const GeneralEligibilityinformationSchema =
         label: "Key Person's/Owner's Age?",
         selectId: "demo-simple-select",
         initialValue: "",
+        validatorFunc: (values) => validateSpecificDropDownValue(values, "personAge", ["25-30", "30-60"], "Please enter the owner age", "Owner's age must be between 25-60"),
         options: 
         [
             {
@@ -478,7 +510,7 @@ export const GeneralEligibilityinformationSchema =
         label: "Company's Years in business",
         selectId: "demo-simple-select",
         initialValue: "",
-        validator: yup.string().required("Company's Years in business is required"),
+        validatorFunc: (values) => validateSpecificDropDownValue(values, "companyYearsInBusiness", ["1-3", "3-5", "above5"], "Company's Years in business is required", "Years must be more than 1"),
         options: 
         [
             {
@@ -507,7 +539,7 @@ export const GeneralEligibilityinformationSchema =
         label: "Company residence",
         selectId: "demo-simple-select",
         initialValue: "",
-        validator: yup.string().required("Company residence is required"),
+        validatorFunc: (values) => validateSpecificDropDownValue(values, "companyResidence", ["4-5", "above5Years", "own"], "Company residence is required", "Years must be more than 3 or own"),
         options: 
         [
             {
@@ -548,7 +580,8 @@ export const GeneralEligibilityinformationSchema =
         label: "Company Activity",
         selectId: "demo-simple-select",
         initialValue: "",
-        validatorFunc: (values) => validateCompanyActivity(values),
+        // validatorFunc: (values) => validateCompanyActivity(values),
+        validatorFunc: (values) => validateSpecificDropDownValue(values, "companyActivity", ["other"], "Company Activity is required", "Can't choose " + values.companyActivity + ", please choose other"),
         options: 
         [
             {
@@ -614,6 +647,7 @@ export const GeneralEligibilityinformationSchema =
         ]
     },
     {
+        // if companyActivity === other, show this field
         name: "otherCompanyActivity",
         type: "text",
         label: "Other Company Activity",
@@ -651,19 +685,6 @@ export const GeneralEligibilityinformationSchema =
         ]
     },
 ]
-
-const validateCompanyActivity = (values) =>
-{
-    if(values.companyActivity === undefined) return yup.string().required("Company Activity is required")
-    
-    if(values.companyActivity !== "other")
-    {
-        console.log(values.companyActivity)
-        const validator = yup.string().required("Can't choose " + values.companyActivity + ", please choose other")
-        values.companyActivity = ""
-        return validator;
-    }
-}
 
 
 

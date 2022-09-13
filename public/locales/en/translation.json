@@ -209,5 +209,11 @@
     "Can't choose nonBanking, please choose other":"Can't choose Non Banking, please choose other",
     "Can't choose cementOrCeramic, please choose other":"Can't choose Cement Or Ceramic, please choose other",
     "Can't choose textile, please choose other":"Can't choose Textile, please choose other",
-    "Can't choose fertilisers, please choose other":"Can't choose Fertilisers, please choose other"
+    "Can't choose fertilisers, please choose other":"Can't choose Fertilisers, please choose other",
+    "check_customer_eligibility": "Check Customer Eligibility",
+    "Please enter the owner age":"Please enter the owner age",
+       "Owner's age must be between 25-60":"Owner's age must be between 25-60",
+       "Years must be more than 1":"Years must be more than 1",
+       "Years must be more than 3 or own":"Years must be more than 3 or own",
+       "Please, accept the conditions":"Please, accept the conditions"
 }

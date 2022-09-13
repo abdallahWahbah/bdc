@@ -4,15 +4,18 @@ import { FinancialEligibilityInformationSchema } from '../../../Components/Input
 import { useSelector } from 'react-redux';
 import Grid from "@mui/material/Grid";
 
-const FinancialEligibilityInformationPage = ({ errors, values, handleChange }) => {
+const FinancialEligibilityInformationPage = ({ errors, values, handleChange, setTouched, touched, isNextDisabled }) => {
     const language = useSelector(state => state.language.language);
 
     const financialEligibilityInformationContent = <FormInputCreator
-                                                        jsonObject={FinancialEligibilityInformationSchema}
-                                                        errors={errors}
-                                                        values={values}
-                                                        handleChange={handleChange} 
-                                                    />;
+        jsonObject={FinancialEligibilityInformationSchema}
+        errors={errors}
+        values={values}
+        handleChange={handleChange}
+        touched={touched}
+        setTouched={setTouched}
+        isNextDisabled={isNextDisabled}
+    />;
 
     return (
         <div>

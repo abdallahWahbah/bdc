@@ -7,10 +7,11 @@
     "Apply For Very Small Business Loan Request": "تقدم بطلب للحصول على قرض تجاري للشركات و المشاريع صغيرة",
     "Company Name": "اسم الشركة",
     "Commercial Registration Number": "رقم السجل التجاري",
-    "Contact Mobile Number": "رقم الهاتف للتواصل",
-    "Requested Loan amount in EGP": "مبلغ القرض المطلوب بالجنيه المصري",
+    "Contact Mobile Number": "رقم الهاتف للاتصال",
+    "Requested Loan amount in EGP": "مبلغ القرض (بالجنيه المصري)",
+    "Requested Loan amount in EGP is required": "الرجاء إدخال مبلغ القرض (بالجنيه المصري)",
     "pelase enter loan amount": "الرجاء إدخال قيمة القرض المطلوبة ضمن الحد الأقصى",
-    "Customer ID (CIF)": "رقم العميل (CIF)",
+    "Customer ID (CIF)": "كود الشركة لعملاء بنك القاهرة",
     "The nearest Bank Branch": "فرع البنك الأقرب اليك",
     "Annual Sales Turnover for the previous financial year in EGP": "حجم المبيعات خلال السنه السابقه (بالجنيه)",
     "less than 1 Million": "أقل من مليون",
@@ -212,5 +213,10 @@
     "Can't choose nonBanking, please choose other":"لا يمكن اختيار المؤسسات المالية غير المصرفية",
     "Can't choose cementOrCeramic, please choose other":"لا يمكن اختيار أسمنت أو سيراميك",
     "Can't choose textile, please choose other":"لا يمكن اختيار الغزل والنسيج",
-    "Can't choose fertilisers, please choose other":"لا يمكن اختيار اسمدة"
+    "Can't choose fertilisers, please choose other":"لا يمكن اختيار اسمدة",
+    "Please enter the owner age":"الرجاء اختيار عمر المالك",
+    "Owner's age must be between 25-60":"عمر المالك يجب ان يكون بين 25-60 سنة",
+    "Years must be more than 1":"يجب ان تمتلك الشركة اكتر من سنة في المجال",
+    "Years must be more than 3 or own":"مقر المزاولة يجب ان يكون اكتر من 3 سنوات ايجار او ملك",
+    "Please, accept the conditions":"يجب ان توافق علي الشروط والاحكام"
 }

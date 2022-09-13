@@ -3,15 +3,19 @@ import { useSelector } from 'react-redux';
 import Grid from "@mui/material/Grid";
 import ClientValidty from './ClientValidty';
 
-const CheckCustomerEligibilityPage = ({ errors, values, handleChange, setFieldValue }) => {
+const CheckCustomerEligibilityPage = ({ errors, values, handleChange, setFieldValue, setTouched, touched, isNextDisabled }) => {
     const language = useSelector(state => state.language.language);
     console.log(setFieldValue)
-    const checkCustomerEligibilityContent =  <ClientValidty
-                                                values={values}
-                                                errors={errors}
-                                                handleChange={handleChange}
-                                                setFieldValue={setFieldValue}
-                                            />
+    const checkCustomerEligibilityContent = <ClientValidty
+        values={values}
+        errors={errors}
+        handleChange={handleChange}
+        setFieldValue={setFieldValue}
+        touched={touched}
+        setTouched={setTouched}
+        isNextDisabled={isNextDisabled}
+
+    />
 
     return (
         <div>
